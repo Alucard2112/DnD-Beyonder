@@ -8,12 +8,22 @@ class Range{
   Range(this.type, this.amount, this.distanceType);
 
   String inMeters(){
-    switch(distanceType){
+    switch(distanceType) {
       case DistanceType.feet:
-        return "${((amount * 1.5)/5.0).round()} ${distanceTypeToString(DistanceType.meters)}";
+        return "${((amount * 1.5) / 5.0).round()} ${distanceTypeToString(
+            DistanceType.meters)}";
       default:
         return toString();
     }
+  }
+
+  String inFeet(){
+      switch(distanceType){
+        case DistanceType.meters:
+          return "${((amount * 5) / 1.5).round()} ${distanceTypeToString(DistanceType.meters)}";
+        default:
+          return toString();
+      }
   }
 
   @override

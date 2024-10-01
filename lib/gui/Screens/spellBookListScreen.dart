@@ -22,7 +22,6 @@ class SpellBookListScreen extends StatefulWidget {
 class _SpellBookListScreenState extends State<SpellBookListScreen> {
   static bool _asc = true;
   static Sorting _sorting = Sorting.name;
-  static bool _filter = false;
   static String _searchText = "";
   static int _selectedSpellBook = -1;
 

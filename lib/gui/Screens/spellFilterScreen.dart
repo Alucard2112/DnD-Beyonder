@@ -225,7 +225,7 @@ class _SpellFilterScreenState extends State<SpellFilterScreen> {
                     onTap: () {
                       _updateDamageTypeFilter(type);
                     },
-                    label: spellDamageTypeToName(type),
+                    label: spellDamageTypeToName(type, context),
                     isChecked: _spellFilter.damageType.contains(type),
                 )
             );

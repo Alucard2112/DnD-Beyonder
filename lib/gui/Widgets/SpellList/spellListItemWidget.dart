@@ -6,6 +6,7 @@ import 'package:dnd_beyonder/data/spell/sourceBook.dart';
 import 'package:dnd_beyonder/data/spell/spell.dart';
 import 'package:dnd_beyonder/gui/Widgets/cardWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 
 import '../../../data/spell/spellSchool.dart';
 
@@ -66,7 +67,7 @@ class SpellListItemWidget extends StatelessWidget with Sortable<SpellListItemWid
   }
 
   @override
-  int sortAttackType(SpellListItemWidget b) {
+  int sortAttackType(SpellListItemWidget b){
     if(spell.damageInflict.isNotEmpty && b.spell.damageInflict.isNotEmpty) {
       return
           spellDamageTypeToName(spell.damageInflict[0]).compareTo(

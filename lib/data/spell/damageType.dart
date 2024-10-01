@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 enum SpellDamageType{
   acid,
   bludgeoning,
@@ -32,47 +35,47 @@ SpellDamageType convertFromString(String s){
   return SpellDamageType.unarmedAttacks;
 }
 
-String spellDamageTypeToName(SpellDamageType type){
+String spellDamageTypeToName(SpellDamageType type, BuildContext context){
   switch(type){
     case SpellDamageType.acid:
-      return "Säure";
+      return AppLocalizations.of(context)!.acid;
     case SpellDamageType.bludgeoning:
-      return "Wuchtschaden";
+      return AppLocalizations.of(context)!.bludgeoning;
     case SpellDamageType.cold:
-      return "Frost";
+      return AppLocalizations.of(context)!.cold;
     case SpellDamageType.fire:
-      return "Feuer";
+      return AppLocalizations.of(context)!.fire;
     case SpellDamageType.force:
-      return "Energie";
+      return AppLocalizations.of(context)!.force;
     case SpellDamageType.lightning:
-      return "Blitz";
+      return AppLocalizations.of(context)!.lightning;
     case SpellDamageType.necrotic:
-      return "Nekrotisch";
+      return AppLocalizations.of(context)!.necrotic;
     case SpellDamageType.piercing:
-      return "Stich";
+      return AppLocalizations.of(context)!.piercing;
     case SpellDamageType.poison:
-      return "Gift";
+      return AppLocalizations.of(context)!.poison;
     case SpellDamageType.psychic:
-      return "Psychisch";
+      return AppLocalizations.of(context)!.psychic;
     case SpellDamageType.radiant:
-      return "Gleißend";
+      return AppLocalizations.of(context)!.radiant;
     case SpellDamageType.slashing:
-      return "Klinge";
+      return AppLocalizations.of(context)!.slashing;
     case SpellDamageType.thunder:
-      return "Donner";
+      return AppLocalizations.of(context)!.thunder;
     case SpellDamageType.shortbow:
-      return "Kurzbogen";
+      return AppLocalizations.of(context)!.shortbow;
     case SpellDamageType.longbow:
-      return "Langbogen";
+      return AppLocalizations.of(context)!.longbow;
     case SpellDamageType.oneHandedMeleeAttacks:
-      return "Einhändige Nahkampfangriffe";
+      return AppLocalizations.of(context)!.oneHandedMeleeAttacks;
     case SpellDamageType.unarmedAttacks:
-      return "Unbewaffnete Nahkampfangriffe";
+      return AppLocalizations.of(context)!.unarmedAttacks;
     case SpellDamageType.naturalAttacks:
-      return "Neutrale Angriffe";
+      return AppLocalizations.of(context)!.naturalAttacks;
     case SpellDamageType.meleeWeaponAttacks:
-      return "Nahkampfangriffe";
+      return AppLocalizations.of(context)!.meleeWeaponAttacks;
     case SpellDamageType.thrownWeaponAttacks:
-      return "Wurfwaffenangriffe";
+      return AppLocalizations.of(context)!.thrownWeaponAttacks;
   }
 }
