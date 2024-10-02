@@ -1,12 +1,7 @@
 {
-  "helloWorld": "Hello World!",
-  "@helloWorld": {
-    "description": "The conventional newborn programmer greeting"
-  },
-
   "@_Distanz": {},
   "self": "Selbst",
-  "meter": "{count, plural,=1{1 Meter} other{{count} Meters}}",
+  "meter": "{count, plural,=1{1 Meter} other{{count} Meter}}",
   "@meter": {
     "description": "Counting Meter",
     "placeholders": {
@@ -16,7 +11,7 @@
       }
     }
   },
-  "feet": "{count} Fuß}",
+  "feet": "{count} Fuß",
   "@feet": {
     "description": "Counting Feet",
     "placeholders": {
@@ -127,7 +122,7 @@
       }
     }
   },
-  "spellLevel": "{count, plural,=0{Zaubertrick} other{{count}. Grad}}",
+  "spellLevel": "{count, plural,=0Zaubertrick other{{count}. Grad}}",
   "@spellLevel": {
     "description": "String for displaying the level of a spell",
     "placeholders": {

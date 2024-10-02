@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../generated/l10n.dart';
 
 enum SpellDamageType{
   acid,
@@ -35,47 +34,47 @@ SpellDamageType convertFromString(String s){
   return SpellDamageType.unarmedAttacks;
 }
 
-String spellDamageTypeToName(SpellDamageType type, BuildContext context){
+String spellDamageTypeToName(SpellDamageType type){
   switch(type){
     case SpellDamageType.acid:
-      return AppLocalizations.of(context)!.acid;
+      return S.current.acid;
     case SpellDamageType.bludgeoning:
-      return AppLocalizations.of(context)!.bludgeoning;
+      return S.current.bludgeoning;
     case SpellDamageType.cold:
-      return AppLocalizations.of(context)!.cold;
+      return S.current.cold;
     case SpellDamageType.fire:
-      return AppLocalizations.of(context)!.fire;
+      return S.current.fire;
     case SpellDamageType.force:
-      return AppLocalizations.of(context)!.force;
+      return S.current.force;
     case SpellDamageType.lightning:
-      return AppLocalizations.of(context)!.lightning;
+      return S.current.lightning;
     case SpellDamageType.necrotic:
-      return AppLocalizations.of(context)!.necrotic;
+      return S.current.necrotic;
     case SpellDamageType.piercing:
-      return AppLocalizations.of(context)!.piercing;
+      return S.current.piercing;
     case SpellDamageType.poison:
-      return AppLocalizations.of(context)!.poison;
+      return S.current.poison;
     case SpellDamageType.psychic:
-      return AppLocalizations.of(context)!.psychic;
+      return S.current.psychic;
     case SpellDamageType.radiant:
-      return AppLocalizations.of(context)!.radiant;
+      return S.current.radiant;
     case SpellDamageType.slashing:
-      return AppLocalizations.of(context)!.slashing;
+      return S.current.slashing;
     case SpellDamageType.thunder:
-      return AppLocalizations.of(context)!.thunder;
+      return S.current.thunder;
     case SpellDamageType.shortbow:
-      return AppLocalizations.of(context)!.shortbow;
+      return S.current.shortbow;
     case SpellDamageType.longbow:
-      return AppLocalizations.of(context)!.longbow;
+      return S.current.longbow;
     case SpellDamageType.oneHandedMeleeAttacks:
-      return AppLocalizations.of(context)!.oneHandedMeleeAttacks;
+      return S.current.oneHandedMeleeAttacks;
     case SpellDamageType.unarmedAttacks:
-      return AppLocalizations.of(context)!.unarmedAttacks;
+      return S.current.unarmedAttacks;
     case SpellDamageType.naturalAttacks:
-      return AppLocalizations.of(context)!.naturalAttacks;
+      return S.current.naturalAttacks;
     case SpellDamageType.meleeWeaponAttacks:
-      return AppLocalizations.of(context)!.meleeWeaponAttacks;
+      return S.current.meleeWeaponAttacks;
     case SpellDamageType.thrownWeaponAttacks:
-      return AppLocalizations.of(context)!.thrownWeaponAttacks;
+      return S.current.thrownWeaponAttacks;
   }
 }
