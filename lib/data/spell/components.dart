@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../generated/l10n.dart';
 
 class Components{
   final bool v;
@@ -8,31 +7,17 @@ class Components{
 
   Components(this.v, this.s, this.m);
 
-  String forUi(BuildContext context){
-    String ret = "";
-    if(v){
-      ret+="${AppLocalizations.of(context)!.verbal}, ";
-    }
-    if(s){
-      ret+="${AppLocalizations.of(context)!.somatic}, ";
-    }
-    if(m.isNotEmpty){
-      ret+="${AppLocalizations.of(context)!.material}, ";
-    }
-    return ret.substring(0,ret.length-2);
-  }
-
   @override
   String toString(){
     String ret = "";
     if(v){
-      ret+="Verbal, ";
+      ret+="${S.current.verbal}, ";
     }
     if(s){
-      ret+="Geste, ";
+      ret+="${S.current.somatic}, ";
     }
     if(m.isNotEmpty){
-      ret+="Material, ";
+      ret+="${S.current.material}, ";
     }
     return ret.substring(0,ret.length-2);
   }

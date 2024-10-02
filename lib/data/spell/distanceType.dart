@@ -1,3 +1,5 @@
+import 'package:dnd_beyonder/generated/l10n.dart';
+
 enum DistanceType{
   feet,
   meters,
@@ -19,10 +21,10 @@ DistanceType distanceTypeFromString(String s){
 String distanceTypeToString(DistanceType type){
   switch(type){
     case DistanceType.feet:
-      return "Feet";
+      return S.current.feet;
     case DistanceType.meters:
-      return "Meter";
+      return S.current.meter;
     case DistanceType.self:
-      return "Selbst";
+      return S.current.self;
   }
 }

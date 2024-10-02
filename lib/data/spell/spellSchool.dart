@@ -1,3 +1,5 @@
+import 'package:dnd_beyonder/generated/l10n.dart';
+
 enum SpellSchool{
   abjuration,
   transmutation,
@@ -12,21 +14,21 @@ enum SpellSchool{
 String spellSchoolToString(SpellSchool school){
   switch(school){
     case SpellSchool.abjuration:
-      return "Bannmagie";
+      return S.current.abjuration;
     case SpellSchool.transmutation:
-      return "Verwandlung";
+      return S.current.transmutation;
     case SpellSchool.conjuration:
-      return "Beschwörung";
+      return S.current.conjuration;
     case SpellSchool.divination:
-      return "Erkenntnismagie";
+      return S.current.divination;
     case SpellSchool.enchantment:
-      return "Verzauberung";
+      return S.current.enchantment;
     case SpellSchool.illusion:
-      return "Illusion";
+      return S.current.illusion;
     case SpellSchool.evocation:
-      return "Hervorrufung";
+      return S.current.evocation;
     case SpellSchool.necromancy:
-      return "Nekromantie";
+      return S.current.necromancy;
   }
 }
 

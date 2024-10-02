@@ -1,3 +1,5 @@
+import '../../generated/l10n.dart';
+
 enum SourceBook{
   ai,
   aventh,
@@ -34,65 +36,65 @@ enum SourceBook{
 String sourceBookToString(SourceBook book){
   switch(book){
     case SourceBook.ai:
-      return "Acquisitions Incorporated";
+      return S.current.ai;
     case SourceBook.aventh:
-      return "Aventurische Helden";
+      return S.current.aventh;
     case SourceBook.aventm:
-      return "Aventurische Monster";
+      return S.current.aventm;
     case SourceBook.bomt:
-      return "The Book of Many Things";
+      return S.current.bomt;
     case SourceBook.cthulhu:
-      return "Sandy Petersens Cthulhu Mythos";
+      return S.current.cthulhu;
     case SourceBook.dosi:
-      return "Die Drachen der Sturmwrack-Insel";
+      return S.current.dosi;
     case SourceBook.eepc:
-      return "Elemental Evil Player’s Companion";
+      return S.current.eepc;
     case SourceBook.egtw:
-      return "Explorer's Guide to Wildemount";
+      return S.current.egtw;
     case SourceBook.ff2g:
-      return "Fateforge: 2. Die Erwachten";
+      return S.current.ff2g;
     case SourceBook.ff3c:
-      return "Fateforge: 3. Creatures";
+      return S.current.ff3c;
     case SourceBook.ftod:
-      return "Fizbans Schatzkammer der Drachen";
+      return S.current.ftod;
     case SourceBook.humblewood:
-      return "Humblewood";
+      return S.current.humblewood;
     case SourceBook.idrotf:
-      return "Eiswindtal: Ode der Frostmaid";
+      return S.current.idrotf;
     case SourceBook.mtgafr:
-      return "Abenteuer in den Forgotten Realms";
+      return S.current.mtgafr;
     case SourceBook.mythaddm:
-      return "Mythgart Abenteuer des Dunklen Meisters";
+      return S.current.mythaddm;
     case SourceBook.mythheld:
-      return "Mythgart Handbuch der Helden";
+      return S.current.mythheld;
     case SourceBook.mythsaga:
-      return "Mythgart Sagas";
+      return S.current.mythsaga;
     case SourceBook.mythwelt:
-      return "Mythgart Weltenbuch";
+      return S.current.mythwelt;
     case SourceBook.pamsato:
-      return "Planescape Adventures in the Multiverse: Sigil and the Outlands";
+      return S.current.pamsato;
     case SourceBook.phb:
-      return "Spielerhandbuch (2014)";
+      return S.current.phb;
     case SourceBook.pota:
-      return "Prinzen der Apokalypse";
+      return S.current.pota;
     case SourceBook.ragnarok:
-      return "Journey to Ragnarok";
+      return S.current.ragnarok;
     case SourceBook.sasaag:
-      return "Spelljammer Adventures in Space: Astral Adventurer's Guide";
+      return S.current.sasaag;
     case SourceBook.scag:
-      return "Abenteurerhandbuch der Schwertküste";
+      return S.current.scag;
     case SourceBook.scc:
-      return "Strixhaven: A Curriculum of Chaos";
+      return S.current.scc;
     case SourceBook.srd:
-      return "Systemreferenzdokument";
+      return S.current.srd;
     case SourceBook.tcoe:
-      return "Tashas Kessel mit Allem";
+      return S.current.tcoe;
     case SourceBook.xge:
-      return "Xanathars Ratgeber für Alles";
+      return S.current.xge;
     case SourceBook.xphb:
-      return "Spielerhandbuch (2024)";
+      return S.current.xphb;
     default:
-      return "Homebrew";
+      return S.current.homebrew;
   }
 }
 

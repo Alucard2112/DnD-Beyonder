@@ -1,3 +1,5 @@
+import 'package:dnd_beyonder/generated/l10n.dart';
+
 enum DurationType{
   instantaneous,
   timed
@@ -16,7 +18,7 @@ DurationType durationTypeFromString(String s){
 String durationTypeToString(DurationType t){
   switch(t){
     case DurationType.instantaneous:
-      return "Sofort";
+      return S.current.instantaneous;
     case DurationType.timed:
       return "";
   }

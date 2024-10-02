@@ -1,8 +1,11 @@
 {
+  "@@locale": "de",
   "@_Distanz": {},
   "self": "Selbst",
-  "meter": "{count, plural,=1{1 Meter} other{{count} Meter}}",
-  "@meter": {
+  "feet": "Fuß",
+  "meter": "Meter",
+  "meterForUi": "{count, plural,=1{1 Meter} other{{count} Meter}}",
+  "@meterForUi": {
     "description": "Counting Meter",
     "placeholders": {
       "count": {
@@ -11,8 +14,8 @@
       }
     }
   },
-  "feet": "{count} Fuß",
-  "@feet": {
+  "feetForUi": "{count} Fuß",
+  "@feetForUi": {
     "description": "Counting Feet",
     "placeholders": {
       "count": {
@@ -37,7 +40,7 @@
   "warlock": "Hexenmeister",
   "wizard": "Zauberer",
 
-  "@_Sortierungen": {},
+  "@_Sorting": {},
   "name": "Name",
   "level": "Zaubergrad",
   "school": "Zauberschule",
@@ -45,6 +48,9 @@
   "source": "Quelle",
   "dndClass": "Klasse",
   "spellCount": "Anzahl Zauber",
+  "sortBy": "Sortieren nach",
+  "ascending": "Aufsteigend",
+  "descending": "Absteigend",
 
   "@_Komponenten": {},
   "verbal": "Verbal",
@@ -151,7 +157,7 @@
   "necromancy": "Nekromantie",
 
   "@_TimeUnits" : {},
-  "action": "{count, plural,=1{1 Aktion} other{{count} Aktionen}}",
+  "action": "{count, plural,=-1 Aktion =1{1 Aktion} other{{count} Aktionen}}",
   "@action": {
     "description": "String for displaying actions",
     "placeholders": {
@@ -161,7 +167,7 @@
       }
     }
   },
-  "bonusAction": "{count, plural,=1{1 Bonusaktion} other{{count} Bonusaktionen}}",
+  "bonusAction": "{count, plural,=-1 Bonusaktion =1{1 Bonusaktion} other{{count} Bonusaktionen}}",
   "@bonusAction": {
     "description": "String for displaying bonusactions",
     "placeholders": {
@@ -171,7 +177,7 @@
       }
     }
   },
-  "reaction": "{count, plural,=1{1 Reaktion} other{{count} Reaktionen}}",
+  "reaction": "{count, plural,=-1 Reaktion =1{1 Reaktion} other{{count} Reaktionen}}",
   "@reaction": {
     "description": "String for displaying reactions",
     "placeholders": {
@@ -181,7 +187,7 @@
       }
     }
   },
-  "second": "{count, plural,=1{1 Sekunde} other{{count} Sekunden}}",
+  "second": "{count, plural,=-1 Sekunde =1{1 Sekunde} other{{count} Sekunden}}",
   "@second": {
     "description": "String for displaying seconds",
     "placeholders": {
@@ -191,7 +197,7 @@
       }
     }
   },
-  "minute": "{count, plural,=1{1 Minute} other{{count} Minuten}}",
+  "minute": "{count, plural,=-1 Minute =1{1 Minute} other{{count} Minuten}}",
   "@minute": {
     "description": "String for displaying minutes",
     "placeholders": {
@@ -201,7 +207,7 @@
       }
     }
   },
-  "hour": "{count, plural,=1{1 Stunde} other{{count} Stunden}}",
+  "hour": "{count, plural,=-1 Stunde =1{1 Stunde} other{{count} Stunden}}",
   "@hour": {
     "description": "String for displaying hours",
     "placeholders": {
@@ -213,13 +219,30 @@
   },
   "unknown": "Unbekannt",
 
+  "@_Ui" : {},
+  "uiCancel" : "Abbrechen",
+  "uiDone" : "Fertig",
+
   "@_UiMainScreen": {},
   "mainScreenSpellList" : "Zauberliste",
   "mainScreenSettings" : "Einstellungen",
   "mainScreenSpellBooks" : "Zauberbücher",
 
+  "@_UiSpellListScreen": {},
+  "searchSpells" : "Zauber suchen",
+
   "@_UiSpellBookScreen" : {},
   "spellBookSearchCharacter": "Charakter suchen",
+  "spellBookSpellCount" : "{amount} Zauber",
+  "@spellBookSpellCount": {
+    "description": "String for displaying number of spells",
+    "placeholders": {
+      "amount": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
 
   "@_UiSpellDetailScreen" : {},
   "spellDetailClasses" : "Klassen",
@@ -232,5 +255,8 @@
   "@_UiFilterScreen": {},
   "filterUnselect" : "Alle abwählen",
   "filterSpells" : "Zauber filtern",
-  "filterReset" : "Filter zurücksetzen"
+  "filterReset" : "Filter zurücksetzen",
+
+  "@_UiSpellDescription": {},
+  "onHigherLevels" : "Auf höheren Graden"
 }

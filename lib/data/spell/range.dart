@@ -1,4 +1,5 @@
 import 'package:dnd_beyonder/data/spell/distanceType.dart';
+import 'package:dnd_beyonder/generated/l10n.dart';
 
 class Range{
   final String type;
@@ -10,20 +11,23 @@ class Range{
   String inMeters(){
     switch(distanceType) {
       case DistanceType.feet:
-        return "${((amount * 1.5) / 5.0).round()} ${distanceTypeToString(
-            DistanceType.meters)}";
-      default:
-        return toString();
+        return S.current.meterForUi(((amount * 1.5) / 5.0).round());
+      case DistanceType.meters:
+        return S.current.meterForUi(amount);
+      case DistanceType.self:
+        return S.current.self;
     }
   }
 
   String inFeet(){
-      switch(distanceType){
-        case DistanceType.meters:
-          return "${((amount * 5) / 1.5).round()} ${distanceTypeToString(DistanceType.meters)}";
-        default:
-          return toString();
-      }
+    switch(distanceType) {
+      case DistanceType.feet:
+        return S.current.feetForUi(amount);
+      case DistanceType.meters:
+        return S.current.feetForUi(((amount * 5) / 1.5).round());
+      case DistanceType.self:
+        return S.current.self;
+    }
   }
 
   @override

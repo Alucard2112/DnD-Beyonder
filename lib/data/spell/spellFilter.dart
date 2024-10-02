@@ -5,8 +5,10 @@ import 'package:dnd_beyonder/data/spell/spellSchool.dart';
 import 'package:dnd_beyonder/data/spell/subclass.dart';
 import 'package:dnd_beyonder/data/spell/time.dart';
 
+import '../../generated/l10n.dart';
+
 class SpellFilter{
-  static const List<String> _categories = ["Klassen","Grad","Zauberzeit","Schule","Schadenstyp"];
+  static final List<String> _categories = [S.current.filterClasses,S.current.filterLevel,S.current.filterCastTime,S.current.filterSchool,S.current.filterDamage];
   final Map<String, bool> categories = {};
   final Set<DnDClass> classFilter = {};
   final Set<SpellSchool> schoolFilter = {};

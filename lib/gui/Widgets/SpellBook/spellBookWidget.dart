@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../../data/gui/constants.dart';
 import '../../../data/sortable.dart';
+import '../../../generated/l10n.dart';
 
 class SpellBookWidget extends StatelessWidget with Sortable<SpellBookWidget>{
   final SpellBook spellBook;
@@ -50,7 +51,7 @@ class SpellBookWidget extends StatelessWidget with Sortable<SpellBookWidget>{
                     children: [
                       Text(spellBook.name, style: headingText,),
                       Text(toDnDClassName(spellBook.dnDClass), style: subheadingTextBold,),
-                      Text("${spellBook.spells.length} Zauber", style: subheadingText,),
+                      Text(S.of(context).spellBookSpellCount(spellBook.spells.length), style: subheadingText,),
                     ],
                   )
               ),

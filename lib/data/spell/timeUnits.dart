@@ -1,3 +1,5 @@
+import '../../generated/l10n.dart';
+
 enum TimeUnits{
   action,
   bonusAction,
@@ -35,18 +37,18 @@ TimeUnits timeUnitFromString(String s){
 String timeUnitToString(TimeUnits t){
   switch(t){
     case TimeUnits.action:
-      return "Aktion";
+      return S.current.action(-1);
     case TimeUnits.bonusAction:
-      return "Bonusaktion";
+      return S.current.bonusAction(-1);
     case TimeUnits.reaction:
-      return "Reaktion";
+      return S.current.reaction(-1);
     case TimeUnits.second:
-      return "Sekunde";
+      return S.current.second(-1);
     case TimeUnits.minute:
-      return "Minute";
+      return S.current.minute(-1);
     case TimeUnits.hour:
-      return "Stunde";
+      return S.current.hour(-1);
     case TimeUnits.unknown:
-      return "Unbekannt";
+      return S.current.unknown;
   }
 }

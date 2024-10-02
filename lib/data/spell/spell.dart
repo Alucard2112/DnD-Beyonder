@@ -12,6 +12,7 @@ import 'package:dnd_beyonder/data/spell/time.dart';
 import 'package:dnd_beyonder/data/spell/duration.dart';
 import 'package:dnd_beyonder/data/spell/timeUnits.dart';
 import 'package:dnd_beyonder/database/dbhandler.dart';
+import 'package:dnd_beyonder/generated/l10n.dart';
 
 import '../dnd/dnd_class.dart';
 import 'durationType.dart';
@@ -40,20 +41,14 @@ class Spell{
       this.conditionInflict, this.savingThrow, this.mainClasses, this.subClasses, this.duration, this.damageInflict);
 
   static String getLevelString(int level){
-    if(level > 0) {
-      return "$level. Grad";
-    }
-    return "Zaubertrick";
+    return S.current.spellLevel(level);
   }
 
   @override
   int get hashCode => name.hashCode + source.hashCode;
 
   String getSchoolLevelForUI(){
-    if(level > 0) {
-      return "${spellSchoolToString(school)} des ${getLevelString(level)}es";
-    }
-    return "${getLevelString(level)} der ${spellSchoolToString(school)}";
+    return S.current.spellSchoolLevel(level, getSchoolString());
   }
 
   String getSchoolString(){

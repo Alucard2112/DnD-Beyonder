@@ -1,4 +1,5 @@
 import 'package:dnd_beyonder/data/spell/timeUnits.dart';
+import 'package:dnd_beyonder/generated/l10n.dart';
 
 class Time{
   final int number;
@@ -16,11 +17,22 @@ class Time{
 
   @override
   String toString(){
-    String timeString = "$number ${timeUnitToString(unit)}";
-    if(number > 1 && (unit == TimeUnits.hour || unit == TimeUnits.minute)){
-      timeString += "n";
+    switch(unit){
+      case TimeUnits.action:
+        return S.current.action(number);
+      case TimeUnits.bonusAction:
+        return S.current.bonusAction(number);
+      case TimeUnits.reaction:
+        return S.current.reaction(number);
+      case TimeUnits.second:
+        return S.current.second(number);
+      case TimeUnits.minute:
+        return S.current.minute(number);
+      case TimeUnits.hour:
+        return S.current.hour(number);
+      case TimeUnits.unknown:
+        return S.current.unknown;
     }
-    return timeString;
   }
 
   @override

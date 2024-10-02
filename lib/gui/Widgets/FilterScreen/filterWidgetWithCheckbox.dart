@@ -29,8 +29,8 @@ class FilterTextCheckBoxWidget extends StatelessWidget {
               child: Checkbox(
                 value: isChecked,
                 isError: true,
-                fillColor: MaterialStateProperty.resolveWith((states) {
-                  if (!states.contains(MaterialState.selected)) {
+                fillColor: WidgetStateProperty.resolveWith((states) {
+                  if (!states.contains(WidgetState.selected)) {
                     return checkBoxBackgroundColorUnchecked;
                   }
                   return iconColorPurple;

@@ -2,6 +2,7 @@ import 'package:dnd_beyonder/data/gui/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/gui/sorting.dart';
+import '../../../generated/l10n.dart';
 import '../flipSwitchWidget.dart';
 
 class SortWidget extends StatefulWidget {
@@ -21,7 +22,7 @@ class SortWidget extends StatefulWidget {
   static Future openDialog(BuildContext context, Sorting sorting, bool asc, List<Sorting> values, Function updateSorting) => showDialog(
       context: context,
       builder: (context) => AlertDialog(
-          title: const Text("Sortieren nach", style: headingText,),
+          title: Text(S.of(context).sortBy, style: headingText,),
           backgroundColor: scaffoldBackgroundColor,
           content: SortWidget(
               asc: asc,
@@ -68,8 +69,8 @@ class _SortWidgetState extends State<SortWidget> {
     }
     children.add(
         FlipSwitchWidget(
-          leftLabel: 'Aufsteigend',
-          rightLabel: "Absteigend",
+          leftLabel: S.of(context).ascending,
+          rightLabel: S.of(context).descending,
           left: _asc!,
           leftTap: (){setState(() {
             _asc = true;
@@ -87,7 +88,7 @@ class _SortWidgetState extends State<SortWidget> {
               onTap: (){
                 Navigator.of(context).pop();
               },
-              child: Text("ABBRECHEN", style: boldNormalText.copyWith(color: iconColorPurple),),
+              child: Text(S.of(context).uiCancel.toUpperCase(), style: boldNormalText.copyWith(color: iconColorPurple),),
             ),
             Container(
               width: 48,
@@ -97,7 +98,7 @@ class _SortWidgetState extends State<SortWidget> {
                 widget.returnFunction(_sorting, _asc);
                 Navigator.of(context).pop();
               },
-              child: Text("FERTIG", style: boldNormalText.copyWith(color: iconColorPurple),),
+              child: Text(S.of(context).uiDone.toUpperCase(), style: boldNormalText.copyWith(color: iconColorPurple),),
             ),
           ],
         )

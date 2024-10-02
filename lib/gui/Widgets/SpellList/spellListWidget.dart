@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../../data/gui/sorting.dart';
 import '../../../data/sortable.dart';
+import '../../../generated/l10n.dart';
 import '../SearchBarWidget.dart';
 import '../clickableIcon.dart';
 import '../sortUiButtonWidget.dart';
@@ -65,7 +66,7 @@ class SpellListWidget extends StatelessWidget {
                     child: SearchBarWidget(
                       searchText: searchText,
                       onChanged: onSearchText,
-                      hintText: "Zauber suchen",
+                      hintText: S.of(context).searchSpells,
                     ),
                   ),
                   Padding(
