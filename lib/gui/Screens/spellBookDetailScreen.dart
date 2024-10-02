@@ -36,7 +36,7 @@ class SpellBookDetailScreen extends StatelessWidget {
                 children: [
                   const SizedBox(
                     height: 20,
-                    child: Icon(Icons.arrow_back_ios_rounded, color: textColor,),
+                    child: Icon(Icons.arrow_back_outlined, color: textColor,),
                   ),
                   const Padding(padding: EdgeInsets.symmetric(horizontal: 4)),
                   SizedBox(
