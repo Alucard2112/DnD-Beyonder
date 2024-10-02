@@ -39,8 +39,6 @@ dependencies:
   json: ^0.20.2
   sqflite: ^2.3.3+1
   path: ^1.9.0
-  local_hero: ^0.3.0
-  hero_animation: ^1.1.4
   shared_preferences: ^2.3.2
   intl: any
 

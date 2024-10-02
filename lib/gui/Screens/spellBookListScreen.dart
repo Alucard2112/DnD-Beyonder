@@ -5,7 +5,6 @@ import 'package:dnd_beyonder/gui/Widgets/SpellBook/spellBookWidget.dart';
 import 'package:dnd_beyonder/gui/Widgets/clickableIcon.dart';
 
 import 'package:flutter/material.dart';
-import 'package:hero_animation/hero_animation.dart';
 import '../../data/gui/constants.dart';
 import '../../data/gui/sorting.dart';
 import '../Widgets/SearchBarWidget.dart';

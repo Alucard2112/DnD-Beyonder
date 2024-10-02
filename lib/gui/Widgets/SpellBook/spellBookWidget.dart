@@ -2,8 +2,6 @@ import 'package:dnd_beyonder/data/dnd/dnd_class.dart';
 import 'package:dnd_beyonder/data/spellbook/spellbook.dart';
 import 'package:dnd_beyonder/gui/Widgets/cardWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:hero_animation/hero_animation.dart';
-import 'package:local_hero/local_hero.dart';
 
 import '../../../data/gui/constants.dart';
 import '../../../data/sortable.dart';
