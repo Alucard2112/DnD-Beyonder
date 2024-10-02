@@ -14,7 +14,7 @@
       }
     }
   },
-  "feetForUi": "{count} Fuß",
+  "feetForUi": "{count} Feet",
   "@feetForUi": {
     "description": "Counting Feet",
     "placeholders": {
@@ -40,7 +40,7 @@
   "warlock": "Warlock",
   "wizard": "Wizard",
 
-  "@_Sortierungen": {},
+  "@_Sorting": {},
   "name": "Name",
   "level": "Level",
   "school": "Spellschool",
@@ -48,6 +48,9 @@
   "source": "Source",
   "dndClass": "Class",
   "spellCount": "Number of Spells",
+  "sortBy": "Sort by",
+  "ascending": "Ascending",
+  "descending": "Descending",
 
   "@_Komponenten": {},
   "verbal": "Verbal",
@@ -112,12 +115,16 @@
   "homebrew": "Homebrew",
 
   "@_SpellLevel": {},
-  "spellSchoolLevel": "{count, plural,=0{{school} Cantrip} =1{{count}st Level {school}} =2{{count}nd Level {school}} =3{{count}rd Level {school}} other{{count}th Level {school}}",
+  "spellSchoolLevelZero": "{school} Cantrip",
+  "spellSchoolLevelOne": "1st Level {school}",
+  "spellSchoolLevelTwo": "2nd Level {school}",
+  "spellSchoolLevelThree": "3rd Level {school}",
+  "spellSchoolLevel": "{lvl}th Level {school}",
   "@spellSchoolLevel": {
     "description": "String for displaying school and level of a spell",
     "placeholders": {
-      "count": {
-        "type": "num",
+      "lvl": {
+        "type": "int",
         "format": "compact"
       },
       "school": {
@@ -125,21 +132,16 @@
       }
     }
   },
-  "spellLevel": "{count, plural, =0 Cantrip =1{{count}st Level} =2{{count}nd Level} =3{{count}rd Level} other{{count}th Level}",
-  "@spellLevel": {
-    "description": "String for displaying the level of a spell",
-    "placeholders": {
-      "count": {
-        "type": "num",
-        "format": "compact"
-      }
-    }
-  },
+  "spellLevelZero": "Cantrip",
+  "spellLevelOne": "1st Level",
+  "spellLevelTwo": "2nd Level",
+  "spellLevelThree": "3rd Level",
+  "spellLevel": "{lvl}th Level",
 
   "@_Filter": {},
   "filterClasses":"Classes",
   "filterLevel":"Level",
-  "filterCastTime":"Cast-Time",
+  "filterCastTime":"Casting Time",
   "filterSchool":"School",
   "filterDamage":"Damage Type",
 
@@ -216,18 +218,35 @@
   },
   "unknown": "Unknown",
 
+  "@_Ui" : {},
+  "uiCancel" : "Cancel",
+  "uiDone" : "Done",
+
   "@_UiMainScreen": {},
   "mainScreenSpellList" : "Spell-List",
   "mainScreenSettings" : "Settings",
   "mainScreenSpellBooks" : "Spellbooks",
 
+  "@_UiSpellListScreen": {},
+  "searchSpells" : "Search Spells",
+
   "@_UiSpellBookScreen" : {},
-  "spellBookSearchCharacter": "Search for Character",
+  "spellBookSearchCharacter": "Search Character",
+  "spellBookSpellCount" : "{amount} Spells",
+  "@spellBookSpellCount": {
+    "description": "String for displaying number of spells",
+    "placeholders": {
+      "amount": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
 
   "@_UiSpellDetailScreen" : {},
   "spellDetailClasses" : "Classes",
   "spellDetailPage" : "Page",
-  "spellDetailCastTime": "Cast-Time",
+  "spellDetailCastTime": "Casting Time",
   "spellDetailDistance": "Range",
   "spellDetailComponents": "Components",
   "spellDetailDuration": "Duration",

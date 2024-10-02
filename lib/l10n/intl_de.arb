@@ -115,12 +115,16 @@
   "homebrew": "Homebrew",
 
   "@_SpellLevel": {},
-  "spellSchoolLevel": "{count, plural,=0{Zaubertrick der {school}} other{{school} des {count}. Grades}}",
+  "spellSchoolLevelZero": "Zaubertrick der {school}",
+  "spellSchoolLevelOne": "{school} des 1. Grades",
+  "spellSchoolLevelTwo": "{school} des 2. Grades",
+  "spellSchoolLevelThree": "{school} des 3. Grades",
+  "spellSchoolLevel": "{school} des {lvl}. Grades",
   "@spellSchoolLevel": {
     "description": "String for displaying school and level of a spell",
     "placeholders": {
-      "count": {
-        "type": "num",
+      "lvl": {
+        "type": "int",
         "format": "compact"
       },
       "school": {
@@ -128,16 +132,11 @@
       }
     }
   },
-  "spellLevel": "{count, plural,=0Zaubertrick other{{count}. Grad}}",
-  "@spellLevel": {
-    "description": "String for displaying the level of a spell",
-    "placeholders": {
-      "count": {
-        "type": "num",
-        "format": "compact"
-      }
-    }
-  },
+  "spellLevelZero": "Cantrip",
+  "spellLevelOne": "1st level",
+  "spellLevelTwo": "2nd level",
+  "spellLevelThree": "3rd level",
+  "spellLevel": "{lvl}th level",
 
   "@_Filter": {},
   "filterClasses":"Klassen",
@@ -157,7 +156,7 @@
   "necromancy": "Nekromantie",
 
   "@_TimeUnits" : {},
-  "action": "{count, plural,=-1 Aktion =1{1 Aktion} other{{count} Aktionen}}",
+  "action": "{count, plural,=1{1 Aktion} other{{count} Aktionen}}",
   "@action": {
     "description": "String for displaying actions",
     "placeholders": {
@@ -167,7 +166,7 @@
       }
     }
   },
-  "bonusAction": "{count, plural,=-1 Bonusaktion =1{1 Bonusaktion} other{{count} Bonusaktionen}}",
+  "bonusAction": "{count, plural,=1{1 Bonusaktion} other{{count} Bonusaktionen}}",
   "@bonusAction": {
     "description": "String for displaying bonusactions",
     "placeholders": {
@@ -177,7 +176,7 @@
       }
     }
   },
-  "reaction": "{count, plural,=-1 Reaktion =1{1 Reaktion} other{{count} Reaktionen}}",
+  "reaction": "{count, plural,=1{1 Reaktion} other{{count} Reaktionen}}",
   "@reaction": {
     "description": "String for displaying reactions",
     "placeholders": {
@@ -187,17 +186,17 @@
       }
     }
   },
-  "second": "{count, plural,=-1 Sekunde =1{1 Sekunde} other{{count} Sekunden}}",
+  "second": "{count, plural,=1{1 Sekunde} other{{count} Sekunden}}",
   "@second": {
     "description": "String for displaying seconds",
     "placeholders": {
       "count": {
-        "type": "num",
+        "type": "int",
         "format": "compact"
       }
     }
   },
-  "minute": "{count, plural,=-1 Minute =1{1 Minute} other{{count} Minuten}}",
+  "minute": "{count, plural,=1{1 Minute} other{{count} Minuten}}",
   "@minute": {
     "description": "String for displaying minutes",
     "placeholders": {
@@ -207,7 +206,7 @@
       }
     }
   },
-  "hour": "{count, plural,=-1 Stunde =1{1 Stunde} other{{count} Stunden}}",
+  "hour": "{count, plural,=1{1 Stunde} other{{count} Stunden}}",
   "@hour": {
     "description": "String for displaying hours",
     "placeholders": {

@@ -9,6 +9,7 @@ import 'package:dnd_beyonder/gui/Widgets/FilterScreen/filterWidgetWithCheckbox.d
 import 'package:flutter/material.dart';
 
 import '../../data/spell/spell.dart';
+import '../../generated/l10n.dart';
 
 class SpellFilterScreen extends StatefulWidget {
   final Function back;
@@ -246,13 +247,13 @@ class _SpellFilterScreenState extends State<SpellFilterScreen> {
     if(show){
     children.add(
       InkWell(
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
               child: Center(
                 child: Text(
-                  "Alle abwählen",
+                  S.of(context).filterUnselect,
                   style: normalText,
                 ),
               ),
@@ -306,10 +307,10 @@ class _SpellFilterScreenState extends State<SpellFilterScreen> {
                 //Back
                 widget.back(false);
               },),
-              const Expanded(child: Text("Zauber filtern", style: boldNormalText,)),
-              InkWell(child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                child: Text("Filter zurücksetzen", style: labelText,),
+              Expanded(child: Text(S.of(context).filterSpells, style: boldNormalText,)),
+              InkWell(child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(S.of(context).filterReset, style: labelText,),
               ),onTap: (){
                 widget.reset();
                 //Back

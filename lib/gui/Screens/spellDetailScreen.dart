@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/dnd/dnd_class.dart';
 import '../../data/spell/spellSchool.dart';
+import '../../generated/l10n.dart';
 
 class SpellDetailScreen extends StatelessWidget {
   final Spell spell;
@@ -18,7 +19,7 @@ class SpellDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> children = [];
-    children.add(const Text("Klassen: ", style: boldNormalText,));
+    children.add(Text("${S.of(context).spellDetailClasses}: ", style: boldNormalText,));
     for(int i = 0; i < spell.mainClasses.length; i++){
       DnDClass classes = spell.mainClasses.elementAt(i);
       String classString = toDnDClassName(classes);
@@ -39,7 +40,7 @@ class SpellDetailScreen extends StatelessWidget {
     sourceWidgets.add(Text(sourceBookToString(spell.source), style: subheadingText,));
     if(spell.page >= 0) {
       sourceWidgets.add(const Text(", ", style: subheadingText,));
-      sourceWidgets.add(Text("Seite ${spell.page}", style: subheadingText,));
+      sourceWidgets.add(Text("${S.of(context).spellDetailPage} ${spell.page}", style: subheadingText,));
     }
     return PopScope(
       canPop: false,
@@ -114,19 +115,19 @@ class SpellDetailScreen extends StatelessWidget {
                       color: iconColorPurple,
                     ),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
-                    EntryWidget("Zeitaufwand: ", spell.time.toString()),
+                    EntryWidget("${S.of(context).spellDetailCastTime}: ", spell.time.toString()),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
-                    EntryWidget("Reichweite: ", spell.range.inMeters()),
+                    EntryWidget("${S.of(context).spellDetailDistance}: ", spell.range.inMeters()),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
                     Wrap(
                       children: [
-                        const Text("Komponenten: ", style: boldNormalText,),
+                        Text("${S.of(context).spellDetailComponents}: ", style: boldNormalText,),
                         Text(spell.components.toString(),style: normalText,),
                         Text(spell.components.material(), style: subheadingText,)
                       ],
                     ),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
-                    EntryWidget("Wirkungsdauer: ", spell.duration.toString()),
+                    EntryWidget("${S.of(context).spellDetailDuration}: ", spell.duration.toString()),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
                     const Divider(
                       color: iconColorPurple,

@@ -41,6 +41,16 @@ class Spell{
       this.conditionInflict, this.savingThrow, this.mainClasses, this.subClasses, this.duration, this.damageInflict);
 
   static String getLevelString(int level){
+    switch(level){
+      case 0:
+        return S.current.spellLevelZero;
+      case 1:
+        return S.current.spellLevelOne;
+      case 2:
+        return S.current.spellLevelTwo;
+      case 3:
+        return S.current.spellLevelThree;
+    }
     return S.current.spellLevel(level);
   }
 
@@ -48,6 +58,16 @@ class Spell{
   int get hashCode => name.hashCode + source.hashCode;
 
   String getSchoolLevelForUI(){
+    switch(level){
+      case 0:
+        return S.current.spellSchoolLevelZero(getSchoolString());
+      case 1:
+        return S.current.spellSchoolLevelOne(getSchoolString());
+      case 2:
+        return S.current.spellSchoolLevelTwo(getSchoolString());
+      case 3:
+        return S.current.spellSchoolLevelThree(getSchoolString());
+    }
     return S.current.spellSchoolLevel(level, getSchoolString());
   }
 

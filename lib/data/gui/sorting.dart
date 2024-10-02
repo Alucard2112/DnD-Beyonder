@@ -1,3 +1,5 @@
+import 'package:dnd_beyonder/generated/l10n.dart';
+
 enum Sorting{
   name,
   level,
@@ -11,18 +13,18 @@ enum Sorting{
 String sortingToString(Sorting sorting){
   switch(sorting){
     case Sorting.name:
-      return "Name";
+      return S.current.name;
     case Sorting.level:
-      return "Zaubergrad";
+      return S.current.level;
     case Sorting.school:
-      return "Zauberschule";
+      return S.current.school;
     case Sorting.attackType:
-      return "Schadenstyp";
+      return S.current.attackType;
     case Sorting.source:
-      return "Quelle";
+      return S.current.source;
     case Sorting.dndClass:
-      return "Klasse";
+      return S.current.dndClass;
     case Sorting.spellCount:
-      return "Anzahl Zauber";
+      return S.current.spellCount;
   }
 }

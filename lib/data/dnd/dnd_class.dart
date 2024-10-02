@@ -1,3 +1,5 @@
+import '../../generated/l10n.dart';
+
 enum DnDClass{
   artificer,
   barbarian,
@@ -17,31 +19,31 @@ enum DnDClass{
 String toDnDClassName(DnDClass c){
   switch(c){
     case DnDClass.artificer:
-      return "Werkmeister";
+      return S.current.artificer;
     case DnDClass.barbarian:
-      return "Barbar";
+      return S.current.barbarian;
     case DnDClass.bard:
-      return "Barde";
+      return S.current.bard;
     case DnDClass.cleric:
-      return "Kleriker";
+      return S.current.cleric;
     case DnDClass.druid:
-      return "Druide";
+      return S.current.druid;
     case DnDClass.fighter:
-      return "Kämpfer";
+      return S.current.fighter;
     case DnDClass.monk:
-      return "Mönch";
+      return S.current.monk;
     case DnDClass.paladin:
-      return "Paladin";
+      return S.current.paladin;
     case DnDClass.ranger:
-      return "Waldläufer";
+      return S.current.ranger;
     case DnDClass.rogue:
-      return "Schurke";
+      return S.current.rogue;
     case DnDClass.sorcerer:
-      return "Magier";
+      return S.current.sorcerer;
     case DnDClass.warlock:
-      return "Hexenmeister";
+      return S.current.warlock;
     case DnDClass.wizard:
-      return "Zauberer";
+      return S.current.wizard;
   }
 }
 

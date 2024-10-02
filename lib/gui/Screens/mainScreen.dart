@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/spell/spell.dart';
 import '../../data/spellbook/spellbook.dart';
+import '../../generated/l10n.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -42,10 +43,6 @@ class _MainScreenState extends State<MainScreen> {
         'Nicht implementiert',
         style: optionStyle,
       ),
-      const Text(
-        'Nicht implementiert',
-        style: optionStyle,
-      ),
     ];
     return Scaffold(
       body: SafeArea(
@@ -55,31 +52,27 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Zauberliste',
+            icon: const Icon(Icons.home),
+            label: S.of(context).mainScreenSpellList,
             backgroundColor: bottomNavigationBarColor,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: 'Zauberbücher',
+            icon: const Icon(Icons.book),
+            label: S.of(context).mainScreenSpellBooks,
             backgroundColor: bottomNavigationBarColor,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle_outline),
-            label: "Hinzufügen",
-            backgroundColor: bottomNavigationBarColor,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Einstellungen",
+            icon: const Icon(Icons.settings),
+            label: S.of(context).mainScreenSettings,
             backgroundColor: bottomNavigationBarColor,
           ),
         ],
         currentIndex: _selectedIndex,
         backgroundColor: bottomBackgroundColor,
         selectedItemColor: itemSelectedColor,
+        unselectedItemColor: subheadingColor,
         showUnselectedLabels: true,
         selectedLabelStyle: const TextStyle(color: textColor),
         unselectedLabelStyle: const TextStyle(color: textColor),

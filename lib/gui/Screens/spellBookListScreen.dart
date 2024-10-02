@@ -7,6 +7,7 @@ import 'package:dnd_beyonder/gui/Widgets/clickableIcon.dart';
 import 'package:flutter/material.dart';
 import '../../data/gui/constants.dart';
 import '../../data/gui/sorting.dart';
+import '../../generated/l10n.dart';
 import '../Widgets/SearchBarWidget.dart';
 import '../Widgets/sortUiButtonWidget.dart';
 
@@ -92,7 +93,7 @@ class _SpellBookListScreenState extends State<SpellBookListScreen> {
                       child: SearchBarWidget(
                         searchText: _searchText,
                         onChanged: _onSearchText,
-                        hintText: "Charakter suchen",
+                        hintText: S.of(context).spellBookSearchCharacter,
                       ),
                     ),
                     Container(
