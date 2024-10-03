@@ -257,5 +257,20 @@
   "filterReset" : "Filter zurücksetzen",
 
   "@_UiSpellDescription": {},
-  "onHigherLevels" : "Auf höheren Graden"
+  "onHigherLevels" : "Auf höheren Graden",
+
+  "@_UiSettings": {},
+  "settingsLanguage" : "Sprache",
+  "settingsLanguageLabel" : "Sprache auswählen",
+  "settingsLanguages" : "{lang, select, en {Englisch} de {Deutsch}}",
+  "@settingsLanguages": {
+    "description": "translations of languages with their languagecode",
+    "placeholders": {
+      "lang": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsLanguageDescription": "Die Sprache wirkt sich nur auf das Interface aus",
+  "settingsDistanceType" : "Einheit auswählen"
 }

@@ -1,4 +1,5 @@
 import 'package:dnd_beyonder/data/gui/constants.dart';
+import 'package:dnd_beyonder/data/spell/distanceType.dart';
 import 'package:dnd_beyonder/data/spell/sourceBook.dart';
 import 'package:dnd_beyonder/data/spell/spell.dart';
 import 'package:dnd_beyonder/data/spell/subclass.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import '../../data/dnd/dnd_class.dart';
 import '../../data/spell/spellSchool.dart';
 import '../../generated/l10n.dart';
+import '../../permanentData/settings.dart';
 
 class SpellDetailScreen extends StatelessWidget {
   final Spell spell;
@@ -115,9 +117,15 @@ class SpellDetailScreen extends StatelessWidget {
                       color: iconColorPurple,
                     ),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
-                    EntryWidget("${S.of(context).spellDetailCastTime}: ", spell.time.toString()),
+                    EntryWidget(
+                        "${S.of(context).spellDetailCastTime}: ",
+                        spell.time.toString(),
+                    ),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
-                    EntryWidget("${S.of(context).spellDetailDistance}: ", spell.range.inMeters()),
+                    EntryWidget(
+                        "${S.of(context).spellDetailDistance}: ",
+                        Settings.distanceType! == DistanceType.meters ? spell.range.inMeters() : spell.range.inFeet(),
+                    ),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
                     Wrap(
                       children: [

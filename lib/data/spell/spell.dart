@@ -11,7 +11,6 @@ import 'package:dnd_beyonder/data/spell/subclass.dart';
 import 'package:dnd_beyonder/data/spell/time.dart';
 import 'package:dnd_beyonder/data/spell/duration.dart';
 import 'package:dnd_beyonder/data/spell/timeUnits.dart';
-import 'package:dnd_beyonder/database/dbhandler.dart';
 import 'package:dnd_beyonder/generated/l10n.dart';
 
 import '../dnd/dnd_class.dart';
@@ -147,7 +146,7 @@ class Spell{
       page = json["page"];
     }
     return Spell(
-        DatabaseHandler.getNewId(),
+        "${json["name"]}_${json["source"]}".hashCode,
         json["name"],
         sourceBookFromShortString(json["source"]),
         page,

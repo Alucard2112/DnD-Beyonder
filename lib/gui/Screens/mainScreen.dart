@@ -1,5 +1,6 @@
 import 'package:dnd_beyonder/data/dnd/dnd_class.dart';
 import 'package:dnd_beyonder/data/gui/constants.dart';
+import 'package:dnd_beyonder/gui/Screens/settingsScreen.dart';
 import 'package:dnd_beyonder/gui/Screens/spellBookListScreen.dart';
 import 'package:dnd_beyonder/gui/Screens/spellListScreen.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,12 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  void _update(){
+    setState(() {
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Spell> spells = Spell.spellListFromJson(testJson);
@@ -39,10 +46,7 @@ class _MainScreenState extends State<MainScreen> {
         SpellBook(id: 4, name: "Emma", dnDClass: DnDClass.warlock,spells: []),
         SpellBook(id: 5, name: "Fauna", dnDClass: DnDClass.artificer,spells: []),
       ],),
-      const Text(
-        'Nicht implementiert',
-        style: optionStyle,
-      ),
+      SettingsScreen(update: _update),
     ];
     return Scaffold(
       body: SafeArea(

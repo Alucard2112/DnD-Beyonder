@@ -254,5 +254,20 @@
   "@_UiFilterScreen": {},
   "filterUnselect" : "Unselect All",
   "filterSpells" : "Filter Spells",
-  "filterReset" : "Reset Filter"
+  "filterReset" : "Reset Filter",
+
+  "@_UiSettings": {},
+  "settingsLanguage" : "Language",
+  "settingsLanguageLabel" : "Select Language",
+  "settingsLanguages" : "{lang, select, en {English} de {German}}",
+  "@settingsLanguages": {
+    "description": "translations of languages with their languagecode",
+    "placeholders": {
+      "lang": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsLanguageDescription": "The selected language only affects the interface",
+  "settingsDistanceType" : "Select Unit"
 }
