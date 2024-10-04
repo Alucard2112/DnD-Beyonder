@@ -221,6 +221,7 @@
   "@_Ui" : {},
   "uiCancel" : "Abbrechen",
   "uiDone" : "Fertig",
+  "uiOK" : "Ok",
 
   "@_UiMainScreen": {},
   "mainScreenSpellList" : "Zauberliste",
@@ -272,5 +273,15 @@
     }
   },
   "settingsLanguageDescription": "Die Sprache wirkt sich nur auf das Interface aus",
-  "settingsDistanceType" : "Einheit auswählen"
+  "settingsDistanceType" : "Einheit auswählen",
+  "settingsData" : "Daten Optionen",
+  "settingsImport5e" : "5eTools Zauber importieren",
+  "settingsImportData" : "App-Daten importieren",
+  "settingsExportData": "App-Daten exportieren",
+  "settingsDeleteData": "App-Daten löschen",
+  "settingsAppVersionLabel" :"App-Version",
+  "settingsDoNotShowMessageAgain" : "Diese Nachricht nicht erneut anzeigen",
+  "settings5eMessage" : "Dieser Import ist nur für json-Dateien von 5e-Tools gedacht und nicht für einen Import von Daten dieser App.",
+  "settingsAppMessage" : "Dieser Import ist nur für die Daten dieser App gedacht und nicht für Daten von 5e-Tools.",
+  "settingsDeleteMessage" : "Achtung: Das Löschen kann nicht rückgängig gemacht werden."
 }
