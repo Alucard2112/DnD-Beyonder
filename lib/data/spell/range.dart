@@ -1,9 +1,16 @@
 import 'package:dnd_beyonder/data/spell/distanceType.dart';
 import 'package:dnd_beyonder/generated/l10n.dart';
+import 'package:hive/hive.dart';
 
+part 'range.g.dart';
+
+@HiveType(typeId: 5)
 class Range{
+  @HiveField(0)
   final String type;
+  @HiveField(1)
   final int amount;
+  @HiveField(2)
   final DistanceType distanceType;
 
   Range(this.type, this.amount, this.distanceType);

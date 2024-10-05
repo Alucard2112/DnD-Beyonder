@@ -180,6 +180,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     {Settings.showAppMessage = !check;
                     widget.update();
                     });
+                if(dialogRet){
+                  Settings.deleteAll();
+                }
                 //TODO Delete App Data
               },
             ),

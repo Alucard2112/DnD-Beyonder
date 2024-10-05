@@ -1,8 +1,16 @@
+import 'package:hive/hive.dart';
+
 import '../../generated/l10n.dart';
 
+part 'components.g.dart';
+
+@HiveType(typeId: 2)
 class Components{
+  @HiveField(0)
   final bool v;
+  @HiveField(1)
   final bool s;
+  @HiveField(2)
   final String m;
 
   Components(this.v, this.s, this.m);

@@ -3,6 +3,7 @@ import 'package:dnd_beyonder/data/gui/constants.dart';
 import 'package:dnd_beyonder/gui/Screens/settingsScreen.dart';
 import 'package:dnd_beyonder/gui/Screens/spellBookListScreen.dart';
 import 'package:dnd_beyonder/gui/Screens/spellListScreen.dart';
+import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/spell/spell.dart';
@@ -35,16 +36,15 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Spell> spells = Spell.spellListFromJson(testJson);
     final List<Widget> widgetOptions = <Widget>[
-     SpellListScreen(spells),
+     SpellListScreen(BoxHandler.spellBox.values.toList()),
       SpellBookListScreen(books: [
-        SpellBook(id: 0, name: "Atreus", dnDClass: DnDClass.druid,spells: spells),
-        SpellBook(id: 1, name: "Bertrand", dnDClass: DnDClass.monk,spells: []),
-        SpellBook(id: 2, name: "Caius", dnDClass: DnDClass.cleric,spells: []),
-        SpellBook(id: 3, name: "Darius", dnDClass: DnDClass.bard,spells: []),
-        SpellBook(id: 4, name: "Emma", dnDClass: DnDClass.warlock,spells: []),
-        SpellBook(id: 5, name: "Fauna", dnDClass: DnDClass.artificer,spells: []),
+        SpellBook(id: 0, name: "Atreus", dnDClass: DnDClass.druid,spellIds: []),
+        SpellBook(id: 1, name: "Bertrand", dnDClass: DnDClass.monk,spellIds: []),
+        SpellBook(id: 2, name: "Caius", dnDClass: DnDClass.cleric,spellIds: []),
+        SpellBook(id: 3, name: "Darius", dnDClass: DnDClass.bard,spellIds: []),
+        SpellBook(id: 4, name: "Emma", dnDClass: DnDClass.warlock,spellIds: []),
+        SpellBook(id: 5, name: "Fauna", dnDClass: DnDClass.artificer,spellIds: []),
       ],),
       SettingsScreen(update: _update),
     ];

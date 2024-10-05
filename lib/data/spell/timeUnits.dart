@@ -1,12 +1,24 @@
+import 'package:hive/hive.dart';
+
 import '../../generated/l10n.dart';
 
+part 'timeUnits.g.dart';
+
+@HiveType(typeId: 14)
 enum TimeUnits{
+  @HiveField(0)
   action,
+  @HiveField(1)
   bonusAction,
+  @HiveField(2)
   reaction,
+  @HiveField(3)
   second,
+  @HiveField(4)
   minute,
+  @HiveField(5)
   hour,
+  @HiveField(6)
   unknown
 }
 

@@ -1,8 +1,14 @@
 import 'package:dnd_beyonder/data/spell/timeUnits.dart';
 import 'package:dnd_beyonder/generated/l10n.dart';
+import 'package:hive/hive.dart';
 
+part 'time.g.dart';
+
+@HiveType(typeId: 7)
 class Time{
+  @HiveField(0)
   final int number;
+  @HiveField(1)
   final TimeUnits unit;
 
   Time(this.number, this.unit);

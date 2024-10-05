@@ -1,11 +1,18 @@
 import 'package:dnd_beyonder/data/spell/durationType.dart';
 import 'package:dnd_beyonder/data/spell/timeUnits.dart';
+import 'package:hive/hive.dart';
 
 import '../../generated/l10n.dart';
 
+part 'duration.g.dart';
+
+@HiveType(typeId: 3)
 class Duration{
+  @HiveField(0)
   final DurationType type;
+  @HiveField(1)
   late final TimeUnits unit;
+  @HiveField(2)
   late final int amount;
 
   Duration(this.type, this.unit, this.amount);

@@ -1,18 +1,36 @@
+import 'package:hive/hive.dart';
+
 import '../../generated/l10n.dart';
 
+part 'dnd_class.g.dart';
+
+@HiveType(typeId: 18)
 enum DnDClass{
+  @HiveField(0)
   artificer,
+  @HiveField(1)
   barbarian,
+  @HiveField(2)
   bard,
+  @HiveField(3)
   cleric,
+  @HiveField(4)
   druid,
+  @HiveField(5)
   fighter,
+  @HiveField(6)
   monk,
+  @HiveField(7)
   paladin,
+  @HiveField(8)
   ranger,
+  @HiveField(9)
   rogue,
+  @HiveField(10)
   sorcerer,
+  @HiveField(11)
   warlock,
+  @HiveField(12)
   wizard
 }
 

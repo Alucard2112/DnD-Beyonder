@@ -1,8 +1,15 @@
 import 'package:dnd_beyonder/generated/l10n.dart';
+import 'package:hive/hive.dart';
 
+part 'distanceType.g.dart';
+
+@HiveType(typeId: 10)
 enum DistanceType{
+  @HiveField(0)
   feet,
+  @HiveField(1)
   meters,
+  @HiveField(2)
   self,
 }
 

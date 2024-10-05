@@ -1,4 +1,5 @@
 import 'package:dnd_beyonder/gui/Screens/mainScreen.dart';
+import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
 
 import '../../generated/l10n.dart';
@@ -17,6 +18,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void _loadData() async{
     await Settings.loadPreferences();
     await S.load(Settings.locale!);
+    await BoxHandler.initialise();
     setState(() {
       _loaded = true;
     });

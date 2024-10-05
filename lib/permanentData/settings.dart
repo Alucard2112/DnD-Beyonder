@@ -29,6 +29,9 @@ class Settings{
     distanceType = DistanceType.values[_prefs!.getInt(_distanceSave) ?? 1];
   }
 
+  static deleteAll(){
+    _prefs!.clear();
+  }
 
   static savePreferences(){
     _prefs!.setString(_localSave, locale!.languageCode);

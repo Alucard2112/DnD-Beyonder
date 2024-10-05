@@ -1,25 +1,51 @@
+
+import 'package:hive_flutter/hive_flutter.dart';
+
 import '../../generated/l10n.dart';
 
+part 'damageType.g.dart';
+
+@HiveType(typeId: 9)
 enum SpellDamageType{
+  @HiveField(0)
   acid,
+  @HiveField(1)
   bludgeoning,
+  @HiveField(2)
   cold,
+  @HiveField(3)
   fire,
+  @HiveField(4)
   force,
+  @HiveField(5)
   lightning,
+  @HiveField(6)
   necrotic,
+  @HiveField(7)
   piercing,
+  @HiveField(8)
   poison,
+  @HiveField(9)
   psychic,
+  @HiveField(10)
   radiant,
+  @HiveField(11)
   slashing,
+  @HiveField(12)
   thunder,
+  @HiveField(13)
   shortbow,
+  @HiveField(14)
   longbow,
+  @HiveField(15)
   oneHandedMeleeAttacks,
+  @HiveField(16)
   unarmedAttacks,
+  @HiveField(17)
   naturalAttacks,
+  @HiveField(18)
   meleeWeaponAttacks,
+  @HiveField(19)
   thrownWeaponAttacks
 }
 

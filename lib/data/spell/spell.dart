@@ -12,27 +12,49 @@ import 'package:dnd_beyonder/data/spell/time.dart';
 import 'package:dnd_beyonder/data/spell/duration.dart';
 import 'package:dnd_beyonder/data/spell/timeUnits.dart';
 import 'package:dnd_beyonder/generated/l10n.dart';
+import 'package:hive/hive.dart';
 
 import '../dnd/dnd_class.dart';
 import 'durationType.dart';
 
-class Spell{
+part 'spell.g.dart';
+
+
+@HiveType(typeId: 1)
+class Spell extends HiveObject{
+  @HiveField(0)
   final int id;
+  @HiveField(1)
   final String name;
+  @HiveField(2)
   final SourceBook source;
+  @HiveField(3)
   final int page;
+  @HiveField(4)
   final int level;
+  @HiveField(5)
   final SpellSchool school;
+  @HiveField(6)
   final Range range;
+  @HiveField(7)
   final Duration duration;
+  @HiveField(8)
   final Components components;
+  @HiveField(9)
   final Time time;
+  @HiveField(10)
   final List<String> entries;
+  @HiveField(11)
   final List<EntryHigherLevel> entriesHigherLevel;
+  @HiveField(12)
   final List<String> conditionInflict;
+  @HiveField(13)
   final List<String> savingThrow;
+  @HiveField(14)
   final Set<DnDClass> mainClasses;
+  @HiveField(15)
   final Set<SubClasses> subClasses;
+  @HiveField(16)
   final List<SpellDamageType> damageInflict;
 
   Spell(this.id,this.name, this.source, this.page, this.level, this.school, this.entries,

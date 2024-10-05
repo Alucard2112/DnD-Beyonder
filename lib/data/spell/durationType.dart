@@ -1,7 +1,13 @@
 import 'package:dnd_beyonder/generated/l10n.dart';
+import 'package:hive/hive.dart';
 
+part 'durationType.g.dart';
+
+@HiveType(typeId: 11)
 enum DurationType{
+  @HiveField(0)
   instantaneous,
+  @HiveField(1)
   timed
 }
 

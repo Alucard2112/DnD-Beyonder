@@ -1,35 +1,70 @@
+import 'package:hive/hive.dart';
+
 import '../../generated/l10n.dart';
 
+part 'sourceBook.g.dart';
+
+@HiveType(typeId: 12)
 enum SourceBook{
+  @HiveField(0)
   ai,
+  @HiveField(1)
   aventh,
+  @HiveField(2)
   aventm,
+  @HiveField(3)
   bomt,
+  @HiveField(4)
   cthulhu,
+  @HiveField(5)
   dosi,
+  @HiveField(6)
   eepc,
+  @HiveField(7)
   egtw,
+  @HiveField(8)
   ff2g,
+  @HiveField(9)
   ff3c,
+  @HiveField(10)
   ftod,
+  @HiveField(11)
   humblewood,
+  @HiveField(12)
   idrotf,
+  @HiveField(13)
   mtgafr,
+  @HiveField(14)
   mythaddm,
+  @HiveField(15)
   mythheld,
+  @HiveField(16)
   mythsaga,
+  @HiveField(17)
   mythwelt,
+  @HiveField(18)
   pamsato,
+  @HiveField(19)
   phb,
+  @HiveField(20)
   pota,
+  @HiveField(21)
   ragnarok,
+  @HiveField(22)
   sasaag,
+  @HiveField(23)
   scag,
+  @HiveField(24)
   scc,
+  @HiveField(25)
   srd,
+  @HiveField(26)
   tcoe,
+  @HiveField(27)
   xge,
+  @HiveField(28)
   xphb,
+  @HiveField(29)
   hbrew
 }
 
