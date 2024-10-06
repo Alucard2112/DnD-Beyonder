@@ -76,7 +76,35 @@ class Spell extends HiveObject{
   }
 
   @override
-  int get hashCode => name.hashCode + source.hashCode;
+  int get hashCode => id;
+
+  static String _5eToMD(dynamic s){
+    if(s is Map<String, dynamic>){
+      switch(s["type"]){
+        case "entries":
+          String entry = "**${s["name"]}**.";
+          for(dynamic st in s["entries"]){
+            entry+=_5eToMD(st);
+          }
+          return entry;
+        case "list":
+          String list = "";
+          for(dynamic item in s["items"]){
+            list+="- ${_5eToMD(item)}\n";
+          }
+          return list;
+        case "table":
+          String table = ("# ${s["caption"]}");
+          return table;
+        default:
+          return "";
+
+      }
+    }
+    else {
+      return s.toString();
+    }
+  }
 
   String getSchoolLevelForUI(){
     switch(level){
@@ -108,7 +136,7 @@ class Spell extends HiveObject{
       for (Map<String, dynamic> map in json["entriesHigherLevel"]) {
         List<String> entries = [];
         for (String s in map["entries"]) {
-          entries.add(s);
+          entries.add(_5eToMD(s));
         }
         entriesAtHigherLevel.add(
             EntryHigherLevel(map["type"], map["name"], entries));
@@ -129,7 +157,7 @@ class Spell extends HiveObject{
     }
     List<String> entries = [];
     for(dynamic s in json["entries"] as List<dynamic>){
-      entries.add(s.toString());
+      entries.add(_5eToMD(s));
     }
     List<String> conditionInflict = [];
     if(json.containsKey("conditionInflict")) {

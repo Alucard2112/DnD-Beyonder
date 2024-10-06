@@ -15,6 +15,8 @@ class SubClasses{
     c = fromDnDClassName(clas);
   }
 
+  SubClasses.fromHive(this.c, this.name);
+
   @override
   bool operator ==(Object other) {
     if(other is SubClasses){

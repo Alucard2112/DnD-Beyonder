@@ -16,10 +16,10 @@ class SubClassesAdapter extends TypeAdapter<SubClasses> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return SubClasses(
-      "",
+    return SubClasses.fromHive(
+      fields[0] as DnDClass,
       fields[1] as String,
-    )..c = fields[0] as DnDClass;
+    );
   }
 
   @override
