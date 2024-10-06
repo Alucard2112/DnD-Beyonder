@@ -1,6 +1,7 @@
 import 'package:dnd_beyonder/data/gui/constants.dart';
 import 'package:dnd_beyonder/data/spell/entryHigherLevel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../../../generated/l10n.dart';
 
@@ -20,22 +21,37 @@ class SpellDescriptionWidget extends StatelessWidget {
 
   List<Widget> makeChildren(){
     List<Widget> children = [];
-    for(String s in description){
+    for(int i = 0; i <description.length;i++){
+      String s = description[i];
       children.add(
-          Text(s, style: normalText)
+          Container(
+            margin: EdgeInsets.only(bottom: i < description.length -1 ? 10: 0,),
+            child: MarkdownBody(
+                data: s,
+                styleSheet: markDownStyle,
+            ),
+          )
       );
     }
     if(atHigherLevels.isNotEmpty){
       children.add(
-          const Padding(padding: EdgeInsets.symmetric(vertical: 6))
+          const Padding(padding: EdgeInsets.symmetric(vertical: 12))
       );
       children.add(
-          Text(S.current.onHigherLevels, style: boldNormalText,)
+          Text(
+            S.current.onHigherLevels,
+            style: boldNormalText,)
       );
       for(EntryHigherLevel e in atHigherLevels){
         for(String s in e.entries) {
           children.add(
-              Text(s, style: normalText)
+              Container(
+                margin: const EdgeInsets.only(top: 10),
+                child: MarkdownBody(
+                  data: s,
+                  styleSheet: markDownStyle,
+                ),
+              )
           );
         }
       }
