@@ -5,6 +5,7 @@ import 'package:dnd_beyonder/data/spell/distanceType.dart';
 import 'package:dnd_beyonder/gui/Widgets/SettingsScreen/fileDialog.dart';
 import 'package:dnd_beyonder/gui/Widgets/SettingsScreen/settingsButton.dart';
 import 'package:dnd_beyonder/gui/Widgets/flipSwitchWidget.dart';
+import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -174,14 +175,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onTap: () async{
                 bool dialogRet = await FileDialog.openDialog(
                     context,S.of(context).settingsDeleteData,
-                    S.of(context).settingsAppMessage,
-                    true,
-                        (bool check)
-                    {Settings.showAppMessage = !check;
-                    widget.update();
-                    });
+                    S.of(context).settingsDeleteMessage,
+                    false,null);
                 if(dialogRet){
                   Settings.deleteAll();
+                  BoxHandler.delete();
+                  widget.update();
                 }
                 //TODO Delete App Data
               },

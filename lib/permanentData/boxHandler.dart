@@ -14,13 +14,12 @@ import 'package:dnd_beyonder/data/spell/time.dart';
 import 'package:dnd_beyonder/data/spell/timeUnits.dart';
 import 'package:dnd_beyonder/data/spellbook/spellbook.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:path_provider/path_provider.dart';
 
 import '../data/gui/constants.dart';
 
 class BoxHandler{
   static late final Box<Spell> spellBox;
-  static late final Box<SpellBook> spellBooks;
+  static late final Box<SpellBook> spellBooksBox;
 
   static const String _spellBox = "spells";
   static const String _spellBookBox = "spellBooks";
@@ -42,9 +41,8 @@ class BoxHandler{
     Hive.registerAdapter(TimeAdapter());
     Hive.registerAdapter(TimeUnitsAdapter());
     Hive.registerAdapter(SpellBookAdapter());
-    final dir = await getApplicationDocumentsDirectory();
     spellBox = await Hive.openBox<Spell>(_spellBox);
-    spellBooks = await Hive.openBox<SpellBook>(_spellBookBox);
+    spellBooksBox = await Hive.openBox<SpellBook>(_spellBookBox);
     final List<Spell> spells = Spell.spellListFromJson(testJson);
     for(Spell spell in spells){
       if(spellBox.containsKey(spell.id)){
@@ -57,7 +55,8 @@ class BoxHandler{
   }
 
   static void delete(){
-    Hive.deleteFromDisk();
+    spellBox.deleteAll(spellBox.keys);
+    spellBooksBox.deleteAll(spellBooksBox.keys);
   }
 
 }

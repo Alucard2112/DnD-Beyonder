@@ -10,13 +10,13 @@ import '../FilterScreen/filterWidgetWithCheckbox.dart';
 class FileDialog extends StatefulWidget {
   final bool showCheckBox;
   final String text;
-  final Function update;
-  const FileDialog({super.key, required this.showCheckBox, required this.text, required this.update});
+  final Function? update;
+  const FileDialog({super.key, required this.showCheckBox, required this.text, this.update});
 
   @override
   State<FileDialog> createState() => _FileDialogState();
 
-  static Future openDialog(BuildContext context, String title, String text, bool showCheckBox, Function update) => showDialog(
+  static Future openDialog(BuildContext context, String title, String text, bool showCheckBox, Function? update) => showDialog(
       context: context,
       builder: (context) => AlertDialog(
           title: Text(title, style: headingText,),
@@ -70,8 +70,9 @@ class _FileDialogState extends State<FileDialog> {
             const SizedBox(width: 20,),
             InkWell(
               onTap: (){
-                widget.update(_checked);
-                debugPrint("Checked: ${Settings.show5eMessage}");
+                if(widget.update != null) {
+                  widget.update!(_checked);
+                }
                 Settings.savePreferences();
                 Navigator.of(context).pop(true);
               },
