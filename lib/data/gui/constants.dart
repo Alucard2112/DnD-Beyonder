@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 const normalTextSize = 16.0;
 const headingTextSize = 20.0;
@@ -9,6 +10,11 @@ const subheadingTextBold = TextStyle(fontSize: normalTextSize, fontWeight: FontW
 const subheadingText = TextStyle(fontSize: normalTextSize, color: subheadingColor);
 const labelText = TextStyle(fontSize: normalTextSize, color: searchBarLabelColor, fontWeight: FontWeight.bold);
 
+final markDownStyle = MarkdownStyleSheet(
+  h1: boldNormalText,
+  strong: boldNormalText,
+  p: normalText,
+);
 //Colors
 const iconColorPurple = Color(0XFF762fa2);
 const bottomBackgroundColor = Color(0xFF212121);
