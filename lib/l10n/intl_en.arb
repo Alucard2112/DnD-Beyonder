@@ -250,7 +250,20 @@
   "spellDetailDistance": "Range",
   "spellDetailComponents": "Components",
   "spellDetailDuration": "Duration",
-
+  "spellDetailDice": "{numberDice}D{typeDie}",
+  "@spellDetailDice": {
+    "description": "String for displaying dice",
+    "placeholders": {
+      "numberDice": {
+        "type": "int",
+        "format": "compact"
+      },
+      "typeDie": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
   "@_UiFilterScreen": {},
   "filterUnselect" : "Unselect All",
   "filterSpells" : "Filter Spells",

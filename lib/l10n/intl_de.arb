@@ -251,6 +251,20 @@
   "spellDetailDistance": "Reichweite",
   "spellDetailComponents": "Komponenten",
   "spellDetailDuration": "Wirkungsdauer",
+  "spellDetailDice": "{numberDice}W{typeDie}",
+  "@spellDetailDice": {
+    "description": "String for displaying dice",
+    "placeholders": {
+      "numberDice": {
+        "type": "int",
+        "format": "compact"
+      },
+      "typeDie": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
 
   "@_UiFilterScreen": {},
   "filterUnselect" : "Alle abwählen",
