@@ -53,6 +53,21 @@ class FiveEToolsConverter {
     if(ret.contains("{@dice")){
       ret = _translateDice(ret);
     }
+    if(ret.contains("{@condition")){
+      ret = _translateCondition(ret);
+    }
+    return ret;
+  }
+
+  static String _translateCondition(String s){
+    String ret = s;
+    RegExp exp = RegExp(r'{@condition [a-zA-Z]*}');
+    Iterable<Match> matches = exp.allMatches(s);
+    for (final Match m in matches) {
+      String match = m[0]!;
+      String condition = match.replaceAll("{@condition ", "").replaceAll("}", "");
+      ret = ret.replaceAll(match, S.current.condition(condition));
+    }
     return ret;
   }
 
