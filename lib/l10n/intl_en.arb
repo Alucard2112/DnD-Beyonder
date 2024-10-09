@@ -286,6 +286,7 @@
       }
     }
   },
+  "spellDetailAddSpellTitle": "Add to Character",
 
   "@_UiFilterScreen": {},
   "filterUnselect" : "Unselect All",

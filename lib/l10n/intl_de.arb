@@ -287,7 +287,7 @@
       }
     }
   },
-  "spellDetailAddSpellTitle": "Zauber zu Charakter hinzufügen",
+  "spellDetailAddSpellTitle": "Zum Charakter hinzufügen",
 
   "@_UiFilterScreen": {},
   "filterUnselect" : "Alle abwählen",
