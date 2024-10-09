@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dnd_beyonder/converters/fiveEToolsToMarkDown.dart';
 import 'package:dnd_beyonder/data/spell/components.dart';
 import 'package:dnd_beyonder/data/spell/damageType.dart';
 import 'package:dnd_beyonder/data/spell/distanceType.dart';
@@ -78,51 +79,6 @@ class Spell extends HiveObject{
   @override
   int get hashCode => id;
 
-  static String _5eToMD(dynamic s){
-    if(s is Map<String, dynamic>){
-      switch(s["type"]){
-        case "entries":
-          String entry = "**${s["name"]}**.";
-          for(dynamic st in s["entries"]){
-            entry+=_5eToMD(st);
-          }
-          return entry;
-        case "list":
-          String list = "";
-          for(dynamic item in s["items"]){
-            list+="- ${_5eToMD(item)}\n";
-          }
-          return list;
-        case "table":
-          String table = ("# ${s["caption"]}\n");
-          String divider = "";
-          for(String label in s["colLabels"]){
-            table += "| $label ";
-            divider += "| ----------- ";
-          }
-          table += "|\n$divider|\n";
-          for(List<dynamic> row in s["rows"]){
-            for(dynamic cell in row){
-              table+= "| ${_5eToMD(cell)} ";
-            }
-            table+= "|\n";
-          }
-          return table;
-        case "cell":
-          if(s["roll"].containsKey("exact")){
-            return "${s["roll"]["exact"]}";
-          }
-          return "${s["roll"]["min"]} - ${s["roll"]["max"]}";
-        default:
-          return "";
-
-      }
-    }
-    else {
-      return s.toString();
-    }
-  }
-
   String getSchoolLevelForUI(){
     switch(level){
       case 0:
@@ -153,7 +109,7 @@ class Spell extends HiveObject{
       for (Map<String, dynamic> map in json["entriesHigherLevel"]) {
         List<String> entries = [];
         for (String s in map["entries"]) {
-          entries.add(_5eToMD(s));
+          entries.add(FiveEToolsConverter.jsonToMD(s));
         }
         entriesAtHigherLevel.add(
             EntryHigherLevel(map["type"], map["name"], entries));
@@ -174,7 +130,7 @@ class Spell extends HiveObject{
     }
     List<String> entries = [];
     for(dynamic s in json["entries"] as List<dynamic>){
-      entries.add(_5eToMD(s));
+      entries.add(FiveEToolsConverter.jsonToMD(s));
     }
     List<String> conditionInflict = [];
     if(json.containsKey("conditionInflict")) {
