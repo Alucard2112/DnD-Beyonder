@@ -1,13 +1,13 @@
 import 'package:dnd_beyonder/data/dnd/dnd_class.dart';
 import 'package:dnd_beyonder/data/gui/constants.dart';
-import 'package:dnd_beyonder/data/spellbook/spellbook.dart';
+import 'package:dnd_beyonder/data/character/character.dart';
 import 'package:dnd_beyonder/gui/Screens/spellListScreen.dart';
 import 'package:flutter/material.dart';
 
-class SpellBookDetailScreen extends StatelessWidget {
-  final SpellBook spellBook;
+class CharacterDetailScreen extends StatelessWidget {
+  final Character spellBook;
   final Function back;
-  const SpellBookDetailScreen({required this.back, required this.spellBook, super.key});
+  const CharacterDetailScreen({required this.back, required this.spellBook, super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'spellbook.dart';
+part of 'character.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class SpellBookAdapter extends TypeAdapter<SpellBook> {
+class CharacterAdapter extends TypeAdapter<Character> {
   @override
   final int typeId = 8;
 
   @override
-  SpellBook read(BinaryReader reader) {
+  Character read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return SpellBook(
+    return Character(
       id: fields[3] as int,
       dnDClass: fields[0] as DnDClass,
       name: fields[1] as String,
@@ -25,7 +25,7 @@ class SpellBookAdapter extends TypeAdapter<SpellBook> {
   }
 
   @override
-  void write(BinaryWriter writer, SpellBook obj) {
+  void write(BinaryWriter writer, Character obj) {
     writer
       ..writeByte(4)
       ..writeByte(0)
@@ -44,7 +44,7 @@ class SpellBookAdapter extends TypeAdapter<SpellBook> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is SpellBookAdapter &&
+      other is CharacterAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

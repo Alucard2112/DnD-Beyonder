@@ -3,10 +3,10 @@ import 'package:dnd_beyonder/data/spell/spell.dart';
 import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:hive/hive.dart';
 
-part 'spellbook.g.dart';
+part 'character.g.dart';
 
 @HiveType(typeId: 8)
-class SpellBook{
+class Character{
   @HiveField(0)
   final DnDClass dnDClass;
   @HiveField(1)
@@ -18,7 +18,7 @@ class SpellBook{
 
   final List<Spell> spells = [];
 
-  SpellBook({required this.id, required this.dnDClass, required this.name, required this.spellIds}){
+  Character({required this.id, required this.dnDClass, required this.name, required this.spellIds}){
    for(int i in spellIds){
      spells.add(BoxHandler.spellBox.get(i)!);
    }

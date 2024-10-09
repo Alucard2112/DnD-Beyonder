@@ -1,13 +1,12 @@
 import 'package:dnd_beyonder/data/dnd/dnd_class.dart';
 import 'package:dnd_beyonder/data/gui/constants.dart';
 import 'package:dnd_beyonder/gui/Screens/settingsScreen.dart';
-import 'package:dnd_beyonder/gui/Screens/spellBookListScreen.dart';
+import 'package:dnd_beyonder/gui/Screens/characterListScreen.dart';
 import 'package:dnd_beyonder/gui/Screens/spellListScreen.dart';
 import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/spell/spell.dart';
-import '../../data/spellbook/spellbook.dart';
+import '../../data/character/character.dart';
 import '../../generated/l10n.dart';
 
 class MainScreen extends StatefulWidget {
@@ -38,13 +37,13 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final List<Widget> widgetOptions = <Widget>[
      SpellListScreen(BoxHandler.spellBox.values.toList()),
-      SpellBookListScreen(books: [
-        SpellBook(id: 0, name: "Atreus", dnDClass: DnDClass.druid,spellIds: []),
-        SpellBook(id: 1, name: "Bertrand", dnDClass: DnDClass.monk,spellIds: []),
-        SpellBook(id: 2, name: "Caius", dnDClass: DnDClass.cleric,spellIds: []),
-        SpellBook(id: 3, name: "Darius", dnDClass: DnDClass.bard,spellIds: []),
-        SpellBook(id: 4, name: "Emma", dnDClass: DnDClass.warlock,spellIds: []),
-        SpellBook(id: 5, name: "Fauna", dnDClass: DnDClass.artificer,spellIds: []),
+      CharacterListScreen(books: [
+        Character(id: 0, name: "Atreus", dnDClass: DnDClass.druid,spellIds: []),
+        Character(id: 1, name: "Bertrand", dnDClass: DnDClass.monk,spellIds: []),
+        Character(id: 2, name: "Caius", dnDClass: DnDClass.cleric,spellIds: []),
+        Character(id: 3, name: "Darius", dnDClass: DnDClass.bard,spellIds: []),
+        Character(id: 4, name: "Emma", dnDClass: DnDClass.warlock,spellIds: []),
+        Character(id: 5, name: "Fauna", dnDClass: DnDClass.artificer,spellIds: []),
       ],),
       SettingsScreen(update: _update),
     ];

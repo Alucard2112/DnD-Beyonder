@@ -1,7 +1,7 @@
 import 'package:dnd_beyonder/data/sortable.dart';
-import 'package:dnd_beyonder/data/spellbook/spellbook.dart';
-import 'package:dnd_beyonder/gui/Screens/spellBookDetailScreen.dart';
-import 'package:dnd_beyonder/gui/Widgets/SpellBook/spellBookWidget.dart';
+import 'package:dnd_beyonder/data/character/character.dart';
+import 'package:dnd_beyonder/gui/Screens/characterDetailScreen.dart';
+import 'package:dnd_beyonder/gui/Widgets/Character/characterWidget.dart';
 import 'package:dnd_beyonder/gui/Widgets/clickableIcon.dart';
 
 import 'package:flutter/material.dart';
@@ -11,15 +11,15 @@ import '../../generated/l10n.dart';
 import '../Widgets/SearchBarWidget.dart';
 import '../Widgets/sortUiButtonWidget.dart';
 
-class SpellBookListScreen extends StatefulWidget {
-  final List<SpellBook> books;
-  const SpellBookListScreen({required this.books, super.key});
+class CharacterListScreen extends StatefulWidget {
+  final List<Character> books;
+  const CharacterListScreen({required this.books, super.key});
 
   @override
-  State<SpellBookListScreen> createState() => _SpellBookListScreenState();
+  State<CharacterListScreen> createState() => _CharacterListScreenState();
 }
 
-class _SpellBookListScreenState extends State<SpellBookListScreen> {
+class _CharacterListScreenState extends State<CharacterListScreen> {
   static bool _asc = true;
   static Sorting _sorting = Sorting.name;
   static String _searchText = "";
@@ -54,20 +54,20 @@ class _SpellBookListScreenState extends State<SpellBookListScreen> {
   Widget build(BuildContext context) {
     Widget child;
     if(_selectedSpellBook >= 0){
-      child = SpellBookDetailScreen(spellBook: widget.books[_selectedSpellBook], back: _back,);
+      child = CharacterDetailScreen(spellBook: widget.books[_selectedSpellBook], back: _back,);
     }
     else {
-      List<SpellBookWidget> children = [];
+      List<CharacterWidget> children = [];
       for (int i = 0; i < widget.books.length; i++) {
-        SpellBook book = widget.books[i];
+        Character book = widget.books[i];
         if (book.name.toLowerCase().contains(_searchText.toLowerCase())) {
-          children.add(SpellBookWidget(spellBook: book, onTap: () {
+          children.add(CharacterWidget(spellBook: book, onTap: () {
             _onSelect(i);
           },));
         }
       }
       String badgeText = "";
-      children.sort((SpellBookWidget a, SpellBookWidget b) {
+      children.sort((CharacterWidget a, CharacterWidget b) {
         return Sortable.sortFunction(a, b, _sorting, _asc);
       });
       child = Column(

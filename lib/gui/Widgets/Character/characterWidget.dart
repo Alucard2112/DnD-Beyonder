@@ -1,5 +1,5 @@
 import 'package:dnd_beyonder/data/dnd/dnd_class.dart';
-import 'package:dnd_beyonder/data/spellbook/spellbook.dart';
+import 'package:dnd_beyonder/data/character/character.dart';
 import 'package:dnd_beyonder/gui/Widgets/cardWidget.dart';
 import 'package:flutter/material.dart';
 
@@ -7,24 +7,24 @@ import '../../../data/gui/constants.dart';
 import '../../../data/sortable.dart';
 import '../../../generated/l10n.dart';
 
-class SpellBookWidget extends StatelessWidget with Sortable<SpellBookWidget>{
-  final SpellBook spellBook;
+class CharacterWidget extends StatelessWidget with Sortable<CharacterWidget>{
+  final Character spellBook;
   final GestureTapCallback? onTap;
 
-  const SpellBookWidget({this.onTap, required this.spellBook,super.key});
+  const CharacterWidget({this.onTap, required this.spellBook,super.key});
 
   @override
-  int sortName(SpellBookWidget b){
+  int sortName(CharacterWidget b){
     return spellBook.name.compareTo(b.spellBook.name);
   }
 
   @override
-  int sortDnDClass(SpellBookWidget b) {
+  int sortDnDClass(CharacterWidget b) {
     return toDnDClassName(spellBook.dnDClass).compareTo(toDnDClassName(b.spellBook.dnDClass));
   }
 
   @override
-  int sortSpellCount(SpellBookWidget b) {
+  int sortSpellCount(CharacterWidget b) {
         return spellBook.spells.length.compareTo(b.spellBook.spells.length);
   }
 

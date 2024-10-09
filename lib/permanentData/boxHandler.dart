@@ -12,14 +12,14 @@ import 'package:dnd_beyonder/data/spell/spellSchool.dart';
 import 'package:dnd_beyonder/data/spell/subclass.dart';
 import 'package:dnd_beyonder/data/spell/time.dart';
 import 'package:dnd_beyonder/data/spell/timeUnits.dart';
-import 'package:dnd_beyonder/data/spellbook/spellbook.dart';
+import 'package:dnd_beyonder/data/character/character.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../data/gui/constants.dart';
 
 class BoxHandler{
   static late final Box<Spell> spellBox;
-  static late final Box<SpellBook> spellBooksBox;
+  static late final Box<Character> spellBooksBox;
 
   static const String _spellBox = "spells";
   static const String _spellBookBox = "spellBooks";
@@ -40,9 +40,9 @@ class BoxHandler{
     Hive.registerAdapter(SubClassesAdapter());
     Hive.registerAdapter(TimeAdapter());
     Hive.registerAdapter(TimeUnitsAdapter());
-    Hive.registerAdapter(SpellBookAdapter());
+    Hive.registerAdapter(CharacterAdapter());
     spellBox = await Hive.openBox<Spell>(_spellBox);
-    spellBooksBox = await Hive.openBox<SpellBook>(_spellBookBox);
+    spellBooksBox = await Hive.openBox<Character>(_spellBookBox);
     final List<Spell> spells = Spell.spellListFrom5eJson(testJson);
     for(Spell spell in spells){
       if(spellBox.containsKey(spell.id)){
