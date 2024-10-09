@@ -20,19 +20,22 @@ class DurationAdapter extends TypeAdapter<Duration> {
       fields[0] as DurationType,
       fields[1] as TimeUnits,
       fields[2] as int,
+      fields[3] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, Duration obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.type)
       ..writeByte(1)
       ..write(obj.unit)
       ..writeByte(2)
-      ..write(obj.amount);
+      ..write(obj.amount)
+      ..writeByte(3)
+      ..write(obj.concentration);
   }
 
   @override

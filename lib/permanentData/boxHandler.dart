@@ -43,7 +43,7 @@ class BoxHandler{
     Hive.registerAdapter(SpellBookAdapter());
     spellBox = await Hive.openBox<Spell>(_spellBox);
     spellBooksBox = await Hive.openBox<SpellBook>(_spellBookBox);
-    final List<Spell> spells = Spell.spellListFromJson(testJson);
+    final List<Spell> spells = Spell.spellListFrom5eJson(testJson);
     for(Spell spell in spells){
       if(spellBox.containsKey(spell.id)){
 

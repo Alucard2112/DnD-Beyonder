@@ -94,8 +94,25 @@ class Spell extends HiveObject{
           }
           return list;
         case "table":
-          String table = ("# ${s["caption"]}");
+          String table = ("# ${s["caption"]}\n");
+          String divider = "";
+          for(String label in s["colLabels"]){
+            table += "| $label ";
+            divider += "| ----------- ";
+          }
+          table += "|\n$divider|\n";
+          for(List<dynamic> row in s["rows"]){
+            for(dynamic cell in row){
+              table+= "| ${_5eToMD(cell)} ";
+            }
+            table+= "|\n";
+          }
           return table;
+        case "cell":
+          if(s["roll"].containsKey("exact")){
+            return "${s["roll"]["exact"]}";
+          }
+          return "${s["roll"]["min"]} - ${s["roll"]["max"]}";
         default:
           return "";
 
@@ -124,12 +141,12 @@ class Spell extends HiveObject{
     return spellSchoolToString(school);
   }
 
-  factory Spell.fromJsonString(String s){
+  factory Spell.from5eJsonString(String s){
     final json = jsonDecode(s) as Map<String, dynamic>;
-    return Spell.fromJsonObject(json);
+    return Spell.from5eJsonObject(json);
   }
 
-  factory Spell.fromJsonObject(Map<String, dynamic> json){
+  factory Spell.from5eJsonObject(Map<String, dynamic> json){
     SpellSchool schoolJson = getSpellSchoolFromJson(json["school"]);
     List<EntryHigherLevel> entriesAtHigherLevel = [];
     if(json.containsKey("entriesHigherLevel")) {
@@ -174,10 +191,12 @@ class Spell extends HiveObject{
     String m = json["components"].containsKey("m") ? json["components"]["m"] : "";
     Components components = Components(json["components"]["v"],json["components"]["s"], m);
 
-    DurationType type = durationTypeFromString(json["duration"][0]["type"]);
-    Duration duration = Duration(type, TimeUnits.unknown, 0);
+    Map<String, dynamic> durationJson = json["duration"][0];
+    DurationType type = durationTypeFromString(durationJson["type"]);
+    bool concentration = durationJson.containsKey("concentration");
+    Duration duration = Duration(type, TimeUnits.unknown, 0, concentration);
     if(type != DurationType.instantaneous){
-      duration = Duration(type,timeUnitFromString(json["duration"][0]["duration"]["type"]),json["duration"][0]["duration"]["amount"]);
+      duration = Duration(type,timeUnitFromString(durationJson["duration"]["type"]),durationJson["duration"]["amount"], concentration);
     }
     int range = -1;
     if(json["range"]["distance"].containsKey("amount")){
@@ -215,11 +234,11 @@ class Spell extends HiveObject{
     damageType);
   }
 
-  static List<Spell> spellListFromJson(String s){
+  static List<Spell> spellListFrom5eJson(String s){
     List<Spell> spells = [];
     final json = jsonDecode(s) as Map<String, dynamic>;
     for(Map<String, dynamic> map in json["spell"]){
-      spells.add(Spell.fromJsonObject(map));
+      spells.add(Spell.from5eJsonObject(map));
     }
     return spells;
   }

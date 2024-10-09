@@ -11,20 +11,30 @@ class Duration{
   @HiveField(0)
   final DurationType type;
   @HiveField(1)
-  late final TimeUnits unit;
+  final TimeUnits unit;
   @HiveField(2)
-  late final int amount;
+  final int amount;
+  @HiveField(3)
+  final bool concentration;
 
-  Duration(this.type, this.unit, this.amount);
+  Duration(this.type, this.unit, this.amount, this.concentration);
 
   @override
   String toString() {
     if(type == DurationType.instantaneous){
       return durationTypeToString(type);
     }
+    String s = _unitToString();
+    if(concentration){
+      s = "${S.current.concentration}, $s";
+    }
+    return s;
+  }
+
+  String _unitToString(){
     switch(unit){
       case TimeUnits.action:
-       return S.current.action(amount);
+        return S.current.action(amount);
       case TimeUnits.bonusAction:
         return S.current.bonusAction(amount);
       case TimeUnits.reaction:
