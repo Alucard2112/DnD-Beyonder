@@ -156,6 +156,7 @@
   "necromancy": "Necromancy",
 
   "@_TimeUnits" : {},
+  "concentration" : "Concentration",
   "action": "{count, plural,=1{1 Action} other{{count} Actions}}",
   "@action": {
     "description": "String for displaying actions",
@@ -264,6 +265,17 @@
       }
     }
   },
+  "spellDetailDie": "W{type}",
+  "@spellDetailDie": {
+    "description": "String for displaying single die",
+    "placeholders": {
+      "typeDie": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+
   "@_UiFilterScreen": {},
   "filterUnselect" : "Unselect All",
   "filterSpells" : "Filter Spells",

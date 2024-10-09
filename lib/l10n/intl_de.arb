@@ -156,6 +156,7 @@
   "necromancy": "Nekromantie",
 
   "@_TimeUnits" : {},
+  "concentration" : "Konzentration",
   "action": "{count, plural,=1{1 Aktion} other{{count} Aktionen}}",
   "@action": {
     "description": "String for displaying actions",
@@ -259,6 +260,16 @@
         "type": "int",
         "format": "compact"
       },
+      "typeDie": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "spellDetailDie": "W{type}",
+  "@spellDetailDie": {
+    "description": "String for displaying single die",
+    "placeholders": {
       "typeDie": {
         "type": "int",
         "format": "compact"
