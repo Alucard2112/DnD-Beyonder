@@ -1,3 +1,4 @@
+import 'package:dnd_beyonder/converters/fiveEToolsConverter.dart';
 import 'package:dnd_beyonder/data/gui/constants.dart';
 import 'package:dnd_beyonder/data/spell/entryHigherLevel.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class SpellDescriptionWidget extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(bottom: i < description.length -1 ? 10: 0,),
             child: MarkdownBody(
-                data: s,
+                data: FiveEToolsConverter.translateAnnotations(s),
                 styleSheet: markDownStyle,
             ),
           )
@@ -48,7 +49,7 @@ class SpellDescriptionWidget extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(top: 10),
                 child: MarkdownBody(
-                  data: s,
+                  data: FiveEToolsConverter.translateAnnotations(s),
                   styleSheet: markDownStyle,
                 ),
               )
