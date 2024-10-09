@@ -200,7 +200,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   BoxHandler.delete();
                   widget.update();
                 }
-                //TODO Delete App Data
               },
             ),
           ),
