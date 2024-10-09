@@ -9,9 +9,9 @@ import '../../data/spell/spell.dart';
 
 class SpellListScreen extends StatefulWidget {
   final List<Spell> spells;
+  final Function update;
 
-
-  const SpellListScreen(this.spells,{super.key});
+  const SpellListScreen({super.key, required this.update, required this.spells});
   @override
   State<SpellListScreen> createState() => _SpellListScreenState();
 }
@@ -59,7 +59,11 @@ class _SpellListScreenState extends State<SpellListScreen> {
   @override
   Widget build(BuildContext context) {
     if (_selectedSpell >= 0) {
-      return SpellDetailScreen(widget.spells[_selectedSpell], _onItemTapped);
+      return SpellDetailScreen(
+        spell: widget.spells[_selectedSpell],
+        function: _onItemTapped,
+        update: widget.update,
+      );
     }
     if (_filter) {
       return SpellFilterScreen(_showFilterScreen, _resetFilter,_spellFilter);

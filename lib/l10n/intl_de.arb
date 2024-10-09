@@ -288,6 +288,7 @@
     }
   },
   "spellDetailAddSpellTitle": "Zum Charakter hinzufügen",
+  "spellDetailAddSpellNoChars": "Keine Charaktere vorhanden. Erstelle einen Charakter, dem du etwas hinzufügen willst.",
 
   "@_UiFilterScreen": {},
   "filterUnselect" : "Alle abwählen",

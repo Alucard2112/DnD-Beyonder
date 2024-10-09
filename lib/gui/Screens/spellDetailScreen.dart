@@ -4,6 +4,7 @@ import 'package:dnd_beyonder/data/spell/sourceBook.dart';
 import 'package:dnd_beyonder/data/spell/spell.dart';
 import 'package:dnd_beyonder/data/spell/subclass.dart';
 import 'package:dnd_beyonder/gui/General/entryWidget.dart';
+import 'package:dnd_beyonder/gui/Widgets/Spell/addToCharacterDialog.dart';
 import 'package:dnd_beyonder/gui/Widgets/Spell/spellDescriptionWidget.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +16,9 @@ import '../../permanentData/settings.dart';
 class SpellDetailScreen extends StatelessWidget {
   final Spell spell;
   final Function function;
+  final Function update;
 
-  const SpellDetailScreen(this.spell, this.function, {super.key});
+  const SpellDetailScreen({super.key, required this.update, required this.spell, required this.function});
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +92,8 @@ class SpellDetailScreen extends StatelessWidget {
                 ),
                 Expanded(child: Container()),
                 InkWell(
-                  onTap: (){ //TODO zum Zauberbuch hinzufügen
-
+                  onTap: (){
+                    AddToCharacterDialog.openDialog(context, spell, update);
                   },
                   child: Transform.scale(
                     scale: 1.2,
@@ -109,7 +111,6 @@ class SpellDetailScreen extends StatelessWidget {
             Expanded(
               child: ListView(
                   children: [
-
                     const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
                     Text(spell.getSchoolLevelForUI(), style: normalText,),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 4)),

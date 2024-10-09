@@ -5,9 +5,9 @@ import 'package:dnd_beyonder/gui/Screens/spellListScreen.dart';
 import 'package:flutter/material.dart';
 
 class CharacterDetailScreen extends StatelessWidget {
-  final Character spellBook;
+  final Character character;
   final Function back;
-  const CharacterDetailScreen({required this.back, required this.spellBook, super.key});
+  const CharacterDetailScreen({required this.back, required this.character, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class CharacterDetailScreen extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset(
-                        'assets/images/class_icons/${spellBook.dnDClass.name}.png',
+                        'assets/images/class_icons/${character.dnDClass.name}.png',
                         fit: BoxFit.scaleDown,
                       ),
                     ),
@@ -53,8 +53,8 @@ class CharacterDetailScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(spellBook.name, style: boldNormalText,),
-                      Text(toDnDClassName(spellBook.dnDClass), style: subheadingText,)
+                      Text(character.name, style: boldNormalText,),
+                      Text(toDnDClassName(character.dnDClass), style: subheadingText,)
                     ],
                   ),
                 ],
@@ -75,7 +75,7 @@ class CharacterDetailScreen extends StatelessWidget {
           ],
         ),
       ),
-          Expanded(child: SpellListScreen(spellBook.spells)),
+          Expanded(child: SpellListScreen(spells: character.spells, update: (){},)),
       ],
       ),
     );

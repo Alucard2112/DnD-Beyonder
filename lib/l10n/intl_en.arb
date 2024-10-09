@@ -287,6 +287,8 @@
     }
   },
   "spellDetailAddSpellTitle": "Add to Character",
+  "spellDetailAddSpellNoChars": "No Character exists. Please create a Character in order to add something to that Character.",
+
 
   "@_UiFilterScreen": {},
   "filterUnselect" : "Unselect All",

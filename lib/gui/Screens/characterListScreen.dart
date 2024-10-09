@@ -12,8 +12,8 @@ import '../Widgets/SearchBarWidget.dart';
 import '../Widgets/sortUiButtonWidget.dart';
 
 class CharacterListScreen extends StatefulWidget {
-  final List<Character> books;
-  const CharacterListScreen({required this.books, super.key});
+  final List<Character> characters;
+  const CharacterListScreen({required this.characters, super.key});
 
   @override
   State<CharacterListScreen> createState() => _CharacterListScreenState();
@@ -23,7 +23,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
   static bool _asc = true;
   static Sorting _sorting = Sorting.name;
   static String _searchText = "";
-  static int _selectedSpellBook = -1;
+  static int _selectedCharacter = -1;
 
   void _onSearchText(String text) {
     setState(() {
@@ -40,26 +40,29 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
 
   void _back(){
     setState(() {
-      _selectedSpellBook = -1;
+      _selectedCharacter = -1;
     });
   }
 
   void _onSelect(int index){
     setState(() {
-      _selectedSpellBook = index;
+      _selectedCharacter = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     Widget child;
-    if(_selectedSpellBook >= 0){
-      child = CharacterDetailScreen(spellBook: widget.books[_selectedSpellBook], back: _back,);
+    if(_selectedCharacter >= 0){
+      child = CharacterDetailScreen(
+        character: widget.characters[_selectedCharacter],
+        back: _back,
+      );
     }
     else {
       List<CharacterWidget> children = [];
-      for (int i = 0; i < widget.books.length; i++) {
-        Character book = widget.books[i];
+      for (int i = 0; i < widget.characters.length; i++) {
+        Character book = widget.characters[i];
         if (book.name.toLowerCase().contains(_searchText.toLowerCase())) {
           children.add(CharacterWidget(spellBook: book, onTap: () {
             _onSelect(i);

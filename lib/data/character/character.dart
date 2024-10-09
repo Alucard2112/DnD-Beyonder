@@ -6,7 +6,7 @@ import 'package:hive/hive.dart';
 part 'character.g.dart';
 
 @HiveType(typeId: 8)
-class Character{
+class Character extends HiveObject{
   @HiveField(0)
   final DnDClass dnDClass;
   @HiveField(1)
