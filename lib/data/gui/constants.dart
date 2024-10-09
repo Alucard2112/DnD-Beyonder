@@ -14,6 +14,12 @@ final markDownStyle = MarkdownStyleSheet(
   h1: boldNormalText,
   strong: boldNormalText,
   p: normalText,
+  tableBody: normalText,
+  tableHead: boldNormalText,
+  tableColumnWidth: const IntrinsicColumnWidth(),
+  tableHeadAlign: TextAlign.center,
+  tableBorder: TableBorder.all(color: textColor),
+  listBullet: boldNormalText,
 );
 //Colors
 const iconColorPurple = Color(0XFF762fa2);
