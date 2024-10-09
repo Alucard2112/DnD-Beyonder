@@ -109,25 +109,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 if(dialogRet) {
                   FilePickerResult? result = await FilePicker.platform
                     .pickFiles(
+                      allowMultiple: true,
                       type: FileType.custom,
                       allowedExtensions: ['json'],
                     );
 
                     if (result != null) {
-                      File file = File(result.files.single.path!);
-                      String jsonString = await file.readAsString();
-                      Map<String, dynamic> json = jsonDecode(jsonString);
-                      if(json.containsKey("spell")){
-                        for(Map<String, dynamic> map in json["spell"]){
-                          Spell spell = Spell.from5eJsonObject(map);
+                      List<File> files = result.paths.map((path) => File(path!)).toList();
+                      for(File file in files) {
+                        String jsonString = await file.readAsString();
+                        Map<String, dynamic> json = jsonDecode(jsonString);
+                        if (json.containsKey("spell")) {
+                          for (Map<String, dynamic> map in json["spell"]) {
+                            Spell spell = Spell.from5eJsonObject(map);
+                            BoxHandler.spellBox.put(spell.id, spell);
+                          }
+                        }
+                        else {
+                          Spell spell = Spell.from5eJsonObject(json);
                           BoxHandler.spellBox.put(spell.id, spell);
                         }
+                        widget.update();
                       }
-                      else{
-                        Spell spell = Spell.from5eJsonObject(json);
-                        BoxHandler.spellBox.put(spell.id, spell);
-                      }
-                      widget.update();
                     } else {
                       // User canceled the picker
                     }
