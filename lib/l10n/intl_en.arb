@@ -265,7 +265,7 @@
       }
     }
   },
-  "spellDetailDie": "W{typeDie}",
+  "spellDetailDie": "D{typeDie}",
   "@spellDetailDie": {
     "description": "String for displaying single die",
     "placeholders": {
