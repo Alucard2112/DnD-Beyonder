@@ -281,6 +281,9 @@
   "filterSpells" : "Filter Spells",
   "filterReset" : "Reset Filter",
 
+  "@_UiSpellDescription": {},
+  "onHigherLevels" : "At Higher Levels",
+
   "@_UiSettings": {},
   "settingsLanguage" : "Language",
   "settingsLanguageLabel" : "Select Language",
