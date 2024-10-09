@@ -19,10 +19,10 @@ import '../data/gui/constants.dart';
 
 class BoxHandler{
   static late final Box<Spell> spellBox;
-  static late final Box<Character> spellBooksBox;
+  static late final Box<Character> characterBox;
 
   static const String _spellBox = "spells";
-  static const String _spellBookBox = "spellBooks";
+  static const String _characterBox = "characters";
 
   static Future<void> initialise() async{
     await Hive.initFlutter();
@@ -42,7 +42,7 @@ class BoxHandler{
     Hive.registerAdapter(TimeUnitsAdapter());
     Hive.registerAdapter(CharacterAdapter());
     spellBox = await Hive.openBox<Spell>(_spellBox);
-    spellBooksBox = await Hive.openBox<Character>(_spellBookBox);
+    characterBox = await Hive.openBox<Character>(_characterBox);
     final List<Spell> spells = Spell.spellListFrom5eJson(testJson);
     for(Spell spell in spells){
       if(spellBox.containsKey(spell.id)){
@@ -56,7 +56,7 @@ class BoxHandler{
 
   static void delete(){
     spellBox.deleteAll(spellBox.keys);
-    spellBooksBox.deleteAll(spellBooksBox.keys);
+    characterBox.deleteAll(characterBox.keys);
   }
 
 }
