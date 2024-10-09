@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dnd_beyonder/data/gui/constants.dart';
@@ -9,6 +10,7 @@ import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/spell/spell.dart';
 import '../../generated/l10n.dart';
 import '../../permanentData/settings.dart';
 import '../Widgets/SettingsScreen/itemDivider.dart';
@@ -113,6 +115,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
                     if (result != null) {
                       File file = File(result.files.single.path!);
+                      String jsonString = await file.readAsString();
+                      Map<String, dynamic> json = jsonDecode(jsonString);
+                      if(json.containsKey("spell")){
+                        for(Map<String, dynamic> map in json["spell"]){
+                          Spell spell = Spell.from5eJsonObject(map);
+                          BoxHandler.spellBox.put(spell.id, spell);
+                        }
+                      }
+                      else{
+                        Spell spell = Spell.from5eJsonObject(json);
+                        BoxHandler.spellBox.put(spell.id, spell);
+                      }
+                      widget.update();
                     } else {
                       // User canceled the picker
                     }
