@@ -134,7 +134,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     } else {
                       // User canceled the picker
                     }
-                  //TODO Import 5e Spells
                 }
               },
             ),
@@ -164,6 +163,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
                   if (result != null) {
                     File file = File(result.files.single.path!);
+                    await file.readAsString();
                   } else {
                     // User canceled the picker
                   }
