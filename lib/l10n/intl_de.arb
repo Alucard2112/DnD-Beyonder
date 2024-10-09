@@ -238,7 +238,7 @@
   "@_UiMainScreen": {},
   "mainScreenSpellList" : "Zauberliste",
   "mainScreenSettings" : "Einstellungen",
-  "mainScreenSpellBooks" : "Zauberbücher",
+  "mainScreenSpellBooks" : "Charaktere",
 
   "@_UiSpellListScreen": {},
   "searchSpells" : "Zauber suchen",
@@ -287,6 +287,7 @@
       }
     }
   },
+  "spellDetailAddSpellTitle": "Zauber zu Charakter hinzufügen",
 
   "@_UiFilterScreen": {},
   "filterUnselect" : "Alle abwählen",

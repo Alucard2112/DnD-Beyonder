@@ -237,7 +237,7 @@
   "@_UiMainScreen": {},
   "mainScreenSpellList" : "Spell-List",
   "mainScreenSettings" : "Settings",
-  "mainScreenSpellBooks" : "Spellbooks",
+  "mainScreenSpellBooks" : "Characters",
 
   "@_UiSpellListScreen": {},
   "searchSpells" : "Search Spells",
