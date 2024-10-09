@@ -219,6 +219,17 @@
   },
   "unknown": "Unbekannt",
 
+  "@_Conditions": {},
+  "condition": "{cond, select, blinded {Blind} charmed {Bezaubert} deafened {Taub} frightened {Verängstigt} grappled {Gepackt} incapacitated {Kampfunfähig} invisible {Unsichtbar} paralyzed {Gelähmt} petrified {Versteinert} poisoned {Vergiftet} prone {Liegend} restrained {Festgesetzt} stunned {Betäubt} unconscious {Bewusstlos} exhaustion {Erschöpft}}",
+  "@condition": {
+    "description": "translations of conditions",
+    "placeholders": {
+      "cond": {
+        "type": "String"
+      }
+    }
+  },
+
   "@_Ui" : {},
   "uiCancel" : "Abbrechen",
   "uiDone" : "Fertig",

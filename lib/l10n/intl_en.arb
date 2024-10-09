@@ -219,6 +219,17 @@
   },
   "unknown": "Unknown",
 
+  "@_Conditions": {},
+  "condition": "{cond, select, blinded {Blinded} charmed {Charmed} deafened {Deafened} frightened {Frightened} grappled {Grappled} incapacitated {Incapacitated} invisible {Invisible} paralyzed {Paralyzed} petrified {Petrified} poisoned {Poisoned} prone {Prone} restrained {Restrained} stunned {Stunned} unconscious {Unconscious} exhaustion {Exhaustion}}",
+  "@condition": {
+    "description": "translations of conditions",
+    "placeholders": {
+      "cond": {
+        "type": "String"
+      }
+    }
+  },
+
   "@_Ui" : {},
   "uiCancel" : "Cancel",
   "uiDone" : "Done",
