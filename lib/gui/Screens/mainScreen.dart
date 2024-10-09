@@ -60,7 +60,7 @@ class _MainScreenState extends State<MainScreen> {
             backgroundColor: bottomNavigationBarColor,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.book),
+            icon: const Icon(Icons.person_rounded),
             label: S.of(context).mainScreenSpellBooks,
             backgroundColor: bottomNavigationBarColor,
           ),
