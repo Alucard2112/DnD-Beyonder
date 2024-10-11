@@ -302,6 +302,9 @@
     }
   },
   "spellDetailRemoveFromCharAffirmative" : "Remove",
+  "characterAddTitle" : "Add Character",
+  "characterName" : "Name of Character",
+  "characterClass" : "Class of Character",
 
 
   "@_UiFilterScreen": {},
