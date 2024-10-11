@@ -13,14 +13,14 @@ class ClickableIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Badge(
         label: Text(badgeText),
         backgroundColor: _badgeBackgroundColor,
         child: Icon(
           icon,
-          color: iconColorPurple,
+          color: onTap==null ? searchBarLabelColor : iconColorPurple,
           size: 30.0,
         ),
       ),
