@@ -2,6 +2,7 @@ import 'package:dnd_beyonder/data/dnd/dnd_class.dart';
 import 'package:dnd_beyonder/data/gui/constants.dart';
 import 'package:dnd_beyonder/data/character/character.dart';
 import 'package:dnd_beyonder/gui/Screens/spellListScreen.dart';
+import 'package:dnd_beyonder/gui/Widgets/Character/addCharacterDialog.dart';
 import 'package:dnd_beyonder/gui/Widgets/Character/deleteCharacterDialog.dart';
 import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
@@ -72,7 +73,12 @@ class CharacterDetailScreen extends StatelessWidget {
               width: 10,
             ),
             InkWell(
-              onTap: (){},//TODO
+              onTap: () async{
+                await AddCharacterDialog(
+                  character: character,
+                ).openDialog(context);
+                update();
+              },
               child: const Icon(Icons.edit, color: iconColorPurple,size: 30,),
             ),
             const SizedBox(

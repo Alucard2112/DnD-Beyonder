@@ -10,7 +10,8 @@ import '../../../generated/l10n.dart';
 import '../SearchBarWidget.dart';
 
 class AddCharacterDialog extends StatefulWidget with GenericDialog{
-  AddCharacterDialog({super.key}){
+  final Character? character;
+  AddCharacterDialog({super.key, this.character}){
     title = S.current.characterAddTitle;
   }
 
@@ -19,8 +20,15 @@ class AddCharacterDialog extends StatefulWidget with GenericDialog{
 }
 
 class _AddCharacterDialogState extends State<AddCharacterDialog> {
-  DnDClass _class = DnDClass.artificer;
-  String _charName = "";
+  late DnDClass _class;
+  late String _charName;
+
+  @override
+  void initState() {
+    _class = widget.character?.dnDClass ?? DnDClass.artificer;
+    _charName = widget.character?.name ?? "";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,13 +83,20 @@ class _AddCharacterDialogState extends State<AddCharacterDialog> {
             negative: S.of(context).uiCancel,
             disabled: _charName.isEmpty,
             positiveAction: (){
-              Character character = Character(
-                id: Character.maxId + 1,
-                dnDClass: _class,
-                name: _charName,
-                spellIds: [],
-              );
-              BoxHandler.characterBox.put(character.id, character);
+              if(widget.character==null) {
+                Character character = Character(
+                  id: Character.maxId + 1,
+                  dnDClass: _class,
+                  name: _charName,
+                  spellIds: [],
+                );
+                BoxHandler.characterBox.put(character.id, character);
+              }
+              else{
+                widget.character!.name = _charName;
+                widget.character!.dnDClass = _class;
+                widget.character!.save();
+              }
             },
         ),
       ],

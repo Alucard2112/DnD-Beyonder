@@ -8,9 +8,9 @@ part 'character.g.dart';
 @HiveType(typeId: 8)
 class Character extends HiveObject{
   @HiveField(0)
-  final DnDClass dnDClass;
+  DnDClass dnDClass;
   @HiveField(1)
-  final String name;
+  String name;
   @HiveField(2)
   final List<int> spellIds;
   @HiveField(3)
