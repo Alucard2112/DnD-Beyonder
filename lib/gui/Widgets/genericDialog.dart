@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/gui/constants.dart';
 
-mixin GenericDialog on StatelessWidget{
+mixin GenericDialog on Widget{
   late final String title;
 
   Future openDialog(BuildContext context) => showDialog(
