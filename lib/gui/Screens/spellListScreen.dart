@@ -96,7 +96,9 @@ class _SpellListScreenState extends State<SpellListScreen> {
       return SpellFilterScreen(
           _showFilterScreen,
           _resetFilter,
-          _spellFilter[key]!);
+          _spellFilter[key]!,
+        character: widget.character,
+      );
     }
     return SpellListWidget(
         spells: widget.spells,

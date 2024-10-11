@@ -8,6 +8,7 @@ import 'package:dnd_beyonder/data/spell/timeUnits.dart';
 import 'package:dnd_beyonder/gui/Widgets/FilterScreen/filterWidgetWithCheckbox.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/character/character.dart';
 import '../../data/spell/spell.dart';
 import '../../generated/l10n.dart';
 
@@ -15,6 +16,7 @@ class SpellFilterScreen extends StatefulWidget {
   final Function back;
   final Function reset;
   final SpellFilter filter;
+  final Character? character;
   static final Set<Time> _timeData = {
     Time(1, TimeUnits.action),
     Time(1, TimeUnits.bonusAction),
@@ -26,113 +28,111 @@ class SpellFilterScreen extends StatefulWidget {
     Time(12, TimeUnits.hour),
     Time(24, TimeUnits.hour),
   };
-  const SpellFilterScreen(this.back,this.reset,this.filter,{super.key});
+  const SpellFilterScreen(this.back,this.reset,this.filter,{super.key, this.character});
 
   @override
   State<SpellFilterScreen> createState() => _SpellFilterScreenState();
 }
 
 class _SpellFilterScreenState extends State<SpellFilterScreen> {
-  static bool _notInitialized = true;
-  static late final SpellFilter _spellFilter;
+  late final int key;
+  static final Map<int, SpellFilter> _spellFilter = {};
 
   void _changeVisible(int index){
     setState(() {
-     _spellFilter.changeVisibility(index);
+     _spellFilter[key]!.changeVisibility(index);
     });
   }
 
   void _updateDamageTypeFilter(SpellDamageType value){
     setState(() {
-      if(_spellFilter.damageType.contains(value)){
-        _spellFilter.damageType.remove(value);
+      if(_spellFilter[key]!.damageType.contains(value)){
+        _spellFilter[key]!.damageType.remove(value);
       }
       else{
-        _spellFilter.damageType.add(value);
+        _spellFilter[key]!.damageType.add(value);
       }
     });
   }
 
   void _updateClassesFilter(DnDClass value){
     setState(() {
-      if(_spellFilter.classFilter.contains(value)){
-        _spellFilter.classFilter.remove(value);
+      if(_spellFilter[key]!.classFilter.contains(value)){
+        _spellFilter[key]!.classFilter.remove(value);
       }
       else{
-        _spellFilter.classFilter.add(value);
+        _spellFilter[key]!.classFilter.add(value);
       }
     });
   }
 
   void _updateSchoolFilter(SpellSchool value){
     setState(() {
-      if(_spellFilter.schoolFilter.contains(value)){
-        _spellFilter.schoolFilter.remove(value);
+      if(_spellFilter[key]!.schoolFilter.contains(value)){
+        _spellFilter[key]!.schoolFilter.remove(value);
       }
       else{
-        _spellFilter.schoolFilter.add(value);
+        _spellFilter[key]!.schoolFilter.add(value);
       }
     });
   }
 
   void _updateTimeFilter(Time value){
     setState(() {
-      if(_spellFilter.castTimeFilter.contains(value)){
-        _spellFilter.castTimeFilter.remove(value);
+      if(_spellFilter[key]!.castTimeFilter.contains(value)){
+        _spellFilter[key]!.castTimeFilter.remove(value);
       }
       else{
-        _spellFilter.castTimeFilter.add(value);
+        _spellFilter[key]!.castTimeFilter.add(value);
       }
     });
   }
 
   void _updateLevelFilter(int i){
     setState(() {
-      if(_spellFilter.levelFilter.contains(i)){
-        _spellFilter.levelFilter.remove(i);
+      if(_spellFilter[key]!.levelFilter.contains(i)){
+        _spellFilter[key]!.levelFilter.remove(i);
       }
       else {
-        _spellFilter.levelFilter.add(i);
+        _spellFilter[key]!.levelFilter.add(i);
       }
     });
   }
 
   void _resetClasses(){
     setState(() {
-      _spellFilter.classFilter.clear();
+      _spellFilter[key]!.classFilter.clear();
     });
   }
 
   void _resetCastTime(){
     setState(() {
-      _spellFilter.castTimeFilter.clear();
+      _spellFilter[key]!.castTimeFilter.clear();
     });
   }
 
   void _resetSchools(){
     setState(() {
-      _spellFilter.schoolFilter.clear();
+      _spellFilter[key]!.schoolFilter.clear();
     });
   }
 
   void _resetDamage(){
     setState(() {
-      _spellFilter.damageType.clear();
+      _spellFilter[key]!.damageType.clear();
     });
   }
 
   void _resetLevel(){
     setState(() {
-      _spellFilter.levelFilter.clear();
+      _spellFilter[key]!.levelFilter.clear();
     });
   }
 
   @override
   void initState() {
-    if(_notInitialized) {
-      _spellFilter = widget.filter;
-      _notInitialized = false;
-    }
+    key = widget.character?.id ?? -1;
+    _spellFilter[key] = widget.filter;
     super.initState();
   }
 
@@ -145,7 +145,10 @@ class _SpellFilterScreenState extends State<SpellFilterScreen> {
         height: 40,
         child: Row(
             children: [
-              Expanded(child: Text(_spellFilter.getCategory(index), style: boldNormalText,)),
+              Expanded(child: Text(
+                _spellFilter[key]!.getCategory(index),
+                style: boldNormalText,)
+              ),
               Icon(show ?
               Icons.keyboard_arrow_up_rounded :
               Icons.keyboard_arrow_down_rounded,
@@ -158,7 +161,7 @@ class _SpellFilterScreenState extends State<SpellFilterScreen> {
   }
 
   List<Widget> _createChildren(int index){
-    bool show = _spellFilter.showSubEntries(index);
+    bool show = _spellFilter[key]!.showSubEntries(index);
     List<Widget> children = [];
     children.add(_createHeader(index, show));
     List<FilterTextCheckBoxWidget> subItems = [];
@@ -172,7 +175,7 @@ class _SpellFilterScreenState extends State<SpellFilterScreen> {
                     _updateClassesFilter(classes);
                   },
                   label: toDnDClassName(classes),
-                  isChecked: _spellFilter.classFilter.contains(classes),
+                  isChecked: _spellFilter[key]!.classFilter.contains(classes),
                 )
             );
           }
@@ -186,7 +189,7 @@ class _SpellFilterScreenState extends State<SpellFilterScreen> {
                   _updateLevelFilter(i);
                 },
                 label: Spell.getLevelString(i),
-                isChecked: _spellFilter.levelFilter.contains(i),
+                isChecked: _spellFilter[key]!.levelFilter.contains(i),
               )
             );
           }
@@ -200,7 +203,7 @@ class _SpellFilterScreenState extends State<SpellFilterScreen> {
                     _updateTimeFilter(time);
                   },
                   label: time.toString(),
-                  isChecked: _spellFilter.castTimeFilter.contains(time),
+                  isChecked: _spellFilter[key]!.castTimeFilter.contains(time),
                 )
             );
           }
@@ -213,7 +216,7 @@ class _SpellFilterScreenState extends State<SpellFilterScreen> {
               FilterTextCheckBoxWidget(
                 onTap: (){_updateSchoolFilter(school);},
                 label: spellSchoolToString(school),
-                isChecked: _spellFilter.schoolFilter.contains(school),
+                isChecked: _spellFilter[key]!.schoolFilter.contains(school),
               )
             );
           }
@@ -227,7 +230,7 @@ class _SpellFilterScreenState extends State<SpellFilterScreen> {
                       _updateDamageTypeFilter(type);
                     },
                     label: spellDamageTypeToName(type),
-                    isChecked: _spellFilter.damageType.contains(type),
+                    isChecked: _spellFilter[key]!.damageType.contains(type),
                 )
             );
           }
@@ -287,6 +290,7 @@ class _SpellFilterScreenState extends State<SpellFilterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    int skip = (key >= 0 ? 1 : 0);
     return PopScope(
       canPop: false,
       onPopInvokedWithResult:(bool didPop, Object? result) async {
@@ -310,7 +314,10 @@ class _SpellFilterScreenState extends State<SpellFilterScreen> {
               Expanded(child: Text(S.of(context).filterSpells, style: boldNormalText,)),
               InkWell(child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Text(S.of(context).filterReset, style: labelText,),
+                child: Text(
+                  S.of(context).filterReset,
+                  style: labelText.copyWith(color: iconColorPurple),
+                ),
               ),onTap: (){
                 widget.reset();
                 //Back
@@ -320,11 +327,11 @@ class _SpellFilterScreenState extends State<SpellFilterScreen> {
           Expanded(
             child: ListView.separated(
               padding: const EdgeInsets.all(8),
-              itemCount: _spellFilter.length(),
+              itemCount: _spellFilter[key]!.length() - skip,
               itemBuilder: (BuildContext context, int index) {
                 return Column(
                   //color: Colors.amber[colorCodes[index]],
-                  children: _createChildren(index),
+                  children: _createChildren(index + skip),
                 );
               },
               separatorBuilder: (BuildContext context, int index) => const Divider(),
