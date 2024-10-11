@@ -1,5 +1,6 @@
 import 'package:dnd_beyonder/data/character/character.dart';
 import 'package:dnd_beyonder/data/spell/spell.dart';
+import 'package:dnd_beyonder/gui/Widgets/dialogOptions.dart';
 import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
 
@@ -113,38 +114,26 @@ class _AddToCharacterDialogState extends State<AddToCharacterDialog> {
           ),
         ),
         const SizedBox(height: 20,),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            InkWell(
-              onTap: (){
-                Navigator.of(context).pop(false);
-              },
-              child: Text(S.of(context).uiCancel.toUpperCase(), style: boldNormalText.copyWith(color: iconColorPurple),),
-            ),
-            const SizedBox(width: 20,),
-            InkWell(
-              onTap: (){
-                for(int i = 0; i < _checked.length; i++){
-                  if(_checked[i]){
-                    Character character = widget.characters[i];
-                    if(character.spellIds.contains(widget.spell.id)){
+        DialogOptions(
+            affirmative: S.of(context).uiOK,
+            negative: S.of(context).uiCancel,
+            positiveAction: (){
+              for(int i = 0; i < _checked.length; i++){
+                if(_checked[i]){
+                  Character character = widget.characters[i];
+                  if(character.spellIds.contains(widget.spell.id)){
 
-                    }
-                    else{
-                      character.spellIds.add(widget.spell.id);
-                      character.spells.add(widget.spell);
-                      character.save();
-                    }
+                  }
+                  else{
+                    character.spellIds.add(widget.spell.id);
+                    character.spells.add(widget.spell);
+                    character.save();
                   }
                 }
-                widget.update();
-                Navigator.of(context).pop(true);
-              },
-              child: Text(S.of(context).uiOK.toUpperCase(), style: boldNormalText.copyWith(color: iconColorPurple),),
-            ),
-          ],
-        ),
+              }
+              widget.update();
+            }
+         ),
       ],
     );
   }

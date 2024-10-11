@@ -1,3 +1,4 @@
+import 'package:dnd_beyonder/gui/Widgets/dialogOptions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/gui/constants.dart';
@@ -56,27 +57,15 @@ class _FileDialogState extends State<FileDialog> {
           isChecked: _checked,
         ) : Container(),
         const SizedBox(height: 20,),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            InkWell(
-              onTap: (){
-                Navigator.of(context).pop(false);
-              },
-              child: Text(S.of(context).uiCancel.toUpperCase(), style: boldNormalText.copyWith(color: iconColorPurple),),
-            ),
-            const SizedBox(width: 20,),
-            InkWell(
-              onTap: (){
-                if(widget.update != null) {
-                  widget.update!(_checked);
-                }
-                Settings.savePreferences();
-                Navigator.of(context).pop(true);
-              },
-              child: Text(S.of(context).uiOK.toUpperCase(), style: boldNormalText.copyWith(color: iconColorPurple),),
-            ),
-          ],
+        DialogOptions(
+          affirmative: S.of(context).uiOK,
+          negative: S.of(context).uiCancel,
+          positiveAction: (){
+            if(widget.update != null) {
+              widget.update!(_checked);
+            }
+            Settings.savePreferences();
+          },
         ),
       ],
     );

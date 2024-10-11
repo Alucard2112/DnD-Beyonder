@@ -1,5 +1,6 @@
 import 'package:dnd_beyonder/data/character/character.dart';
 import 'package:dnd_beyonder/data/spell/spell.dart';
+import 'package:dnd_beyonder/gui/Widgets/dialogOptions.dart';
 import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
 
@@ -20,25 +21,12 @@ class RemoveFromCharacterDialog extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(S.of(context).spellDetailRemoveFromCharMessage(spell.name, character.name), style: normalText,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              InkWell(
-                onTap: (){
-                  Navigator.of(context).pop(false);
-                },
-                child: Text(S.of(context).uiCancel.toUpperCase(), style: boldNormalText.copyWith(color: iconColorPurple),),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              InkWell(
-                onTap: (){
-                  Navigator.of(context).pop(true);
-                },
-                child: Text(S.of(context).spellDetailRemoveFromCharAffirmative.toUpperCase(), style: boldNormalText.copyWith(color: iconColorPurple),),
-              ),
-            ],
+          const SizedBox(
+            height: 20,
+          ),
+          DialogOptions(
+            affirmative: S.of(context).spellDetailRemoveFromCharAffirmative,
+            negative: S.of(context).uiCancel,
           ),
         ]
     );

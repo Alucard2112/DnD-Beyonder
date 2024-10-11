@@ -1,4 +1,5 @@
 import 'package:dnd_beyonder/data/dnd/dnd_class.dart';
+import 'package:dnd_beyonder/gui/Widgets/dialogOptions.dart';
 import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
 
@@ -76,37 +77,19 @@ class _AddCharacterDialogState extends State<AddCharacterDialog> {
         const SizedBox(
           height: 20,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            InkWell(
-              onTap: (){
-                Navigator.of(context).pop(false);
-              },
-              child: Text(S.of(context).uiCancel.toUpperCase(), style: boldNormalText.copyWith(color: iconColorPurple),),
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-            InkWell(
-              onTap: (){
-                if(_charName.isNotEmpty) {
-                  Character character = Character(
-                    id: Character.maxId + 1,
-                    dnDClass: _class,
-                    name: _charName,
-                    spellIds: [],
-                  );
-                  BoxHandler.characterBox.put(character.id, character);
-                  Navigator.of(context).pop(true);
-                }
-              },
-              child: Text(
-                S.of(context).uiDone.toUpperCase(),
-                style: boldNormalText.copyWith(color: _charName.isNotEmpty? iconColorPurple : searchBarColor),
-              ),
-            ),
-          ],
+        DialogOptions(
+            affirmative: S.of(context).uiDone.toUpperCase(),
+            negative: S.of(context).uiCancel,
+            disabled: _charName.isEmpty,
+            positiveAction: (){
+              Character character = Character(
+                id: Character.maxId + 1,
+                dnDClass: _class,
+                name: _charName,
+                spellIds: [],
+              );
+              BoxHandler.characterBox.put(character.id, character);
+            },
         ),
       ],
     );
