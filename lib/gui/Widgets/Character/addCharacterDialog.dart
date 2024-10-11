@@ -1,5 +1,6 @@
 import 'package:dnd_beyonder/data/dnd/dnd_class.dart';
 import 'package:dnd_beyonder/gui/Widgets/dialogOptions.dart';
+import 'package:dnd_beyonder/gui/Widgets/genericDialog.dart';
 import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
 
@@ -8,21 +9,13 @@ import '../../../data/gui/constants.dart';
 import '../../../generated/l10n.dart';
 import '../SearchBarWidget.dart';
 
-class AddCharacterDialog extends StatefulWidget {
-  const AddCharacterDialog({super.key});
+class AddCharacterDialog extends StatefulWidget with GenericDialog{
+  AddCharacterDialog({super.key}){
+    title = S.current.characterAddTitle;
+  }
 
   @override
   State<AddCharacterDialog> createState() => _AddCharacterDialogState();
-
-  static Future openDialog(BuildContext context) => showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-          scrollable: true,
-          title: Text(S.of(context).characterAddTitle, style: headingText,),
-          backgroundColor: scaffoldBackgroundColor,
-          content: const AddCharacterDialog(),
-      )
-  );
 }
 
 class _AddCharacterDialogState extends State<AddCharacterDialog> {

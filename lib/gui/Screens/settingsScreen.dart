@@ -97,14 +97,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onTap: () async{
                 bool dialogRet = true;
                 if(Settings.show5eMessage!){
-                  dialogRet = await FileDialog.openDialog(
-                      context,S.of(context).settingsImport5e,
-                      S.of(context).settings5eMessage,
-                      true,
-                      (bool check)
-                      {Settings.show5eMessage = !check;
-                        widget.update();
-                      });
+                  dialogRet = await FileDialog(
+                    title: S.of(context).settingsImport5e,
+                    text: S.of(context).settings5eMessage,
+                    showCheckBox: true,
+                    update: (bool check)
+                    {Settings.show5eMessage = !check;
+                    widget.update();
+                    },
+                  ).openDialog(context);
                 }
                 if(dialogRet) {
                   FilePickerResult? result = await FilePicker.platform
@@ -145,14 +146,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onTap: () async{
                 bool dialogRet = true;
                 if(Settings.showAppMessage!){
-                  dialogRet = await FileDialog.openDialog(
-                      context,S.of(context).settingsImportData,
-                      S.of(context).settingsAppMessage,
-                      true,
-                          (bool check)
-                      {Settings.showAppMessage = !check;
-                      widget.update();
-                      });
+                  dialogRet = await FileDialog(
+                    title: S.of(context).settingsImportData,
+                    text: S.of(context).settingsAppMessage,
+                    showCheckBox: true,
+                    update: (bool check)
+                    {Settings.showAppMessage = !check;
+                    widget.update();
+                    },
+                  ).openDialog(context);
                 }
                 if(dialogRet) {
                   FilePickerResult? result = await FilePicker.platform
@@ -191,10 +193,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
             child: SettingsButton(
               buttonText: S.of(context).settingsDeleteData,
               onTap: () async{
-                bool dialogRet = await FileDialog.openDialog(
-                    context,S.of(context).settingsDeleteData,
-                    S.of(context).settingsDeleteMessage,
-                    false,null);
+                bool dialogRet = await FileDialog(
+                  title: S.of(context).settingsDeleteData,
+                  text: S.of(context).settingsDeleteMessage,
+                  showCheckBox: false,
+                ).openDialog(context);
                 if(dialogRet){
                   Settings.deleteAll();
                   BoxHandler.delete();

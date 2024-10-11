@@ -50,15 +50,21 @@ class SpellDetailScreen extends StatelessWidget {
       sourceWidgets.add(Text("${S.of(context).spellDetailPage} ${spell.page}", style: subheadingText,));
     }
     ClickableIcon iconWidget = ClickableIcon(
-      onTap: (){AddToCharacterDialog.openDialog(context, spell, update);},
+      onTap: (){
+        AddToCharacterDialog(
+          spell: spell,
+          update: update,
+        ).openDialog(context);},
       icon: Icons.bookmark_add_outlined,
     );
     if(character != null){
       iconWidget = ClickableIcon(
         onTap: () async{
-            bool decision = await RemoveFromCharacterDialog.openDialog(
-                context, spell, character!, update
-            );
+            bool decision = await RemoveFromCharacterDialog(
+              spell: spell,
+              character: character!,
+              update: update,
+            ).openDialog(context);
             if(decision){
               character!.spells.remove(spell);
               character!.spellIds.remove(spell.id);

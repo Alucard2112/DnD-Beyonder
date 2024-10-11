@@ -107,7 +107,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                     ),
                     InkWell(
                       onTap: () async{
-                        bool decision = await AddCharacterDialog.openDialog(context);
+                        bool decision = await AddCharacterDialog().openDialog(context);
                         if(decision){
                           widget.update();
                         }

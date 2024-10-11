@@ -1,4 +1,5 @@
 import 'package:dnd_beyonder/gui/Widgets/dialogOptions.dart';
+import 'package:dnd_beyonder/gui/Widgets/genericDialog.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/gui/constants.dart';
@@ -6,27 +7,16 @@ import '../../../generated/l10n.dart';
 import '../../../permanentData/settings.dart';
 import '../FilterScreen/filterWidgetWithCheckbox.dart';
 
-class FileDialog extends StatefulWidget {
+class FileDialog extends StatefulWidget with GenericDialog{
   final bool showCheckBox;
   final String text;
   final Function? update;
-  const FileDialog({super.key, required this.showCheckBox, required this.text, this.update});
+  FileDialog({super.key, required this.showCheckBox, required this.text, this.update, required String title}){
+    super.title = title;
+  }
 
   @override
   State<FileDialog> createState() => _FileDialogState();
-
-  static Future openDialog(BuildContext context, String title, String text, bool showCheckBox, Function? update) => showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-          title: Text(title, style: headingText,),
-          backgroundColor: scaffoldBackgroundColor,
-          content: FileDialog(
-            update: update,
-            showCheckBox: showCheckBox,
-            text: text,
-          )
-      )
-  );
 }
 
 class _FileDialogState extends State<FileDialog> {

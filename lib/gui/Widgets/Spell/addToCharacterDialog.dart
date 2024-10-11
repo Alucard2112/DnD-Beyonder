@@ -1,33 +1,23 @@
 import 'package:dnd_beyonder/data/character/character.dart';
 import 'package:dnd_beyonder/data/spell/spell.dart';
 import 'package:dnd_beyonder/gui/Widgets/dialogOptions.dart';
+import 'package:dnd_beyonder/gui/Widgets/genericDialog.dart';
 import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/gui/constants.dart';
 import '../../../generated/l10n.dart';
 
-class AddToCharacterDialog extends StatefulWidget {
+class AddToCharacterDialog extends StatefulWidget with GenericDialog{
   final Spell spell;
   final Function update;
   final List<Character> characters = BoxHandler.characterBox.values.toList();
-  AddToCharacterDialog({super.key, required this.spell, required this.update});
+  AddToCharacterDialog({super.key, required this.spell, required this.update}){
+    title = S.current.spellDetailAddSpellTitle;
+  }
 
   @override
   State<AddToCharacterDialog> createState() => _AddToCharacterDialogState();
-
-  static Future openDialog(BuildContext context, Spell spell, Function update) => showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        scrollable: true,
-          title: Text(S.of(context).spellDetailAddSpellTitle, style: headingText,),
-          backgroundColor: scaffoldBackgroundColor,
-          content: AddToCharacterDialog(
-            spell: spell,
-            update: update,
-          )
-      )
-  );
 }
 
 class _AddToCharacterDialogState extends State<AddToCharacterDialog> {
