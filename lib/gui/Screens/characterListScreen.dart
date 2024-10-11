@@ -6,7 +6,6 @@ import 'package:dnd_beyonder/gui/Widgets/Character/characterWidget.dart';
 import 'package:dnd_beyonder/gui/Widgets/clickableIcon.dart';
 
 import 'package:flutter/material.dart';
-import '../../data/gui/constants.dart';
 import '../../data/gui/sorting.dart';
 import '../../generated/l10n.dart';
 import '../Widgets/SearchBarWidget.dart';
