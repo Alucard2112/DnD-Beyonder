@@ -90,16 +90,21 @@ class _AddCharacterDialogState extends State<AddCharacterDialog> {
             ),
             InkWell(
               onTap: (){
-                Character character = Character(
-                  id: Character.maxId+1,
-                  dnDClass: _class,
-                  name: _charName,
-                  spellIds: [],
-                );
-                BoxHandler.characterBox.put(character.id, character);
-                Navigator.of(context).pop(true);
+                if(_charName.isNotEmpty) {
+                  Character character = Character(
+                    id: Character.maxId + 1,
+                    dnDClass: _class,
+                    name: _charName,
+                    spellIds: [],
+                  );
+                  BoxHandler.characterBox.put(character.id, character);
+                  Navigator.of(context).pop(true);
+                }
               },
-              child: Text(S.of(context).uiDone.toUpperCase(), style: boldNormalText.copyWith(color: iconColorPurple),),
+              child: Text(
+                S.of(context).uiDone.toUpperCase(),
+                style: boldNormalText.copyWith(color: _charName.isNotEmpty? iconColorPurple : searchBarColor),
+              ),
             ),
           ],
         ),
