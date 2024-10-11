@@ -305,6 +305,9 @@
   "characterAddTitle" : "Add Character",
   "characterName" : "Name of Character",
   "characterClass" : "Class of Character",
+  "characterDeleteTitle" : "Delete Character",
+  "characterDeleteMessage" : "Are you sure that you want to delete {name}?\nIt is not possible to revert this decision.",
+  "characterDeleteOk" : "Delete",
 
 
   "@_UiFilterScreen": {},

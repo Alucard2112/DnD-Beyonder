@@ -59,6 +59,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
       child = CharacterDetailScreen(
         character: widget.characters[_selectedCharacter],
         back: _back,
+        update: widget.update,
       );
     }
     else {

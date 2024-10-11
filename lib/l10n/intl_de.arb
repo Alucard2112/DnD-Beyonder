@@ -258,6 +258,9 @@
   "characterAddTitle" : "Charakter hinzufügen",
   "characterName" : "Charakter Name",
   "characterClass" : "Klasse des Charakters",
+  "characterDeleteTitle" : "Charakter löschen",
+  "characterDeleteMessage" : "Sind Sie sich sicher, dass Sie den Charakter {name} löschen wollen?\nDies kann nicht rückgängig gemacht werden.",
+  "characterDeleteOk" : "Löschen",
 
   "@_UiSpellDetailScreen" : {},
   "spellDetailClasses" : "Klassen",

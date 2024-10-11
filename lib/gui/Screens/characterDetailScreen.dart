@@ -2,12 +2,15 @@ import 'package:dnd_beyonder/data/dnd/dnd_class.dart';
 import 'package:dnd_beyonder/data/gui/constants.dart';
 import 'package:dnd_beyonder/data/character/character.dart';
 import 'package:dnd_beyonder/gui/Screens/spellListScreen.dart';
+import 'package:dnd_beyonder/gui/Widgets/Character/deleteCharacterDialog.dart';
+import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
 
 class CharacterDetailScreen extends StatelessWidget {
   final Character character;
   final Function back;
-  const CharacterDetailScreen({required this.back, required this.character, super.key});
+  final Function update;
+  const CharacterDetailScreen({required this.back, required this.character, super.key, required this.update});
 
   @override
   Widget build(BuildContext context) {
@@ -65,12 +68,28 @@ class CharacterDetailScreen extends StatelessWidget {
               onTap: (){},//TODO
               child: const Icon(Icons.add_circle, color: iconColorPurple,size: 30,),
             ),
-            Container(
+            const SizedBox(
               width: 10,
             ),
             InkWell(
               onTap: (){},//TODO
               child: const Icon(Icons.edit, color: iconColorPurple,size: 30,),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            InkWell(
+              onTap: () async{
+                bool decision = await DeleteCharacterDialog(
+                  character: character,
+                ).openDialog(context);
+                if(decision) {
+                  BoxHandler.characterBox.delete(character.id);
+                  back();
+                  update();
+                }
+              },
+              child: const Icon(Icons.delete, color: iconColorPurple,size: 30,),
             )
           ],
         ),
