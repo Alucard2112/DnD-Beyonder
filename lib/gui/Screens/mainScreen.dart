@@ -32,8 +32,14 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> widgetOptions = <Widget>[
-      SpellListScreen(spells: BoxHandler.spellBox.values.toList(), update: _update,),
-      CharacterListScreen(characters: BoxHandler.characterBox.values.toList(),),
+      SpellListScreen(
+        spells: BoxHandler.spellBox.values.toList(),
+        update: _update,
+      ),
+      CharacterListScreen(
+        characters: BoxHandler.characterBox.values.toList(),
+        update: _update,
+      ),
       SettingsScreen(update: _update),
     ];
     return Scaffold(

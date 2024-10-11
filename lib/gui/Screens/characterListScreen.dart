@@ -1,6 +1,7 @@
 import 'package:dnd_beyonder/data/sortable.dart';
 import 'package:dnd_beyonder/data/character/character.dart';
 import 'package:dnd_beyonder/gui/Screens/characterDetailScreen.dart';
+import 'package:dnd_beyonder/gui/Widgets/Character/addCharacterDialog.dart';
 import 'package:dnd_beyonder/gui/Widgets/Character/characterWidget.dart';
 import 'package:dnd_beyonder/gui/Widgets/clickableIcon.dart';
 
@@ -13,7 +14,8 @@ import '../Widgets/sortUiButtonWidget.dart';
 
 class CharacterListScreen extends StatefulWidget {
   final List<Character> characters;
-  const CharacterListScreen({required this.characters, super.key});
+  final Function update;
+  const CharacterListScreen({required this.characters, super.key, required this.update});
 
   @override
   State<CharacterListScreen> createState() => _CharacterListScreenState();
@@ -103,7 +105,12 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                       width: 10,
                     ),
                     InkWell(
-                      onTap: (){},//TODO
+                      onTap: () async{
+                        bool decision = await AddCharacterDialog.openDialog(context);
+                        if(decision){
+                          widget.update();
+                        }
+                      },
                       child: const Icon(Icons.add_circle, color: iconColorPurple,size: 30,),
                     ),
                     Padding(

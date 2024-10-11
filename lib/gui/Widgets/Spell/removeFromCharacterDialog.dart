@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../data/gui/constants.dart';
 import '../../../generated/l10n.dart';
 
-class RemoveFromCharacterDialog extends StatefulWidget {
+class RemoveFromCharacterDialog extends StatelessWidget {
   final Spell spell;
   final Character character;
   final Function update;
@@ -14,7 +14,35 @@ class RemoveFromCharacterDialog extends StatefulWidget {
   RemoveFromCharacterDialog({super.key, required this.spell, required this.update, required this.character});
 
   @override
-  State<RemoveFromCharacterDialog> createState() => _RemoveFromCharacterDialogState();
+  Widget build(BuildContext context) {
+    return Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(S.of(context).spellDetailRemoveFromCharMessage(spell.name, character.name), style: normalText,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              InkWell(
+                onTap: (){
+                  Navigator.of(context).pop(false);
+                },
+                child: Text(S.of(context).uiCancel.toUpperCase(), style: boldNormalText.copyWith(color: iconColorPurple),),
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              InkWell(
+                onTap: (){
+                  Navigator.of(context).pop(true);
+                },
+                child: Text(S.of(context).spellDetailRemoveFromCharAffirmative.toUpperCase(), style: boldNormalText.copyWith(color: iconColorPurple),),
+              ),
+            ],
+          ),
+        ]
+    );
+  }
 
   static Future openDialog(BuildContext context, Spell spell, Character character, Function update) => showDialog(
       context: context,
@@ -29,38 +57,4 @@ class RemoveFromCharacterDialog extends StatefulWidget {
           )
       )
   );
-}
-
-class _RemoveFromCharacterDialogState extends State<RemoveFromCharacterDialog> {
-
-  @override
-  Widget build(BuildContext context) {
-      return Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(S.of(context).spellDetailRemoveFromCharMessage(widget.spell.name, widget.character.name), style: normalText,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                InkWell(
-                  onTap: (){
-                    Navigator.of(context).pop(false);
-                  },
-                  child: Text(S.of(context).uiCancel.toUpperCase(), style: boldNormalText.copyWith(color: iconColorPurple),),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                InkWell(
-                  onTap: (){
-                    Navigator.of(context).pop(true);
-                  },
-                  child: Text(S.of(context).spellDetailRemoveFromCharAffirmative.toUpperCase(), style: boldNormalText.copyWith(color: iconColorPurple),),
-                ),
-              ],
-            ),
-          ]
-      );
-  }
 }

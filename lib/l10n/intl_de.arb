@@ -243,7 +243,7 @@
   "@_UiSpellListScreen": {},
   "searchSpells" : "Zauber suchen",
 
-  "@_UiSpellBookScreen" : {},
+  "@_UiCharacterScreen" : {},
   "spellBookSearchCharacter": "Charakter suchen",
   "spellBookSpellCount" : "{amount} Zauber",
   "@spellBookSpellCount": {
@@ -255,6 +255,9 @@
       }
     }
   },
+  "characterAddTitle" : "Charakter hinzufügen",
+  "characterName" : "Charakter Name",
+  "characterClass" : "Klasse des Charakters",
 
   "@_UiSpellDetailScreen" : {},
   "spellDetailClasses" : "Klassen",

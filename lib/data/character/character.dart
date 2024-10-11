@@ -16,10 +16,15 @@ class Character extends HiveObject{
   @HiveField(3)
   final int id;
 
+  static int maxId = 0;
+
   final List<Spell> spells = [];
 
   Character({required this.id, required this.dnDClass, required this.name, required this.spellIds}){
-   for(int i in spellIds){
+   if(id>maxId){
+     maxId = id;
+   }
+    for(int i in spellIds){
      spells.add(BoxHandler.spellBox.get(i)!);
    }
   }
