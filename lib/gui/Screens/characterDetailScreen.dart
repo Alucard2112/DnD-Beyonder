@@ -4,6 +4,7 @@ import 'package:dnd_beyonder/data/character/character.dart';
 import 'package:dnd_beyonder/gui/Screens/spellListScreen.dart';
 import 'package:dnd_beyonder/gui/Widgets/Character/addCharacterDialog.dart';
 import 'package:dnd_beyonder/gui/Widgets/Character/deleteCharacterDialog.dart';
+import 'package:dnd_beyonder/gui/Widgets/clickableIcon.dart';
 import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
 
@@ -65,26 +66,26 @@ class CharacterDetailScreen extends StatelessWidget {
               ),
             ),
             Expanded(child: Container()),
-            InkWell(
-              onTap: (){},//TODO
-              child: const Icon(Icons.add_circle, color: iconColorPurple,size: 30,),
+            ClickableIcon(
+              onTap: null,//TODO
+              icon: Icons.add_circle,
             ),
             const SizedBox(
               width: 10,
             ),
-            InkWell(
+            ClickableIcon(
               onTap: () async{
                 await AddCharacterDialog(
                   character: character,
                 ).openDialog(context);
                 update();
               },
-              child: const Icon(Icons.edit, color: iconColorPurple,size: 30,),
+              icon: Icons.edit,
             ),
             const SizedBox(
               width: 10,
             ),
-            InkWell(
+            ClickableIcon(
               onTap: () async{
                 bool decision = await DeleteCharacterDialog(
                   character: character,
@@ -95,7 +96,7 @@ class CharacterDetailScreen extends StatelessWidget {
                   update();
                 }
               },
-              child: const Icon(Icons.delete, color: iconColorPurple,size: 30,),
+              icon: Icons.delete,
             )
           ],
         ),

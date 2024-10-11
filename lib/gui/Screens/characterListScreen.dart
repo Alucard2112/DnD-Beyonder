@@ -105,18 +105,21 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                     Container(
                       width: 10,
                     ),
-                    InkWell(
+                    ClickableIcon(
                       onTap: () async{
                         bool decision = await AddCharacterDialog().openDialog(context);
                         if(decision){
                           widget.update();
                         }
                       },
-                      child: const Icon(Icons.add_circle, color: iconColorPurple,size: 30,),
+                      icon: Icons.add_circle,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0, right: 8),
-                      child: ClickableIcon(badgeText: badgeText,onTap: (){}, icon: Icons.filter_list_alt),
+                      child: ClickableIcon(
+                          badgeText: badgeText,
+                          onTap: null, //TODO
+                          icon: Icons.filter_list_alt),
                     ),
                   ],
                 ),
