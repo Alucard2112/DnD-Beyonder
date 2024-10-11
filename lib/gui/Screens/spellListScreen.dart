@@ -18,185 +18,95 @@ class SpellListScreen extends StatefulWidget {
 }
 
 class _SpellListScreenState extends State<SpellListScreen> {
-  static int _selectedSpell = -1;
-  static bool _filter = false;
-  static String _searchText = "";
-  static final SpellFilter _spellFilter = SpellFilter();
-  static bool _asc = true;
-  static Sorting _sorting = Sorting.name;
+  static final Map<int, int> _selectedSpell = {};
+  static Map<int, bool>_filter = {};
+  static Map<int, String> _searchText = {};
+  static final Map<int,SpellFilter> _spellFilter = {};
+  static Map<int, bool> _asc = {};
+  static Map<int,Sorting> _sorting = {};
+  late final int key;
 
-  static int _selectedSpell_Character = -1;
-  static bool _filter_Character = false;
-  static String _searchText_Character = "";
-  static final SpellFilter _spellFilter_Character = SpellFilter();
-  static bool _asc_Character = true;
-  static Sorting _sorting_Character = Sorting.name;
-
-  void _setSelectedSpell(int index){
-    if(widget.character!=null){
-      _selectedSpell_Character = index;
+  @override
+  void initState() {
+    key = widget.character?.id ?? -1;
+    if(!_selectedSpell.containsKey(key)){
+      _selectedSpell[key] = -1;
     }
-    else{
-      _selectedSpell = index;
+    if(!_filter.containsKey(key)){
+      _filter[key] = false;
     }
-  }
-
-  int _getSelectedSpell(){
-    if(widget.character!=null){
-      return _selectedSpell_Character;
+    if(!_searchText.containsKey(key)){
+      _searchText[key] = "";
     }
-    else{
-      return _selectedSpell;
+    if(!_spellFilter.containsKey(key)){
+      _spellFilter[key] = SpellFilter();
     }
+    if(!_asc.containsKey(key)){
+      _asc[key] = true;
+    }
+    if(!_sorting.containsKey(key)){
+      _sorting[key] = Sorting.name;
+    }
+    super.initState();
   }
 
   void _onItemTapped(int index) {
     setState(() {
-      _setSelectedSpell(index);
+      _selectedSpell[key] = index;
     });
-  }
-
-  void _setSearchText(String text){
-    if(widget.character!=null){
-      _searchText_Character = text;
-    }
-    else{
-      _searchText = text;
-    }
-  }
-
-  String _getSearchText(){
-    if(widget.character!=null){
-      return _searchText_Character;
-    }
-    else{
-      return _searchText;
-    }
   }
 
   void _onSearchText(String text) {
     setState(() {
-      _setSearchText(text);
+      _searchText[key] = text;
     });
-  }
-
-  void _setFilter(bool show){
-    if(widget.character!=null){
-      _filter_Character = show;
-    }
-    else{
-      _filter = show;
-    }
-  }
-
-  bool _getFilter(){
-    if(widget.character!=null){
-      return _filter_Character;
-    }
-    else{
-      return _filter;
-    }
   }
 
   void _showFilterScreen(bool show) {
     setState(() {
-      _setFilter(show);
+      _filter[key] = show;
     });
-  }
-
-  void _setResetFilter(){
-    if(widget.character!=null){
-      _spellFilter_Character.reset();
-    }
-    else{
-      _spellFilter.reset();
-    }
-  }
-
-  _getSpellFilter(){
-    if(widget.character!=null){
-      return _spellFilter_Character;
-    }
-    else{
-      return _spellFilter;
-    }
   }
 
   void _resetFilter() {
     setState(() {
-      _setResetFilter();
-      _setFilter(false);
+      _spellFilter[key]!.reset();
+      _filter[key] = false;
     });
-  }
-
-  void _setAsc(bool asc){
-    if(widget.character!=null){
-      _asc_Character = asc;
-    }
-    else{
-      _asc = asc;
-    }
-  }
-
-  bool _getAsc(){
-    if(widget.character!=null){
-      return _asc_Character;
-    }
-    else{
-      return _asc;
-    }
-  }
-
-  void _setSorting(Sorting sort){
-    if(widget.character!=null){
-      _sorting_Character = sort;
-    }
-    else{
-      _sorting = sort;
-    }
-  }
-
-  Sorting _getSorting(){
-    if(widget.character!=null){
-      return _sorting_Character;
-    }
-    else{
-      return _sorting;
-    }
   }
 
   void _updateSorting(Sorting sort, bool asc){
     setState(() {
-      _setAsc(asc);
-      _setSorting(sort);
+      _asc[key] = asc;
+      _sorting[key] = sort;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_getSelectedSpell() >= 0) {
+    if (_selectedSpell[key]! >= 0) {
       return SpellDetailScreen(
-        spell: widget.spells[_getSelectedSpell()],
+        spell: widget.spells[_selectedSpell[key]!],
         function: _onItemTapped,
         update: widget.update,
         character: widget.character,
       );
     }
-    if (_getFilter()) {
+    if (_filter[key]!) {
       return SpellFilterScreen(
           _showFilterScreen,
           _resetFilter,
-          _getSpellFilter());
+          _spellFilter[key]!);
     }
     return SpellListWidget(
         spells: widget.spells,
-        spellFilter: _getSpellFilter(),
-        searchText: _getSearchText(),
+        spellFilter: _spellFilter[key]!,
+        searchText: _searchText[key]!,
         onItemTapped: _onItemTapped,
         updateSorting: _updateSorting,
         showFilterScreen: _showFilterScreen,
         onSearchText: _onSearchText,
-        sorting: _getSorting(),
-        asc: _getAsc());
+        sorting: _sorting[key]!,
+        asc: _asc[key]!);
   }
 }
