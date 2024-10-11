@@ -5,9 +5,12 @@ import 'package:dnd_beyonder/data/spell/spell.dart';
 import 'package:dnd_beyonder/data/spell/subclass.dart';
 import 'package:dnd_beyonder/gui/General/entryWidget.dart';
 import 'package:dnd_beyonder/gui/Widgets/Spell/addToCharacterDialog.dart';
+import 'package:dnd_beyonder/gui/Widgets/Spell/removeFromCharacterDialog.dart';
 import 'package:dnd_beyonder/gui/Widgets/Spell/spellDescriptionWidget.dart';
+import 'package:dnd_beyonder/gui/Widgets/clickableIcon.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/character/character.dart';
 import '../../data/dnd/dnd_class.dart';
 import '../../data/spell/spellSchool.dart';
 import '../../generated/l10n.dart';
@@ -17,8 +20,8 @@ class SpellDetailScreen extends StatelessWidget {
   final Spell spell;
   final Function function;
   final Function update;
-
-  const SpellDetailScreen({super.key, required this.update, required this.spell, required this.function});
+  final Character? character;
+  const SpellDetailScreen({super.key, required this.update, required this.spell, required this.function, this.character});
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +48,26 @@ class SpellDetailScreen extends StatelessWidget {
     if(spell.page >= 0) {
       sourceWidgets.add(const Text(", ", style: subheadingText,));
       sourceWidgets.add(Text("${S.of(context).spellDetailPage} ${spell.page}", style: subheadingText,));
+    }
+    ClickableIcon iconWidget = ClickableIcon(
+      onTap: (){AddToCharacterDialog.openDialog(context, spell, update);},
+      icon: Icons.bookmark_add_outlined,
+    );
+    if(character != null){
+      iconWidget = ClickableIcon(
+        onTap: () async{
+            bool decision = await RemoveFromCharacterDialog.openDialog(
+                context, spell, character!, update
+            );
+            if(decision){
+              character!.spells.remove(spell);
+              character!.spellIds.remove(spell.id);
+              character!.save();
+              function(-1);
+            }
+          },
+        icon: Icons.bookmark_remove,
+      );
     }
     return PopScope(
       canPop: false,
@@ -91,18 +114,7 @@ class SpellDetailScreen extends StatelessWidget {
                   ),
                 ),
                 Expanded(child: Container()),
-                InkWell(
-                  onTap: (){
-                    AddToCharacterDialog.openDialog(context, spell, update);
-                  },
-                  child: Transform.scale(
-                    scale: 1.2,
-                    child: const Icon(
-                      Icons.bookmark_add_outlined,
-                      color: iconColorPurple,
-                    ),
-                  ),
-                )
+                iconWidget,
               ],
             ),
             Container(

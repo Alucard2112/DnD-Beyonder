@@ -288,6 +288,20 @@
   },
   "spellDetailAddSpellTitle": "Add to Character",
   "spellDetailAddSpellNoChars": "No Character exists. Please create a Character in order to add something to that Character.",
+  "spellDetailRemoveFromCharTitle": "Remove from Character",
+  "spellDetailRemoveFromCharMessage": "Are your sure that you want to remove {name} from {charname}?",
+  "@spellDetailRemoveFromCharMessage": {
+    "description": "String for displaying single die",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "charname": {
+        "type": "String"
+      }
+    }
+  },
+  "spellDetailRemoveFromCharAffirmative" : "Remove",
 
 
   "@_UiFilterScreen": {},

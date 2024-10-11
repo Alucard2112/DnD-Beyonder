@@ -289,6 +289,20 @@
   },
   "spellDetailAddSpellTitle": "Zum Charakter hinzufügen",
   "spellDetailAddSpellNoChars": "Keine Charaktere vorhanden. Erstelle einen Charakter, dem du etwas hinzufügen willst.",
+  "spellDetailRemoveFromCharTitle": "Von Charakter entfernen",
+  "spellDetailRemoveFromCharMessage": "Sind sie sicher, dass {name} von Charakter {charname} entfernt werden soll?",
+  "@spellDetailRemoveFromCharMessage": {
+    "description": "String for displaying single die",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "charname": {
+        "type": "String"
+      }
+    }
+  },
+  "spellDetailRemoveFromCharAffirmative" : "Entfernen",
 
   "@_UiFilterScreen": {},
   "filterUnselect" : "Alle abwählen",
