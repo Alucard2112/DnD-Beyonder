@@ -51,7 +51,7 @@ class SpellDetailScreen extends StatelessWidget {
     }
     ClickableIcon iconWidget = ClickableIcon(
       onTap: (){
-        AddSpellToCharacterDialog(
+        AddSpellToCharactersDialog(
           spell: spell,
           update: update,
         ).openDialog(context);},

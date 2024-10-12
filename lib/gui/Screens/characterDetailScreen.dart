@@ -3,6 +3,7 @@ import 'package:dnd_beyonder/data/gui/constants.dart';
 import 'package:dnd_beyonder/data/character/character.dart';
 import 'package:dnd_beyonder/gui/Screens/spellListScreen.dart';
 import 'package:dnd_beyonder/gui/Widgets/Character/addCharacterDialog.dart';
+import 'package:dnd_beyonder/gui/Widgets/Character/addSpellsToCharacterDialog.dart';
 import 'package:dnd_beyonder/gui/Widgets/Character/deleteCharacterDialog.dart';
 import 'package:dnd_beyonder/gui/Widgets/clickableIcon.dart';
 import 'package:dnd_beyonder/permanentData/boxHandler.dart';
@@ -67,7 +68,13 @@ class CharacterDetailScreen extends StatelessWidget {
             ),
             Expanded(child: Container()),
             ClickableIcon(
-              onTap: null,//TODO
+              onTap: (){
+                AddSpellsToCharacterDialog(
+                  spells: BoxHandler.spellBox.values.toList(),
+                  character: character,
+                  update: update,
+                ).openDialog(context);
+              },
               icon: Icons.add_circle,
             ),
             const SizedBox(

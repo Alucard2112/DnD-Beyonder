@@ -309,6 +309,7 @@
   "characterDeleteTitle" : "Delete Character",
   "characterDeleteMessage" : "Are you sure that you want to delete {name}?\nIt is not possible to revert this decision.",
   "characterDeleteOk" : "Delete",
+  "characterNoSpells" : "No spells found. Please import spells on the settings page.",
 
 
   "@_UiFilterScreen": {},
