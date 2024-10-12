@@ -87,6 +87,6 @@ class SpellListWidget extends StatelessWidget {
           ),
         ),
       ],
-    );;
+    );
   }
 }
