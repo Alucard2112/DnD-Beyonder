@@ -3,11 +3,19 @@ import 'genericFilter.dart';
 abstract class Filter{
   late final List<String> filterCategories;
   final Map<String, bool> categories = {};
+  final Map<String, GenericFilter> filters = {};
+
+  void fillMap();
+
+  String translateCategory(String category);
+
+  bool objectPasses(dynamic object, String searchText);
 
   Filter(this.filterCategories){
     for(String category in filterCategories) {
       categories[category] = false;
     }
+    fillMap();
   }
 
   String getFilterText(){
@@ -19,13 +27,12 @@ abstract class Filter{
     return ret;
   }
 
-  List getPossibleEntries(String filter);
+  List getPossibleEntries(String filter){
+    return getFilter(filter).possibleEntries;
+  }
   String translateEntry(String filter, dynamic entry){
     return getFilter(filter).translateFunction(entry);
   }
-  String translateCategory(String category);
-
-  bool objectPasses(dynamic object, String searchText);
 
   void changeVisibility(int index){
     categories[filterCategories[index]] = !categories[filterCategories[index]]!;
@@ -52,8 +59,8 @@ abstract class Filter{
   }
 
   void reset(){
-    for(String filter in filterCategories){
-      getFilter(filter).clear();
+    for(GenericFilter filter in filters.values){
+      filter.clear();
     }
   }
 
@@ -62,8 +69,10 @@ abstract class Filter{
   }
 
   void updateFilter(String filter, value) {
-    getFilter(filter);
+    getFilter(filter).updateFilter(value);
   }
 
-  GenericFilter getFilter(String filter);
+  GenericFilter getFilter(String filter){
+    return filters[filter]!;
+  }
 }

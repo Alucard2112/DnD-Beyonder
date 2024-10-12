@@ -32,33 +32,18 @@ class SpellFilter extends Filter{
   static const String damageTypeFilter = "DamageTypeFilter";
   static const String levelFilter = "LevelFilter";
 
+  @override
+  void fillMap(){
+    filters[classFilter] = _classFilter;
+    filters[schoolFilter] = _schoolFilter;
+    filters[castTimeFilter] = _castTimeFilter;
+    filters[damageTypeFilter] = _damageTypeFilter;
+    filters[levelFilter] = _levelFilter;
+  }
 
   SpellFilter() : super([classFilter, schoolFilter, castTimeFilter, damageTypeFilter, levelFilter]);
 
   SpellFilter.character() : super([schoolFilter, castTimeFilter, damageTypeFilter, levelFilter]);
-
-  @override
-  GenericFilter getFilter(String filter) {
-    switch(filter){
-      case classFilter:
-        return _classFilter;
-      case levelFilter:
-        return _levelFilter;
-      case castTimeFilter:
-        return _castTimeFilter;
-      case schoolFilter:
-        return _schoolFilter;
-      case damageTypeFilter:
-        return _damageTypeFilter;
-
-    }
-    return _classFilter;
-  }
-
-  @override
-  List getPossibleEntries(String filter) {
-    return getFilter(filter).possibleEntries;
-  }
 
   @override
   bool objectPasses(object, String searchText) {

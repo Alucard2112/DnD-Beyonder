@@ -10,15 +10,9 @@ class CharacterFilter extends Filter{
   static const String classFilter = "ClassFilter";
 
 CharacterFilter() : super([classFilter]);
-
   @override
-  GenericFilter getFilter(String filter) {
-    return _classFilter;
-  }
-
-  @override
-  List getPossibleEntries(String filter) {
-    return _classFilter.possibleEntries;
+  void fillMap(){
+    filters[classFilter] = _classFilter;
   }
 
   @override
