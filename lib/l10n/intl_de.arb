@@ -256,6 +256,7 @@
     }
   },
   "characterAddTitle" : "Charakter hinzufügen",
+  "characterEditTitle" : "Charakter editieren",
   "characterName" : "Charakter Name",
   "characterClass" : "Klasse des Charakters",
   "characterDeleteTitle" : "Charakter löschen",

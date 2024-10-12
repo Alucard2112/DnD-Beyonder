@@ -303,6 +303,7 @@
   },
   "spellDetailRemoveFromCharAffirmative" : "Remove",
   "characterAddTitle" : "Add Character",
+  "characterEditTitle" : "Edit Character",
   "characterName" : "Name of Character",
   "characterClass" : "Class of Character",
   "characterDeleteTitle" : "Delete Character",

@@ -12,7 +12,12 @@ import '../SearchBarWidget.dart';
 class AddCharacterDialog extends StatefulWidget with GenericDialog{
   final Character? character;
   AddCharacterDialog({super.key, this.character}){
-    title = S.current.characterAddTitle;
+    if(character == null) {
+      title = S.current.characterAddTitle;
+    }
+    else{
+      title = S.current.characterEditTitle;
+    }
   }
 
   @override
