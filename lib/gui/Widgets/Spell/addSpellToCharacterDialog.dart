@@ -1,6 +1,7 @@
 import 'package:dnd_beyonder/data/character/character.dart';
 import 'package:dnd_beyonder/data/spell/spell.dart';
 import 'package:dnd_beyonder/gui/Widgets/dialogOptions.dart';
+import 'package:dnd_beyonder/gui/Widgets/emptyDataWidget.dart';
 import 'package:dnd_beyonder/gui/Widgets/genericDialog.dart';
 import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
@@ -9,19 +10,19 @@ import '../../../data/gui/constants.dart';
 import '../../../generated/l10n.dart';
 import '../genericCheckBoxWidget.dart';
 
-class AddSpellToCharacterDialog extends StatefulWidget with GenericDialog{
+class AddSpellToCharactersDialog extends StatefulWidget with GenericDialog{
   final Spell spell;
   final Function update;
   final List<Character> characters = BoxHandler.characterBox.values.toList();
-  AddSpellToCharacterDialog({super.key, required this.spell, required this.update}){
+  AddSpellToCharactersDialog({super.key, required this.spell, required this.update}){
     title = S.current.spellDetailAddSpellTitle;
   }
 
   @override
-  State<AddSpellToCharacterDialog> createState() => _AddSpellToCharacterDialogState();
+  State<AddSpellToCharactersDialog> createState() => _AddSpellToCharactersDialogState();
 }
 
-class _AddSpellToCharacterDialogState extends State<AddSpellToCharacterDialog> {
+class _AddSpellToCharactersDialogState extends State<AddSpellToCharactersDialog> {
   late final List<bool> _checked;
 
   @override
@@ -33,26 +34,8 @@ class _AddSpellToCharacterDialogState extends State<AddSpellToCharacterDialog> {
   @override
   Widget build(BuildContext context) {
     if(_checked.isEmpty){
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(S.of(context).spellDetailAddSpellNoChars, style: normalText,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              InkWell(
-                onTap: (){
-                  Navigator.of(context).pop(true);
-                },
-                child: Text(S.of(context).uiOK.toUpperCase(), style: boldNormalText.copyWith(color: iconColorPurple),),
-              ),
-            ],
-          ),
-        ]
-      );
+      return EmptyDataWidget(message: S.of(context).spellDetailAddSpellNoChars,);
     }
-
     List<Widget> children = [];
     for(int i = 0; i < widget.characters.length; i++){
       Character character = widget.characters[i];
