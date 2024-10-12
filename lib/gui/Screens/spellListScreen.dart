@@ -1,6 +1,6 @@
 import 'package:dnd_beyonder/data/gui/sorting.dart';
 import 'package:dnd_beyonder/data/spell/spellFilter.dart';
-import 'package:dnd_beyonder/gui/Screens/spellFilterScreen.dart';
+import 'package:dnd_beyonder/gui/Screens/filterScreen.dart';
 import 'package:dnd_beyonder/gui/Screens/spellDetailScreen.dart';
 import 'package:dnd_beyonder/gui/Widgets/SpellList/spellListWidget.dart';
 import 'package:flutter/material.dart';
@@ -19,11 +19,11 @@ class SpellListScreen extends StatefulWidget {
 
 class _SpellListScreenState extends State<SpellListScreen> {
   static final Map<int, int> _selectedSpell = {};
-  static Map<int, bool>_filter = {};
-  static Map<int, String> _searchText = {};
+  static final Map<int, bool>_filter = {};
+  static final Map<int, String> _searchText = {};
   static final Map<int,SpellFilter> _spellFilter = {};
-  static Map<int, bool> _asc = {};
-  static Map<int,Sorting> _sorting = {};
+  static final Map<int, bool> _asc = {};
+  static final Map<int,Sorting> _sorting = {};
   late final int key;
 
   @override
@@ -39,7 +39,12 @@ class _SpellListScreenState extends State<SpellListScreen> {
       _searchText[key] = "";
     }
     if(!_spellFilter.containsKey(key)){
-      _spellFilter[key] = SpellFilter();
+      if(key >= 0){
+        _spellFilter[key] = SpellFilter.character();
+      }
+      else{
+        _spellFilter[key] = SpellFilter();
+      }
     }
     if(!_asc.containsKey(key)){
       _asc[key] = true;
@@ -93,11 +98,11 @@ class _SpellListScreenState extends State<SpellListScreen> {
       );
     }
     if (_filter[key]!) {
-      return SpellFilterScreen(
+      return FilterScreen(
           _showFilterScreen,
           _resetFilter,
           _spellFilter[key]!,
-        character: widget.character,
+        stateKey: widget.character?.id ?? -1,
       );
     }
     return SpellListWidget(

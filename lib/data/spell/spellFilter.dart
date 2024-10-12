@@ -1,76 +1,83 @@
 import 'package:dnd_beyonder/data/dnd/dnd_class.dart';
+import 'package:dnd_beyonder/data/filter.dart';
 import 'package:dnd_beyonder/data/spell/damageType.dart';
 import 'package:dnd_beyonder/data/spell/spell.dart';
 import 'package:dnd_beyonder/data/spell/spellSchool.dart';
 import 'package:dnd_beyonder/data/spell/subclass.dart';
 import 'package:dnd_beyonder/data/spell/time.dart';
+import 'package:dnd_beyonder/data/spell/timeUnits.dart';
 
 import '../../generated/l10n.dart';
+import '../genericFilter.dart';
 
-class SpellFilter{
-  static final List<String> _categories = [S.current.filterClasses,S.current.filterLevel,S.current.filterCastTime,S.current.filterSchool,S.current.filterDamage];
-  final Map<String, bool> categories = {};
-  final Set<DnDClass> classFilter = {};
-  final Set<SpellSchool> schoolFilter = {};
-  final List<Time> castTimeFilter = [];
-  final List<SpellDamageType> damageType = [];
-  final Set<int> levelFilter ={};
+class SpellFilter extends Filter{
+  final GenericFilter<DnDClass> _classFilter = GenericFilter(DnDClass.values, translate: toDnDClassName);
+  final GenericFilter<SpellSchool> _schoolFilter = GenericFilter(SpellSchool.values, translate: spellSchoolToString);
+  final GenericFilter<Time> _castTimeFilter = GenericFilter(
+    [Time(1, TimeUnits.action),
+    Time(1, TimeUnits.bonusAction),
+    Time(1, TimeUnits.reaction),
+    Time(1, TimeUnits.minute),
+    Time(10, TimeUnits.minute),
+    Time(1, TimeUnits.hour),
+    Time(8, TimeUnits.hour),
+    Time(12, TimeUnits.hour),
+    Time(24, TimeUnits.hour),],);
+  final GenericFilter<SpellDamageType> _damageTypeFilter = GenericFilter(SpellDamageType.values, translate: spellDamageTypeToName);
+  final GenericFilter<int> _levelFilter = GenericFilter([0,1,2,3,4,5,6,7,8,9], translate: (int lvl){return S.current.spellLevel(lvl);});
 
-  SpellFilter(){
-    for(String category in _categories) {
-      categories[category] = false;
+  static const String classFilter = "ClassFilter";
+  static const String schoolFilter = "SchoolFilter";
+  static const String castTimeFilter = "CastTimeFilter";
+  static const String damageTypeFilter = "DamageTypeFilter";
+  static const String levelFilter = "LevelFilter";
+
+
+  SpellFilter() : super([classFilter, schoolFilter, castTimeFilter, damageTypeFilter, levelFilter]);
+
+  SpellFilter.character() : super([schoolFilter, castTimeFilter, damageTypeFilter, levelFilter]);
+
+  @override
+  GenericFilter getFilter(String filter) {
+    if(filter == S.current.filterClasses){
+      return _classFilter;
     }
-  }
-
-  String getFilterText(){
-    String ret = "";
-    int count = _countFilters();
-    if(count != 0){
-      ret+=count.toString();
+    if(filter == S.current.filterLevel){
+      return _levelFilter;
     }
-    return ret;
+    if(filter == S.current.filterCastTime){
+      return _castTimeFilter;
+    }
+    if(filter == S.current.filterSchool){
+      return _schoolFilter;
+    }
+    if(filter == S.current.filterDamage){
+      return _damageTypeFilter;
+    }
+    return _classFilter;
   }
 
-  int _countFilters(){
-    int count = 0;
-    count += classFilter.length;
-    count += schoolFilter.length;
-    count += damageType.length;
-    count += castTimeFilter.length;
-    count += levelFilter.length;
-    return count;
+  @override
+  List getPossibleEntries(String filter) {
+    return getFilter(filter).possibleEntries;
   }
 
-  void changeVisibility(int index){
-    categories[_categories[index]] = !categories[_categories[index]]!;
-  }
-
-  bool showSubEntries(int index){
-    return categories[_categories[index]]!;
-  }
-
-  int length(){
-    return _categories.length;
-  }
-
-  String getCategory(int index){
-    return _categories[index];
-  }
-
-  bool spellPasses(Spell spell, String searchText){
+  @override
+  bool objectPasses(object, String searchText) {
+    Spell spell = object;
     if(!spell.name.toLowerCase().contains(searchText.toLowerCase())){
       return false;
     }
-    if(levelFilter.isNotEmpty && !levelFilter.contains(spell.level)){
+    if(_levelFilter.isNotEmpty() && !_levelFilter.contains(spell.level)){
       return false;
     }
-    if(castTimeFilter.isNotEmpty && !castTimeFilter.contains(spell.time)){
+    if(_castTimeFilter.isNotEmpty() && !_castTimeFilter.contains(spell.time)){
       return false;
     }
-    if(damageType.isNotEmpty){
+    if(_damageTypeFilter.isNotEmpty()){
       bool passesDamage = false;
       for(SpellDamageType type in spell.damageInflict){
-        passesDamage = passesDamage || damageType.contains(type);
+        passesDamage = passesDamage || _damageTypeFilter.contains(type);
       }
       if(!passesDamage){
         return false;
@@ -81,19 +88,27 @@ class SpellFilter{
     for(SubClasses subClasses in spell.subClasses){
       classList.add(subClasses.c);
     }
-    for(DnDClass classes in classFilter){
-      if(classList.contains(classes)){
+    for(DnDClass classes in classList){
+      if(_classFilter.contains(classes)){
         return true;
       }
     }
-    return classFilter.isEmpty;
+    return _classFilter.isEmpty();
   }
 
-  void reset(){
-    classFilter.clear();
-    schoolFilter.clear();
-    castTimeFilter.clear();
-    levelFilter.clear();
-    damageType.clear();
+  @override
+  String translateCategory(String category) {
+    switch(category){
+      case classFilter:
+        return S.current.filterClasses;
+      case schoolFilter:
+        return S.current.filterSchool;
+      case castTimeFilter:
+        return S.current.filterCastTime;
+      case damageTypeFilter:
+        return S.current.filterDamage;
+      default:
+        return S.current.filterLevel;
+    }
   }
 }

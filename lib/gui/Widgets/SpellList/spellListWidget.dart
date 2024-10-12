@@ -27,7 +27,7 @@ class SpellListWidget extends StatelessWidget {
     List<SpellListItemWidget> children = [];
     for (int i = 0; i < spells.length; i++) {
       Spell spell = spells[i];
-      if (spellFilter.spellPasses(spell, searchText)) {
+      if (spellFilter.objectPasses(spell, searchText)) {
         children.add(
             SpellListItemWidget(spell,
                   () {
