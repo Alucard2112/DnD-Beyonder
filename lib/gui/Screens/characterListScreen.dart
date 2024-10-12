@@ -1,3 +1,4 @@
+import 'package:dnd_beyonder/data/character/characterFilter.dart';
 import 'package:dnd_beyonder/data/sortable.dart';
 import 'package:dnd_beyonder/data/character/character.dart';
 import 'package:dnd_beyonder/gui/Screens/characterDetailScreen.dart';
@@ -6,10 +7,12 @@ import 'package:dnd_beyonder/gui/Widgets/Character/characterWidget.dart';
 import 'package:dnd_beyonder/gui/Widgets/clickableIcon.dart';
 
 import 'package:flutter/material.dart';
+import '../../data/filter.dart';
 import '../../data/gui/sorting.dart';
 import '../../generated/l10n.dart';
 import '../Widgets/SearchBarWidget.dart';
 import '../Widgets/sortUiButtonWidget.dart';
+import 'filterScreen.dart';
 
 class CharacterListScreen extends StatefulWidget {
   final List<Character> characters;
@@ -25,6 +28,8 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
   static Sorting _sorting = Sorting.name;
   static String _searchText = "";
   static int _selectedCharacter = -1;
+  static Filter _filter = CharacterFilter();
+  static bool _showFilter = false;
 
   void _onSearchText(String text) {
     setState(() {
@@ -51,9 +56,30 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
     });
   }
 
+  void _showFilterScreen(bool show) {
+    setState(() {
+      _showFilter = show;
+    });
+  }
+
+  void _resetFilter() {
+    setState(() {
+      _filter.reset();
+      _showFilter = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget child;
+    if(_showFilter){
+      return FilterScreen(
+        _showFilterScreen,
+        _resetFilter,
+        _filter,
+        stateKey: -2,
+      );
+    }
     if(_selectedCharacter >= 0){
       child = CharacterDetailScreen(
         character: widget.characters[_selectedCharacter],
@@ -64,14 +90,15 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
     else {
       List<CharacterWidget> children = [];
       for (int i = 0; i < widget.characters.length; i++) {
-        Character book = widget.characters[i];
-        if (book.name.toLowerCase().contains(_searchText.toLowerCase())) {
-          children.add(CharacterWidget(spellBook: book, onTap: () {
-            _onSelect(i);
-          },));
-        }
+        Character character = widget.characters[i];
+        if(_filter.objectPasses(character, _searchText)) {
+          children.add(CharacterWidget(spellBook: character, onTap: () {
+              _onSelect(i);
+            },));
+          }
+
       }
-      String badgeText = "";
+      String badgeText = _filter.getFilterText();
       children.sort((CharacterWidget a, CharacterWidget b) {
         return Sortable.sortFunction(a, b, _sorting, _asc);
       });
@@ -117,7 +144,9 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                       padding: const EdgeInsets.only(left: 10.0, right: 8),
                       child: ClickableIcon(
                           badgeText: badgeText,
-                          onTap: null, //TODO
+                          onTap: (){
+                            _showFilterScreen(true);
+                          },
                           icon: Icons.filter_list_alt),
                     ),
                   ],
