@@ -13,6 +13,7 @@ import 'package:dnd_beyonder/data/spell/subclass.dart';
 import 'package:dnd_beyonder/data/spell/time.dart';
 import 'package:dnd_beyonder/data/spell/timeUnits.dart';
 import 'package:dnd_beyonder/data/character/character.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../data/gui/constants.dart';
@@ -44,23 +45,31 @@ class BoxHandler{
     spellBox = await Hive.openBox<Spell>(_spellBox);
     characterBox = await Hive.openBox<Character>(_characterBox);
     //Test
-    final List<Spell> spells = Spell.spellListFrom5eJson(testJson);
-    for(Spell spell in spells){
-      if(spellBox.containsKey(spell.id)){
+    if(kDebugMode){
+      final List<Spell> spells = Spell.spellListFrom5eJson(testJson);
+      for(Spell spell in spells) {
+        if (spellBox.containsKey(spell.id)) {
 
-      }
-      else{
-        spellBox.put(spell.id, spell);
-      }
-      if(characterBox.isEmpty){
-        characterBox.addAll([
-          Character(id: 0, name: "Atreus", dnDClass: DnDClass.druid,spellIds: []),
-          Character(id: 1, name: "Bertrand", dnDClass: DnDClass.monk,spellIds: []),
-          Character(id: 2, name: "Caius", dnDClass: DnDClass.cleric,spellIds: []),
-          Character(id: 3, name: "Darius", dnDClass: DnDClass.bard,spellIds: []),
-          Character(id: 4, name: "Emma", dnDClass: DnDClass.warlock,spellIds: []),
-          Character(id: 5, name: "Fauna", dnDClass: DnDClass.artificer,spellIds: []),
-        ]);
+        }
+        else {
+         spellBox.put(spell.id, spell);
+        }
+        if (characterBox.isEmpty) {
+          characterBox.addAll([
+            Character(
+              id: 0, name: "Atreus", dnDClass: DnDClass.druid, spellIds: []),
+            Character(
+              id: 1, name: "Bertrand", dnDClass: DnDClass.monk, spellIds: []),
+            Character(
+              id: 2, name: "Caius", dnDClass: DnDClass.cleric, spellIds: []),
+            Character(
+              id: 3, name: "Darius", dnDClass: DnDClass.bard, spellIds: []),
+            Character(
+              id: 4, name: "Emma", dnDClass: DnDClass.warlock, spellIds: []),
+            Character(
+              id: 5, name: "Fauna", dnDClass: DnDClass.artificer, spellIds: []),
+          ]);
+        }
       }
     }
   }
