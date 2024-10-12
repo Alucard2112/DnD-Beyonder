@@ -7,20 +7,21 @@ import 'package:flutter/material.dart';
 
 import '../../../data/gui/constants.dart';
 import '../../../generated/l10n.dart';
+import '../genericCheckBoxWidget.dart';
 
-class AddToCharacterDialog extends StatefulWidget with GenericDialog{
+class AddSpellToCharacterDialog extends StatefulWidget with GenericDialog{
   final Spell spell;
   final Function update;
   final List<Character> characters = BoxHandler.characterBox.values.toList();
-  AddToCharacterDialog({super.key, required this.spell, required this.update}){
+  AddSpellToCharacterDialog({super.key, required this.spell, required this.update}){
     title = S.current.spellDetailAddSpellTitle;
   }
 
   @override
-  State<AddToCharacterDialog> createState() => _AddToCharacterDialogState();
+  State<AddSpellToCharacterDialog> createState() => _AddSpellToCharacterDialogState();
 }
 
-class _AddToCharacterDialogState extends State<AddToCharacterDialog> {
+class _AddSpellToCharacterDialogState extends State<AddSpellToCharacterDialog> {
   late final List<bool> _checked;
 
   @override
@@ -51,19 +52,14 @@ class _AddToCharacterDialogState extends State<AddToCharacterDialog> {
         ]
       );
     }
-    final enabledStyle = WidgetStateProperty.resolveWith((states) {
-      if (!states.contains(WidgetState.selected)) {
-        return checkBoxBackgroundColorUnchecked;
-      }
-      return iconColorPurple;
-    });
-    final disabledStyle = WidgetStateProperty.resolveWith((states) {
-      return checkBoxBackgroundColorUnchecked;
-    });
+
     List<Widget> children = [];
     for(int i = 0; i < widget.characters.length; i++){
       Character character = widget.characters[i];
       bool disabled = character.spellIds.contains(widget.spell.id);
+      if(disabled) {
+        _checked[i] = true;
+      }
 
       children.add(
           InkWell(
@@ -74,20 +70,7 @@ class _AddToCharacterDialogState extends State<AddToCharacterDialog> {
             },
             child: Row(
               children: [
-                Transform.scale(
-                  scale: 1.2,
-                  child: Checkbox(
-                    value: disabled ? disabled : _checked[i],
-                    isError: !disabled,
-                    fillColor: disabled? disabledStyle : enabledStyle,
-                    side: const BorderSide(
-                      color: checkBoxBorderColor,
-                      width: 2,
-                    ),
-                    checkColor: textColor,
-                    onChanged: null,
-                  ),
-                ),
+                GenericCheckBoxWidget(disabled: disabled, value: _checked[i],),
                 Text(character.name, style: boldNormalText,)
               ],
             ),

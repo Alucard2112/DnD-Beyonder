@@ -4,7 +4,7 @@ import 'package:dnd_beyonder/data/spell/sourceBook.dart';
 import 'package:dnd_beyonder/data/spell/spell.dart';
 import 'package:dnd_beyonder/data/spell/subclass.dart';
 import 'package:dnd_beyonder/gui/General/entryWidget.dart';
-import 'package:dnd_beyonder/gui/Widgets/Spell/addToCharacterDialog.dart';
+import 'package:dnd_beyonder/gui/Widgets/Spell/addSpellToCharacterDialog.dart';
 import 'package:dnd_beyonder/gui/Widgets/Spell/removeFromCharacterDialog.dart';
 import 'package:dnd_beyonder/gui/Widgets/Spell/spellDescriptionWidget.dart';
 import 'package:dnd_beyonder/gui/Widgets/clickableIcon.dart';
@@ -51,7 +51,7 @@ class SpellDetailScreen extends StatelessWidget {
     }
     ClickableIcon iconWidget = ClickableIcon(
       onTap: (){
-        AddToCharacterDialog(
+        AddSpellToCharacterDialog(
           spell: spell,
           update: update,
         ).openDialog(context);},
