@@ -39,20 +39,18 @@ class SpellFilter extends Filter{
 
   @override
   GenericFilter getFilter(String filter) {
-    if(filter == S.current.filterClasses){
-      return _classFilter;
-    }
-    if(filter == S.current.filterLevel){
-      return _levelFilter;
-    }
-    if(filter == S.current.filterCastTime){
-      return _castTimeFilter;
-    }
-    if(filter == S.current.filterSchool){
-      return _schoolFilter;
-    }
-    if(filter == S.current.filterDamage){
-      return _damageTypeFilter;
+    switch(filter){
+      case classFilter:
+        return _classFilter;
+      case levelFilter:
+        return _levelFilter;
+      case castTimeFilter:
+        return _castTimeFilter;
+      case schoolFilter:
+        return _schoolFilter;
+      case damageTypeFilter:
+        return _damageTypeFilter;
+
     }
     return _classFilter;
   }
