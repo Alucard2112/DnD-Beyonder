@@ -8,7 +8,7 @@ mixin GenericDialog on Widget{
   Future openDialog(BuildContext context) => showDialog(
       context: context,
       builder: (context) => AlertDialog(
-          scrollable: true,
+          scrollable: false,
           title: Text(title, style: headingText,),
           backgroundColor: scaffoldBackgroundColor,
           content: this,
