@@ -4,6 +4,7 @@ import 'package:dnd_beyonder/gui/Widgets/dialogOptions.dart';
 import 'package:dnd_beyonder/gui/Widgets/genericDialog.dart';
 import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../../../data/gui/constants.dart';
 import '../../../generated/l10n.dart';
@@ -22,7 +23,9 @@ class RemoveFromCharacterDialog extends StatelessWidget with GenericDialog{
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(S.of(context).spellDetailRemoveFromCharMessage(spell.name, character.name), style: normalText,),
+          MarkdownBody(
+            data: S.of(context).spellDetailRemoveFromCharMessage(spell.name, character.name),
+            styleSheet: markDownStyle,),
           const SizedBox(
             height: 20,
           ),
