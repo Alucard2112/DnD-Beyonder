@@ -262,7 +262,7 @@
   "characterDeleteTitle" : "Charakter löschen",
   "characterDeleteMessage" : "Sind Sie sich sicher, dass Sie den Charakter {name} löschen wollen?\nDies kann nicht rückgängig gemacht werden.",
   "characterDeleteOk" : "Löschen",
-  "characterNoSpells" : "Es sind noch keine Zauber vorhanden. Importieren Sie welche in den Einstellungen.",
+  "characterNoSpells" : "Es sind noch keine Zauber vorhanden. Verwenden Sie den Knopf in den Einstellungen, um Zauber zu importieren.",
 
   "@_UiSpellDetailScreen" : {},
   "spellDetailClasses" : "Klassen",
