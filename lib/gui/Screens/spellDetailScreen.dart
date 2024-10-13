@@ -66,12 +66,15 @@ class SpellDetailScreen extends StatelessWidget {
           ).openDialog(context);
           if(decision){
             BoxHandler.spellBox.delete(spell.id);
-            for(Character c in BoxHandler.characterBox.values){
-              if(c.spellIds.contains(spell.id)){
-                SpellListScreen.selectedSpell[c.id] = -1;
-                c.spellIds.remove(spell.id);
-                c.spells.remove(spell);
-                c.save();
+            for(Character character in BoxHandler.characterBox.values){
+              int index = character.spellIds.indexOf(spell.id);
+              if(index >= 0){
+                if(SpellListScreen.selectedSpell[character.id] != null && SpellListScreen.selectedSpell[character.id]! >= index) {
+                  SpellListScreen.selectedSpell[character.id] = SpellListScreen.selectedSpell[character.id]! - 1;
+                }
+                character.spellIds.remove(spell.id);
+                character.spells.remove(spell);
+                character.save();
               }
             }
             update();
