@@ -298,7 +298,7 @@
   "spellDetailAddSpellTitle": "Zum Charakter hinzufügen",
   "spellDetailAddSpellNoChars": "Keine Charaktere vorhanden. Erstelle einen Charakter, dem du etwas hinzufügen willst.",
   "spellDetailRemoveFromCharTitle": "Von Charakter entfernen",
-  "spellDetailRemoveFromCharMessage": "Sind sie sicher, dass {name} von Charakter {charname} entfernt werden soll?",
+  "spellDetailRemoveFromCharMessage": "Sind sie sicher, dass ***{name}*** von Charakter ***{charname}*** entfernt werden soll?",
   "@spellDetailRemoveFromCharMessage": {
     "description": "String for displaying single die",
     "placeholders": {
@@ -311,6 +311,9 @@
     }
   },
   "spellDetailRemoveFromCharAffirmative" : "Entfernen",
+  "spellDetailDeleteTitle" : "Zauber löschen",
+  "spellDetailDeleteMessage" : "Sind Sie sich sicher, dass Sie den Zauber ***{name}*** löschen wollen?\nDies kann nicht rückgängig gemacht werden.",
+
 
   "@_UiFilterScreen": {},
   "filterUnselect" : "Alle abwählen",
@@ -342,7 +345,7 @@
   "settingsAppVersionLabel" :"App-Version",
   "settingsDoNotShowMessageAgain" : "Diese Nachricht nicht erneut anzeigen",
   "settings5eMessage" : "Dieser Import ist nur für json-Dateien von 5e-Tools gedacht und nicht für einen Import von Daten dieser App.",
-  "settingsAppMessage" : "Dieser Import ist nur für die Daten dieser App gedacht und nicht für Daten von 5e-Tools.",
+  "settingsAppMessage" : "Dieser Import ist nur für die Daten dieser App gedacht und nicht für Daten von 5e-Tools.\nDer Import wird eventuell Daten überschreiben.",
   "settingsDeleteMessage" : "Achtung: Das Löschen kann nicht rückgängig gemacht werden.",
   "settingsExportMessage" : "Daten erfolgreich exportiert"
 }
