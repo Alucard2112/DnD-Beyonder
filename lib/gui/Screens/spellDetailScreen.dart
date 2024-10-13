@@ -4,10 +4,12 @@ import 'package:dnd_beyonder/data/spell/sourceBook.dart';
 import 'package:dnd_beyonder/data/spell/spell.dart';
 import 'package:dnd_beyonder/data/spell/subclass.dart';
 import 'package:dnd_beyonder/gui/General/entryWidget.dart';
+import 'package:dnd_beyonder/gui/Screens/spellListScreen.dart';
 import 'package:dnd_beyonder/gui/Widgets/Spell/addSpellToCharacterDialog.dart';
-import 'package:dnd_beyonder/gui/Widgets/Spell/removeFromCharacterDialog.dart';
+import 'package:dnd_beyonder/gui/Widgets/Spell/deleteSpellDialog.dart';
 import 'package:dnd_beyonder/gui/Widgets/Spell/spellDescriptionWidget.dart';
 import 'package:dnd_beyonder/gui/Widgets/clickableIcon.dart';
+import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/character/character.dart';
@@ -57,22 +59,56 @@ class SpellDetailScreen extends StatelessWidget {
         ).openDialog(context);},
       icon: Icons.bookmark_add_outlined,
     );
-    if(character != null){
-      iconWidget = ClickableIcon(
+    Widget deleteSpellWidget = ClickableIcon(
         onTap: () async{
-            bool decision = await RemoveFromCharacterDialog(
+          bool decision = await DeleteSpellDialog(
+            spell: spell,
+          ).openDialog(context);
+          if(decision){
+            BoxHandler.spellBox.delete(spell.id);
+            for(Character c in BoxHandler.characterBox.values){
+              bool remove = false;
+              for(int i = 0; i < c.spellIds.length; i++){
+                Spell temp = c.spells[i];
+                if(temp.id == spell.id){
+                  remove = true;
+                  for(MapEntry<int, int> entry in SpellListScreen.selectedSpell.entries){
+                    if(entry.value == i){
+                      SpellListScreen.selectedSpell[entry.key] = -1;
+                    }
+                  }
+                }
+              }
+              if(remove){
+                c.spellIds.remove(spell.id);
+                c.spells.remove(spell);
+                c.save();
+              }
+            }
+            update();
+            function(-1);
+          }
+        },
+        icon: Icons.delete,
+    );
+    Widget spacer = const SizedBox(width: 20,);
+    if(character != null){
+      spacer = Container();
+      deleteSpellWidget = Container();
+      iconWidget = ClickableIcon(
+        icon: Icons.bookmark_remove,
+        onTap: () async{
+            bool decision = await DeleteSpellDialog(
               spell: spell,
-              character: character!,
-              update: update,
             ).openDialog(context);
             if(decision){
               character!.spells.remove(spell);
               character!.spellIds.remove(spell.id);
               character!.save();
+              update();
               function(-1);
             }
           },
-        icon: Icons.bookmark_remove,
       );
     }
     return PopScope(
@@ -121,6 +157,8 @@ class SpellDetailScreen extends StatelessWidget {
                 ),
                 Expanded(child: Container()),
                 iconWidget,
+                spacer,
+                deleteSpellWidget,
               ],
             ),
             Container(

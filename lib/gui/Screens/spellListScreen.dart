@@ -12,14 +12,15 @@ class SpellListScreen extends StatefulWidget {
   final List<Spell> spells;
   final Function update;
   final Character? character;
+  static final Map<int, int> selectedSpell = {};
+
   const SpellListScreen({super.key, required this.update, required this.spells, this.character});
   @override
   State<SpellListScreen> createState() => _SpellListScreenState();
 }
 
 class _SpellListScreenState extends State<SpellListScreen> {
-  static final Map<int, int> _selectedSpell = {};
-  static final Map<int, bool>_filter = {};
+  static final Map<int, bool> _filter = {};
   static final Map<int, String> _searchText = {};
   static final Map<int,SpellFilter> _spellFilter = {};
   static final Map<int, bool> _asc = {};
@@ -29,8 +30,8 @@ class _SpellListScreenState extends State<SpellListScreen> {
   @override
   void initState() {
     key = widget.character?.id ?? -1;
-    if(!_selectedSpell.containsKey(key)){
-      _selectedSpell[key] = -1;
+    if(!SpellListScreen.selectedSpell.containsKey(key)){
+      SpellListScreen.selectedSpell[key] = -1;
     }
     if(!_filter.containsKey(key)){
       _filter[key] = false;
@@ -57,7 +58,7 @@ class _SpellListScreenState extends State<SpellListScreen> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedSpell[key] = index;
+      SpellListScreen.selectedSpell[key] = index;
     });
   }
 
@@ -89,9 +90,10 @@ class _SpellListScreenState extends State<SpellListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (_selectedSpell[key]! >= 0) {
+    print(SpellListScreen.selectedSpell[key]!);
+    if (SpellListScreen.selectedSpell[key]! >= 0) {
       return SpellDetailScreen(
-        spell: widget.spells[_selectedSpell[key]!],
+        spell: widget.spells[SpellListScreen.selectedSpell[key]!],
         function: _onItemTapped,
         update: widget.update,
         character: widget.character,
