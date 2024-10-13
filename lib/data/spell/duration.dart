@@ -19,6 +19,19 @@ class Duration{
 
   Duration(this.type, this.unit, this.amount, this.concentration);
 
+  Map<String, dynamic> toJson() => {
+    "type" : type.index,
+    "unit" : unit.index,
+    "amount" : amount,
+    "concentration" : concentration,
+  };
+
+  Duration.fromJson(Map<String, dynamic> json)
+    : type = DurationType.values[json["type"] as int],
+      unit = TimeUnits.values[json["unit"] as int],
+      amount = json["amount"] as int,
+      concentration = json["concentration"] as bool;
+
   @override
   String toString() {
     if(type == DurationType.instantaneous){

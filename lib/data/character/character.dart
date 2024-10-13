@@ -24,8 +24,38 @@ class Character extends HiveObject{
    if(id>maxId){
      maxId = id;
    }
-    for(int i in spellIds){
-     spells.add(BoxHandler.spellBox.get(i)!);
-   }
+   _addSpells();
   }
+
+  void _addSpells(){
+    List<int> deadIds = [];
+    for(int i in spellIds){
+      Spell? spell = BoxHandler.spellBox.get(i);
+      if(spell == null){
+        deadIds.add(i);
+      }
+      else {
+        spells.add(spell);
+      }
+    }
+    for(int i in deadIds){
+      spellIds.remove(i);
+    }
+  }
+
+  Character.fromJson(Map<String, dynamic> json)
+    : id = json["id"] as int,
+      name = json["name"] as String,
+      spellIds = List<int>.from(json["spellIds"]),
+      dnDClass = DnDClass.values[json["dnDClass"] as int]
+  {
+    _addSpells();
+  }
+
+  Map<String, dynamic> toJson() => {
+    "id" : id,
+    "dnDClass" : dnDClass.index,
+    "name" : name,
+    "spellIds" : spellIds,
+  };
 }

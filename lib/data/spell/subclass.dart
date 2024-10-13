@@ -15,6 +15,15 @@ class SubClasses{
     c = fromDnDClassName(clas);
   }
 
+  SubClasses.fromJson(Map<String, dynamic> json)
+    : c = DnDClass.values[json["c"] as int],
+      name = json["name"];
+
+  Map<String, dynamic> toJson() => {
+    'c' : c.index,
+    'name' : name,
+  };
+
   SubClasses.fromHive(this.c, this.name);
 
   @override

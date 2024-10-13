@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dnd_beyonder/data/gui/constants.dart';
 import 'package:dnd_beyonder/data/spell/distanceType.dart';
@@ -10,6 +11,7 @@ import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/character/character.dart';
 import '../../data/spell/spell.dart';
 import '../../generated/l10n.dart';
 import '../../permanentData/settings.dart';
@@ -24,8 +26,12 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+
+
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
+    final scaffold = ScaffoldMessenger.of(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListView(
@@ -165,11 +171,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
                   if (result != null) {
                     File file = File(result.files.single.path!);
-                    await file.readAsString();
-                  } else {
-                    // User canceled the picker
+                    String jsonString = await file.readAsString();
+                    Map<String, dynamic> import = jsonDecode(jsonString);
+                    for(Map<String, dynamic> map in import["spells"]){
+                      Spell spell = Spell.fromJson(map);
+                      BoxHandler.spellBox.put(spell.id, spell);
+                    }
+                    for(Map<String, dynamic> map in import["characters"]){
+                      Character char = Character.fromJson(map);
+                      BoxHandler.characterBox.put(char.id, char);
+                    }
+                    widget.update();
                   }
-                  //TODO Import App Data
                 }
               },
             ),
@@ -179,12 +192,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
             child: SettingsButton(
               buttonText: S.of(context).settingsExportData,
               onTap: () async{
-                String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
-
-                if (selectedDirectory == null) {
-                  // User canceled the picker
+                Map<String, dynamic> export = {};
+                export["spells"] = BoxHandler.spellBox.values.toList();
+                export["characters"] = BoxHandler.characterBox.values.toList();
+                String? outputFile = await FilePicker.platform.saveFile(
+                  type: FileType.custom,
+                  bytes: Uint8List.fromList(jsonEncode(export).codeUnits),
+                  dialogTitle: 'Please select an output file:',
+                  fileName: 'export${DateTime.now()}.json',
+                );
+                if(outputFile != null) {
+                  scaffold.showSnackBar(
+                    SnackBar(
+                      content: Text(s.settingsExportMessage),
+                      action: SnackBarAction(label: s.uiOK,
+                          onPressed: scaffold.hideCurrentSnackBar),
+                    ),
+                  );
                 }
-                //TODO Export App Data
               },
             ),
           ),

@@ -62,6 +62,46 @@ class Spell extends HiveObject{
       this.range, this.components, this.time, this.entriesHigherLevel,
       this.conditionInflict, this.savingThrow, this.mainClasses, this.subClasses, this.duration, this.damageInflict);
 
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'name': name,
+    'source' : source.index,
+    'page' : page,
+    'level' : level,
+    'school' : school.index,
+    'entries' : entries,
+    'range' : range.toJson(),
+    'components' : components.toJson(),
+    'time' : time.toJson(),
+    'entriesHigherLevel' : entriesHigherLevel.map((EntryHigherLevel e) => e.toJson()).toList(),
+    'conditionInflict' : conditionInflict,
+    'savingThrow' : savingThrow,
+    'mainClasses' : mainClasses.map((DnDClass c) => c.index).toList(),
+    'subclasses' : subClasses.map((SubClasses s) => s.toJson()).toList(),
+    'duration' : duration.toJson(),
+    'damageInflict' : damageInflict.map((SpellDamageType s) => s.index).toList(),
+  };
+
+  Spell.fromJson(Map<String, dynamic> json)
+    : id = json["id"] as int,
+      name = json["name"] as String,
+      source = SourceBook.values[json["source"] as int],
+      page = json["page"] as int,
+      level = json["level"] as int,
+      school = SpellSchool.values[json["school"] as int],
+      entries = List<String>.from(json["entries"]),
+      range = Range.fromJson(json["range"]),
+      components = Components.fromJson(json["components"]),
+      time = Time.fromJson(json["time"]),
+      entriesHigherLevel = List<EntryHigherLevel>.from(List<Map<String, dynamic>>.from(json["entriesHigherLevel"]).map((Map<String,dynamic> m)=>EntryHigherLevel.fromJson(m)).toList()),
+      conditionInflict = List<String>.from(json["conditionInflict"]),
+      savingThrow = List<String>.from(json["savingThrow"]),
+      mainClasses = List<int>.from(json["mainClasses"]).map((int i) => DnDClass.values[i]).toSet(),
+      subClasses = Set<SubClasses>.from(List<Map<String,dynamic>>.from(json["subclasses"]).map((Map<String,dynamic> m)=>SubClasses.fromJson(m)).toList()),
+      duration = Duration.fromJson(json["duration"]),
+      damageInflict = List<SpellDamageType>.from(List<int>.from(json["damageInflict"]).map((int i) => SpellDamageType.values[i]).toList());
+  
+
   static String getLevelString(int level){
     switch(level){
       case 0:

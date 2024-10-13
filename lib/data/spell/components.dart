@@ -15,6 +15,17 @@ class Components{
 
   Components(this.v, this.s, this.m);
 
+  Map<String, dynamic> toJson() => {
+    "v":v,
+    "s":s,
+    "m":m,
+  };
+
+  Components.fromJson(Map<String, dynamic> json)
+    : v = json["v"] as bool,
+      s = json["s"] as bool,
+      m = json["m"] as String;
+
   @override
   String toString(){
     String ret = "";

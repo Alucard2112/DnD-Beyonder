@@ -12,4 +12,15 @@ class EntryHigherLevel{
   final List<String> entries;
 
   EntryHigherLevel(this.type, this.name, this.entries);
+
+  Map<String, dynamic> toJson() => {
+    "type" : type,
+    "name" : name,
+    "entries" : entries,
+  };
+
+  EntryHigherLevel.fromJson(Map<String, dynamic> json)
+    : type = json["type"] as String,
+      name = json["name"] as String,
+      entries = List<String>.from(json["entries"]);
 }

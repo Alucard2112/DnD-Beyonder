@@ -13,6 +13,15 @@ class Time{
 
   Time(this.number, this.unit);
 
+  Map<String, dynamic> toJson() => {
+    "number" : number,
+    "unit" : unit.index,
+  };
+
+  Time.fromJson(Map<String, dynamic> json)
+    : number = json["number"] as int,
+      unit = TimeUnits.values[json["unit"] as int];
+
   @override
   bool operator ==(Object other) {
     if(other is Time){

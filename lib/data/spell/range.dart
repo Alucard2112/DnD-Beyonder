@@ -15,6 +15,17 @@ class Range{
 
   Range(this.type, this.amount, this.distanceType);
 
+  Map<String, dynamic> toJson() =>{
+    "type" : type,
+    "amount" : amount,
+    "distanceType" : distanceType.index,
+  };
+
+  Range.fromJson(Map<String, dynamic> json)
+      : type = json["type"] as String,
+        amount = json["amount"] as int,
+        distanceType = DistanceType.values[json["distanceType"] as int];
+
   String inMeters(){
     switch(distanceType) {
       case DistanceType.feet:
