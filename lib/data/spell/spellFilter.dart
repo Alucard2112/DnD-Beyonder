@@ -6,6 +6,7 @@ import 'package:dnd_beyonder/data/spell/spellSchool.dart';
 import 'package:dnd_beyonder/data/spell/subclass.dart';
 import 'package:dnd_beyonder/data/spell/time.dart';
 import 'package:dnd_beyonder/data/spell/timeUnits.dart';
+import 'package:dnd_beyonder/permanentData/settings.dart';
 
 import '../../generated/l10n.dart';
 import '../genericFilter.dart';
@@ -48,7 +49,7 @@ class SpellFilter extends Filter{
   @override
   bool objectPasses(object, String searchText) {
     Spell spell = object;
-    if(!spell.name.toLowerCase().contains(searchText.toLowerCase())){
+    if(!spell.getName(Settings.locale!).toLowerCase().contains(searchText.toLowerCase())){
       return false;
     }
     if(_levelFilter.isNotEmpty() && !_levelFilter.contains(spell.level)){

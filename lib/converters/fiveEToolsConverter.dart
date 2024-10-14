@@ -53,6 +53,9 @@ class FiveEToolsConverter {
     if(ret.contains("{@dice")){
       ret = _translateDice(ret);
     }
+    if(ret.contains("{@damage")){
+      ret = _translateDamage(ret);
+    }
     if(ret.contains("{@condition")){
       ret = _translateCondition(ret);
     }
@@ -67,6 +70,23 @@ class FiveEToolsConverter {
       String match = m[0]!;
       String condition = match.replaceAll("{@condition ", "").replaceAll("}", "");
       ret = ret.replaceAll(match, S.current.condition(condition));
+    }
+    return ret;
+  }
+
+  static String _translateDamage(String s){
+    String ret = s;
+    RegExp exp = RegExp(r'{@damage [0-9]*d[0-9]+}');
+    Iterable<Match> matches = exp.allMatches(s);
+    for (final Match m in matches) {
+      String match = m[0]!;
+      List<String> dieString = match.replaceAll("{@damage ", "").replaceAll("}", "").split("d");
+      int? amount;
+      if(dieString[0].isNotEmpty){
+        amount = int.parse(dieString[0]);
+      }
+      int type = int.parse(dieString[1]);
+      ret = ret.replaceAll(match, _translateDiceHelper(amount, type));
     }
     return ret;
   }

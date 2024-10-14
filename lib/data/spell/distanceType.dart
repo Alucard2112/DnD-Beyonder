@@ -11,6 +11,14 @@ enum DistanceType{
   meters,
   @HiveField(2)
   self,
+  @HiveField(3)
+  miles,
+  @HiveField(4)
+  kilometers,
+  @HiveField(5)
+  touch,
+  @HiveField(6)
+  special,
 }
 
 DistanceType distanceTypeFromString(String s){
@@ -19,6 +27,12 @@ DistanceType distanceTypeFromString(String s){
       return DistanceType.feet;
     case "meters":
       return DistanceType.meters;
+    case "miles":
+      return DistanceType.miles;
+    case "kilometers":
+      return DistanceType.kilometers;
+    case "touch":
+      return DistanceType.touch;
     case "self":
       return DistanceType.self;
   }
@@ -33,5 +47,13 @@ String distanceTypeToString(DistanceType type){
       return S.current.meter;
     case DistanceType.self:
       return S.current.self;
+    case DistanceType.miles:
+      return S.current.mile;
+    case DistanceType.kilometers:
+      return S.current.km;
+    case DistanceType.touch:
+      return S.current.touch;
+    case DistanceType.special:
+      return "";
   }
 }

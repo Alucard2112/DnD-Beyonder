@@ -18,7 +18,7 @@ class SubClassesAdapter extends TypeAdapter<SubClasses> {
     };
     return SubClasses.fromHive(
       fields[0] as DnDClass,
-      fields[1] as String,
+      (fields[1] as Map).cast<String, String>(),
     );
   }
 

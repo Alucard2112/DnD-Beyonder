@@ -34,6 +34,14 @@ class Range{
         return S.current.meterForUi(amount);
       case DistanceType.self:
         return S.current.self;
+      case DistanceType.miles:
+        return S.current.mileForUi(amount / 1.6);
+      case DistanceType.kilometers:
+        return S.current.mileForUi(amount);
+      case DistanceType.touch:
+        return S.current.touch;
+      case DistanceType.special:
+        return S.current.special;
     }
   }
 
@@ -45,6 +53,14 @@ class Range{
         return S.current.feetForUi(((amount * 5) / 1.5).round());
       case DistanceType.self:
         return S.current.self;
+      case DistanceType.miles:
+        return S.current.mileForUi(amount);
+      case DistanceType.kilometers:
+        return S.current.mileForUi(amount * 1.6);
+      case DistanceType.touch:
+        return S.current.touch;
+      case DistanceType.special:
+        return S.current.special;
     }
   }
 

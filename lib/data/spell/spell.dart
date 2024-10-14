@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:dnd_beyonder/converters/fiveEToolsConverter.dart';
+import 'package:dnd_beyonder/data/spell/componentUsedUp.dart';
 import 'package:dnd_beyonder/data/spell/components.dart';
 import 'package:dnd_beyonder/data/spell/damageType.dart';
 import 'package:dnd_beyonder/data/spell/distanceType.dart';
@@ -26,11 +28,11 @@ class Spell extends HiveObject{
   @HiveField(0)
   final int id;
   @HiveField(1)
-  final String name;
+  final Map<String, String> name;
   @HiveField(2)
   final SourceBook source;
   @HiveField(3)
-  final int page;
+  final Map<String, int> page;
   @HiveField(4)
   final int level;
   @HiveField(5)
@@ -44,9 +46,9 @@ class Spell extends HiveObject{
   @HiveField(9)
   final Time time;
   @HiveField(10)
-  final List<String> entries;
+  final Map<String, List<String>> entries;
   @HiveField(11)
-  final List<EntryHigherLevel> entriesHigherLevel;
+  final Map<String, List<EntryHigherLevel>> entriesHigherLevel;
   @HiveField(12)
   final List<String> conditionInflict;
   @HiveField(13)
@@ -73,7 +75,7 @@ class Spell extends HiveObject{
     'range' : range.toJson(),
     'components' : components.toJson(),
     'time' : time.toJson(),
-    'entriesHigherLevel' : entriesHigherLevel.map((EntryHigherLevel e) => e.toJson()).toList(),
+    'entriesHigherLevel' : entriesHigherLevel,
     'conditionInflict' : conditionInflict,
     'savingThrow' : savingThrow,
     'mainClasses' : mainClasses.map((DnDClass c) => c.index).toList(),
@@ -84,22 +86,30 @@ class Spell extends HiveObject{
 
   Spell.fromJson(Map<String, dynamic> json)
     : id = json["id"] as int,
-      name = json["name"] as String,
+      name = json["name"],
       source = SourceBook.values[json["source"] as int],
-      page = json["page"] as int,
+      page = json["page"],
       level = json["level"] as int,
       school = SpellSchool.values[json["school"] as int],
-      entries = List<String>.from(json["entries"]),
+      entries = json["entries"],
       range = Range.fromJson(json["range"]),
       components = Components.fromJson(json["components"]),
       time = Time.fromJson(json["time"]),
-      entriesHigherLevel = List<EntryHigherLevel>.from(List<Map<String, dynamic>>.from(json["entriesHigherLevel"]).map((Map<String,dynamic> m)=>EntryHigherLevel.fromJson(m)).toList()),
+      entriesHigherLevel = {},
       conditionInflict = List<String>.from(json["conditionInflict"]),
       savingThrow = List<String>.from(json["savingThrow"]),
       mainClasses = List<int>.from(json["mainClasses"]).map((int i) => DnDClass.values[i]).toSet(),
       subClasses = Set<SubClasses>.from(List<Map<String,dynamic>>.from(json["subclasses"]).map((Map<String,dynamic> m)=>SubClasses.fromJson(m)).toList()),
       duration = Duration.fromJson(json["duration"]),
-      damageInflict = List<SpellDamageType>.from(List<int>.from(json["damageInflict"]).map((int i) => SpellDamageType.values[i]).toList());
+      damageInflict = List<SpellDamageType>.from(List<int>.from(json["damageInflict"]).map((int i) => SpellDamageType.values[i]).toList()){
+      for(MapEntry entry in json["entriesHigherLevel"]){
+        List<EntryHigherLevel> values = [];
+        for(Map<String, dynamic> m in entry.value){
+          values.add(EntryHigherLevel.fromJson(m));
+        }
+        entriesHigherLevel[entry.key] = values;
+      }
+  }
   
 
   static String getLevelString(int level){
@@ -137,6 +147,34 @@ class Spell extends HiveObject{
     return spellSchoolToString(school);
   }
 
+  String getName(Locale locale){
+    if(name.containsKey(locale.languageCode)){
+      return name[locale.languageCode]!;
+    }
+    return name["en"]!;
+  }
+
+  int getPage(Locale locale){
+    if(page.containsKey(locale.languageCode)){
+      return page[locale.languageCode]!;
+    }
+    return page["en"]!;
+  }
+
+  List<EntryHigherLevel> getEntriesHigherLevel(Locale locale){
+    if(entriesHigherLevel.containsKey(locale.languageCode)){
+      return entriesHigherLevel[locale.languageCode]!;
+    }
+    return entriesHigherLevel["en"]!;
+  }
+
+  List<String> getEntries(Locale locale){
+    if(entries.containsKey(locale.languageCode)){
+      return entries[locale.languageCode]!;
+    }
+    return entries["en"]!;
+  }
+
   factory Spell.from5eJsonString(String s){
     final json = jsonDecode(s) as Map<String, dynamic>;
     return Spell.from5eJsonObject(json);
@@ -144,8 +182,9 @@ class Spell extends HiveObject{
 
   factory Spell.from5eJsonObject(Map<String, dynamic> json){
     SpellSchool schoolJson = getSpellSchoolFromJson(json["school"]);
+    Map<String, List<EntryHigherLevel>> higherLevelMap = {};
     List<EntryHigherLevel> entriesAtHigherLevel = [];
-    if(json.containsKey("entriesHigherLevel")) {
+    if (json.containsKey("entriesHigherLevel")) {
       for (Map<String, dynamic> map in json["entriesHigherLevel"]) {
         List<String> entries = [];
         for (String s in map["entries"]) {
@@ -155,23 +194,51 @@ class Spell extends HiveObject{
             EntryHigherLevel(map["type"], map["name"], entries));
       }
     }
+    List<EntryHigherLevel> entriesAtHigherLevelDE = [];
+    if (json.containsKey("entriesHigherLevel_de")) {
+      for (Map<String, dynamic> map in json["entriesHigherLevel_de"]) {
+        List<String> entries = [];
+        for (String s in map["entries"]) {
+          entries.add(FiveEToolsConverter.jsonToMD(s));
+        }
+        entriesAtHigherLevel.add(
+            EntryHigherLevel(map["type"], map["name"], entries));
+      }
+    }
+    higherLevelMap["en"] = entriesAtHigherLevel;
+    higherLevelMap["de"] = entriesAtHigherLevelDE;
     Set<DnDClass> convertedClasses = {};
-    for(Map<String, dynamic> map in json["classes"]["fromClassList"]){
+    for (Map<String, dynamic> map in json["classes"]["fromClassList"]) {
       DnDClass fromJson = fromDnDClassName(map["name"]);
       convertedClasses.add(fromJson);
     }
     Set<SubClasses> subClasses = {};
-    if(json["classes"].containsKey("fromSubclass")) {
+    if (json["classes"].containsKey("fromSubclass")) {
       for (Map<String, dynamic> map in json["classes"]["fromSubclass"]) {
+        Map<String, String> subclassName = {};
+        subclassName["en"] = map["subclass"]["name"];
+        if(map["subclass"].containsKey("name_de")){
+          subclassName["de"] = map["subclass"]["name_de"];
+        }
         subClasses.add(
-          SubClasses(map["class"]["name"], map["subclass"]["name"])
+            SubClasses(map["class"]["name"], subclassName)
         );
       }
     }
     List<String> entries = [];
-    for(dynamic s in json["entries"] as List<dynamic>){
+    for (dynamic s in json["entries"] as List<dynamic>) {
       entries.add(FiveEToolsConverter.jsonToMD(s));
     }
+    Map<String, List<String>> entriesMap = {};
+    entriesMap["en"] = entries;
+    if (json.containsKey("entries_de")){
+      List<String> entriesDE = [];
+      for (dynamic s in json["entries_de"] as List<dynamic>) {
+        entriesDE.add(FiveEToolsConverter.jsonToMD(s));
+      }
+      entriesMap["de"] = entriesDE;
+    }
+
     List<String> conditionInflict = [];
     if(json.containsKey("conditionInflict")) {
       for (String s in json["conditionInflict"]) {
@@ -184,8 +251,19 @@ class Spell extends HiveObject{
         savingThrow.add(s);
       }
     }
-    String m = json["components"].containsKey("m") ? json["components"]["m"] : "";
-    Components components = Components(json["components"]["v"],json["components"]["s"], m);
+    Map<String, String> materialMap = {};
+    final material = json["components"]["m"] ?? "";
+    ComponentUsedUp usedUp = componentUsedUpFromDynamic(material);
+    if(material is Map<String, dynamic>){
+      materialMap["en"] = material["text"];
+      materialMap["de"] = material["text_de"] ?? material["text"];
+    }
+    else{
+      String mDE = json["components"]["m_de"] ?? "";
+      materialMap["de"] = mDE;
+      materialMap["en"] = material;
+    }
+    Components components = Components(json["components"]["v"] ?? false,json["components"]["s"] ?? false, materialMap, usedUp);
 
     Map<String, dynamic> durationJson = json["duration"][0];
     DurationType type = durationTypeFromString(durationJson["type"]);
@@ -195,7 +273,7 @@ class Spell extends HiveObject{
       duration = Duration(type,timeUnitFromString(durationJson["duration"]["type"]),durationJson["duration"]["amount"], concentration);
     }
     int range = -1;
-    if(json["range"]["distance"].containsKey("amount")){
+    if(json["range"]["distance"]?.containsKey("amount") ?? false){
       range = json["range"]["distance"]["amount"];
     }
 
@@ -206,22 +284,28 @@ class Spell extends HiveObject{
         damageType.add(value);
       }
     }
-    int page = -1;
-    if(json.containsKey("page")){
-      page = json["page"];
+    int page = json["page"] ?? -1;
+    int pageDE = json["page_de"] ?? -1;
+    Map<String, int> pageMap = {};
+    pageMap["en"] = page;
+    pageMap["de"] = pageDE;
+    Map<String, String> nameMap = {};
+    nameMap["en"] = json["name"];
+    if(json.containsKey("name_de")){
+      nameMap["de"] = json["name_de"];
     }
     return Spell(
         "${json["name"]}_${json["source"]}".hashCode,
-        json["name"],
+        nameMap,
         sourceBookFromShortString(json["source"]),
-        page,
+        pageMap,
         json["level"],
         schoolJson,
-        entries,
-        Range(json["range"]["type"],range,distanceTypeFromString(json["range"]["distance"]["type"])),
+        entriesMap,
+        Range(json["range"]["type"],range,distanceTypeFromString(json["range"]["distance"]?["type"] ?? "special")),
         components,
         Time(json["time"][0]["number"],timeUnitFromString(json["time"][0]["unit"])),
-        entriesAtHigherLevel,
+        higherLevelMap,
         conditionInflict,
         savingThrow,
         convertedClasses,

@@ -4,6 +4,10 @@
   "self": "Selbst",
   "feet": "Fuß",
   "meter": "Meter",
+  "km": "Kilometer",
+  "mile": "Meile",
+  "touch": "Berührung",
+  "special": "Speziell",
   "meterForUi": "{count, plural,=1{1 Meter} other{{count} Meter}}",
   "@meterForUi": {
     "description": "Counting Meter",
@@ -17,6 +21,26 @@
   "feetForUi": "{count} Fuß",
   "@feetForUi": {
     "description": "Counting Feet",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "kmForUi": "{count} Kilometer",
+  "@kmForUi": {
+    "description": "Counting Kilometers",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "mileForUi": "{count, plural,=1{1 Meile} other{{count} Meilen}}",
+  "@mileForUi": {
+    "description": "Counting Miles",
     "placeholders": {
       "count": {
         "type": "num",

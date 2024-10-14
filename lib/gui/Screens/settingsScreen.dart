@@ -125,9 +125,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       List<File> files = result.paths.map((path) => File(path!)).toList();
                       for(File file in files) {
                         String jsonString = await file.readAsString();
-                        Map<String, dynamic> json = jsonDecode(jsonString);
-                        if (json.containsKey("spell")) {
-                          for (Map<String, dynamic> map in json["spell"]) {
+                        final json = jsonDecode(jsonString);
+                        if (json is List<dynamic>) {
+                          for (Map<String, dynamic> map in json) {
                             Spell spell = Spell.from5eJsonObject(map);
                             BoxHandler.spellBox.put(spell.id, spell);
                           }

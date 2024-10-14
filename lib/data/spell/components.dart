@@ -1,6 +1,10 @@
+import 'dart:ui';
+
+import 'package:dnd_beyonder/data/spell/componentUsedUp.dart';
 import 'package:hive/hive.dart';
 
 import '../../generated/l10n.dart';
+import '../../permanentData/settings.dart';
 
 part 'components.g.dart';
 
@@ -11,20 +15,24 @@ class Components{
   @HiveField(1)
   final bool s;
   @HiveField(2)
-  final String m;
+  final Map<String,String> m;
+  @HiveField(3)
+  final ComponentUsedUp usedUp;
 
-  Components(this.v, this.s, this.m);
+  Components(this.v, this.s, this.m, this.usedUp);
 
   Map<String, dynamic> toJson() => {
     "v":v,
     "s":s,
     "m":m,
+    "usedUp": usedUp.index,
   };
 
   Components.fromJson(Map<String, dynamic> json)
     : v = json["v"] as bool,
       s = json["s"] as bool,
-      m = json["m"] as String;
+      m = json["m"] as Map<String, String>,
+      usedUp = ComponentUsedUp.values[json["usedUp"] as int];
 
   @override
   String toString(){
@@ -35,16 +43,28 @@ class Components{
     if(s){
       ret+="${S.current.somatic}, ";
     }
-    if(m.isNotEmpty){
+    String material = "";
+    Locale locale = Settings.locale!;
+    if(m.containsKey(locale.languageCode)){
+      return m[locale.languageCode]!;
+    }
+    material = m["en"]!;
+    if(material.isNotEmpty){
       ret+="${S.current.material}, ";
     }
     return ret.substring(0,ret.length-2);
   }
 
   String material(){
-    if(m.isNotEmpty){
-      return " ($m)";
+    String material = "";
+    Locale locale = Settings.locale!;
+    if(m.containsKey(locale.languageCode)){
+      return m[locale.languageCode]!;
     }
-    return "";
+    material = m["en"]!;
+    if(material.isNotEmpty){
+      material="${S.current.material}, ";
+    }
+    return material;
   }
 }

@@ -25,6 +25,8 @@ class SpellDetailScreen extends StatelessWidget {
   final Character? character;
   const SpellDetailScreen({super.key, required this.update, required this.spell, required this.function, this.character});
 
+  //TODO verbrauchbare Materialien kennzeichnen
+
   @override
   Widget build(BuildContext context) {
     List<Widget> children = [];
@@ -41,15 +43,15 @@ class SpellDetailScreen extends StatelessWidget {
       children.add(const Text(", ", style: normalText,));
       children.add(Text(toDnDClassName(subClasses.c), style: normalText,));
       children.add(const Text(" ", style: normalText,));
-      children.add(Text("(${subClasses.name})", style: normalText.copyWith(color: subheadingColor),));
+      children.add(Text("(${subClasses.getName(Settings.locale!)})", style: normalText.copyWith(color: subheadingColor),));
     }
     List<Widget> sourceWidgets = [];
     sourceWidgets.add(const Icon(Icons.book_outlined, color: subheadingColor,));
     sourceWidgets.add(Container(width: 12,));
     sourceWidgets.add(Text(sourceBookToString(spell.source), style: subheadingText,));
-    if(spell.page >= 0) {
+    if(spell.getPage(Settings.locale!) >= 0) {
       sourceWidgets.add(const Text(", ", style: subheadingText,));
-      sourceWidgets.add(Text("${S.of(context).spellDetailPage} ${spell.page}", style: subheadingText,));
+      sourceWidgets.add(Text("${S.of(context).spellDetailPage} ${spell.getPage(Settings.locale!)}", style: subheadingText,));
     }
     ClickableIcon iconWidget = ClickableIcon(
       onTap: (){
@@ -146,7 +148,7 @@ class SpellDetailScreen extends StatelessWidget {
                         ),
                       ),
                       const Padding(padding: EdgeInsets.symmetric(horizontal: 4)),
-                      Text(spell.name, style: boldNormalText,),
+                      Text(spell.getName(Settings.locale!), style: boldNormalText,),
                     ],
                   ),
                 ),
@@ -193,7 +195,7 @@ class SpellDetailScreen extends StatelessWidget {
                       color: iconColorPurple,
                     ),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
-                    SpellDescriptionWidget(spell.entries, spell.entriesHigherLevel),
+                    SpellDescriptionWidget(spell.getEntries(Settings.locale!), spell.getEntriesHigherLevel(Settings.locale!)),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
                     const Divider(
                       color: iconColorPurple,

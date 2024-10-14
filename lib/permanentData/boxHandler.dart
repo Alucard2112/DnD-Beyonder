@@ -1,4 +1,5 @@
 import 'package:dnd_beyonder/data/dnd/dnd_class.dart';
+import 'package:dnd_beyonder/data/spell/componentUsedUp.dart';
 import 'package:dnd_beyonder/data/spell/components.dart';
 import 'package:dnd_beyonder/data/spell/damageType.dart';
 import 'package:dnd_beyonder/data/spell/distanceType.dart';
@@ -27,6 +28,7 @@ class BoxHandler{
     Hive.registerAdapter(SpellAdapter());
     Hive.registerAdapter(SpellDamageTypeAdapter());
     Hive.registerAdapter(ComponentsAdapter());
+    Hive.registerAdapter(ComponentUsedUpAdapter());
     Hive.registerAdapter(DistanceTypeAdapter());
     Hive.registerAdapter(DnDClassAdapter());
     Hive.registerAdapter(DurationTypeAdapter());

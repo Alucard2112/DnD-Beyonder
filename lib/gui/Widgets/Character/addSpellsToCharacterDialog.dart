@@ -6,6 +6,7 @@ import '../../../data/character/character.dart';
 import '../../../data/gui/constants.dart';
 import '../../../generated/l10n.dart';
 import '../../../permanentData/boxHandler.dart';
+import '../../../permanentData/settings.dart';
 import '../dialogOptions.dart';
 import '../emptyDataWidget.dart';
 import '../genericCheckBoxWidget.dart';
@@ -17,7 +18,7 @@ class AddSpellsToCharacterDialog extends StatefulWidget with GenericDialog{
 
   AddSpellsToCharacterDialog({super.key, required this.spells, required this.character, required this.update}) {
     title = S.current.spellDetailAddSpellTitle;
-    spells.sort((Spell a, Spell b)=>a.name.compareTo(b.name));
+    spells.sort((Spell a, Spell b)=>a.getName(Settings.locale!).compareTo(b.getName(Settings.locale!)));
   }
 
   @override
@@ -61,7 +62,7 @@ class _AddSpellsToCharacterDialogState extends State<AddSpellsToCharacterDialog>
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(spell.name, style: headingText,),
+                      Text(spell.getName(Settings.locale!), style: headingText,),
                       Text(spell.getSchoolLevelForUI(), style: subheadingText,)
                     ],
                   )

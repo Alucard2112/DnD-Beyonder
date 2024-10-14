@@ -1,14 +1,13 @@
 import 'package:dnd_beyonder/data/gui/constants.dart';
-import 'package:dnd_beyonder/data/gui/sorting.dart';
 import 'package:dnd_beyonder/data/sortable.dart';
 import 'package:dnd_beyonder/data/spell/damageType.dart';
 import 'package:dnd_beyonder/data/spell/sourceBook.dart';
 import 'package:dnd_beyonder/data/spell/spell.dart';
 import 'package:dnd_beyonder/gui/Widgets/cardWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 
 import '../../../data/spell/spellSchool.dart';
+import '../../../permanentData/settings.dart';
 
 class SpellListItemWidget extends StatelessWidget with Sortable<SpellListItemWidget>{
   final Spell spell;
@@ -41,7 +40,7 @@ class SpellListItemWidget extends StatelessWidget with Sortable<SpellListItemWid
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                    Text(spell.name, style: headingText,),
+                    Text(spell.getName(Settings.locale!), style: headingText,),
                     Text(spell.getSchoolLevelForUI(), style: subheadingTextBold,),
                     Text(sourceBookToString(spell.source), style: subheadingText,),
                   ],
@@ -53,7 +52,7 @@ class SpellListItemWidget extends StatelessWidget with Sortable<SpellListItemWid
 
   @override
   int sortName(SpellListItemWidget b) {
-    return spell.name.compareTo(b.spell.name);
+    return spell.getName(Settings.locale!).compareTo(b.spell.getName(Settings.locale!));
   }
 
   @override

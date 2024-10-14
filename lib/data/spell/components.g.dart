@@ -19,20 +19,23 @@ class ComponentsAdapter extends TypeAdapter<Components> {
     return Components(
       fields[0] as bool,
       fields[1] as bool,
-      fields[2] as String,
+      (fields[2] as Map).cast<String, String>(),
+      fields[3] as ComponentUsedUp,
     );
   }
 
   @override
   void write(BinaryWriter writer, Components obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.v)
       ..writeByte(1)
       ..write(obj.s)
       ..writeByte(2)
-      ..write(obj.m);
+      ..write(obj.m)
+      ..writeByte(3)
+      ..write(obj.usedUp);
   }
 
   @override

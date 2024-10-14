@@ -19,6 +19,14 @@ class DistanceTypeAdapter extends TypeAdapter<DistanceType> {
         return DistanceType.meters;
       case 2:
         return DistanceType.self;
+      case 3:
+        return DistanceType.miles;
+      case 4:
+        return DistanceType.kilometers;
+      case 5:
+        return DistanceType.touch;
+      case 6:
+        return DistanceType.special;
       default:
         return DistanceType.feet;
     }
@@ -35,6 +43,18 @@ class DistanceTypeAdapter extends TypeAdapter<DistanceType> {
         break;
       case DistanceType.self:
         writer.writeByte(2);
+        break;
+      case DistanceType.miles:
+        writer.writeByte(3);
+        break;
+      case DistanceType.kilometers:
+        writer.writeByte(4);
+        break;
+      case DistanceType.touch:
+        writer.writeByte(5);
+        break;
+      case DistanceType.special:
+        writer.writeByte(6);
         break;
     }
   }

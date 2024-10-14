@@ -18,20 +18,22 @@ class SpellAdapter extends TypeAdapter<Spell> {
     };
     return Spell(
       fields[0] as int,
-      fields[1] as String,
+      (fields[1] as Map).cast<String, String>(),
       fields[2] as SourceBook,
-      fields[3] as int,
+      (fields[3] as Map).cast<String, int>(),
       fields[4] as int,
       fields[5] as SpellSchool,
-      (fields[10] as List).cast<String>(),
+      (fields[10] as Map).map((dynamic k, dynamic v) =>
+          MapEntry(k as String, (v as List).cast<String>())),
       fields[6] as Range,
       fields[8] as Components,
       fields[9] as Time,
-      (fields[11] as List).cast<EntryHigherLevel>(),
+      (fields[11] as Map).map((dynamic k, dynamic v) =>
+          MapEntry(k as String, (v as List).cast<EntryHigherLevel>())),
       (fields[12] as List).cast<String>(),
       (fields[13] as List).cast<String>(),
-      (fields[14] as List).toSet().cast<DnDClass>(),
-      (fields[15] as List).toSet().cast<SubClasses>(),
+      (fields[14] as List).cast<DnDClass>().toSet(),
+      (fields[15] as List).cast<SubClasses>().toSet(),
       fields[7] as Duration,
       (fields[16] as List).cast<SpellDamageType>(),
     );
