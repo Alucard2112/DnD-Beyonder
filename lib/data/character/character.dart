@@ -22,10 +22,10 @@ class Character extends HiveObject{
    if(id>maxId){
      maxId = id;
    }
-   _addSpells();
+   _removeDeadSpellIDs();
   }
 
-  void _addSpells(){
+  void _removeDeadSpellIDs(){
     List<int> deadIds = [];
     for(int i in spellIds){
       if(!BoxHandler.spellBox.containsKey(i)){
@@ -41,7 +41,7 @@ class Character extends HiveObject{
       spellIds = List<int>.from(json["spellIds"]),
       dnDClass = DnDClass.values[json["dnDClass"] as int]
   {
-    _addSpells();
+    _removeDeadSpellIDs();
   }
 
   Map<String, dynamic> toJson() => {
