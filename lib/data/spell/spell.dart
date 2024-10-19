@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ui';
 
 import 'package:dnd_beyonder/converters/fiveEToolsConverter.dart';
 import 'package:dnd_beyonder/data/sortable.dart';
@@ -133,7 +132,7 @@ class Spell extends HiveObject with Sortable<Spell>{
 
   @override
   int sortName(Spell b) {
-    return getName(Settings.locale!).compareTo(b.getName(Settings.locale!));
+    return getName().compareTo(b.getName());
   }
 
   @override
@@ -185,30 +184,30 @@ class Spell extends HiveObject with Sortable<Spell>{
     return spellSchoolToString(school);
   }
 
-  String getName(Locale locale){
-    if(name.containsKey(locale.languageCode)){
-      return name[locale.languageCode]!;
+  String getName(){
+    if(name.containsKey(Settings.locale!.languageCode)){
+      return name[Settings.locale!.languageCode]!;
     }
     return name["en"]!;
   }
 
-  int getPage(Locale locale){
-    if(page.containsKey(locale.languageCode)){
-      return page[locale.languageCode]!;
+  int getPage(){
+    if(page.containsKey(Settings.locale!.languageCode)){
+      return page[Settings.locale!.languageCode]!;
     }
     return page["en"]!;
   }
 
-  List<EntryHigherLevel> getEntriesHigherLevel(Locale locale){
-    if(entriesHigherLevel.containsKey(locale.languageCode)){
-      return entriesHigherLevel[locale.languageCode]!;
+  List<EntryHigherLevel> getEntriesHigherLevel(){
+    if(entriesHigherLevel.containsKey(Settings.locale!.languageCode)){
+      return entriesHigherLevel[Settings.locale!.languageCode]!;
     }
     return entriesHigherLevel["en"]!;
   }
 
-  List<String> getEntries(Locale locale){
-    if(entries.containsKey(locale.languageCode)){
-      return entries[locale.languageCode]!;
+  List<String> getEntries(){
+    if(entries.containsKey(Settings.locale!.languageCode)){
+      return entries[Settings.locale!.languageCode]!;
     }
     return entries["en"]!;
   }

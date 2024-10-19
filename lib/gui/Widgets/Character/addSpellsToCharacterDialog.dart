@@ -18,7 +18,7 @@ class AddSpellsToCharacterDialog extends StatefulWidget with GenericDialog{
 
   AddSpellsToCharacterDialog({super.key, required this.spells, required this.character, required this.update}) {
     title = S.current.spellDetailAddSpellTitle;
-    spells.sort((Spell a, Spell b)=>a.getName(Settings.locale!).compareTo(b.getName(Settings.locale!)));
+    spells.sort((Spell a, Spell b)=>a.getName().compareTo(b.getName()));
   }
 
   @override
@@ -67,7 +67,7 @@ class _AddSpellsToCharacterDialogState extends State<AddSpellsToCharacterDialog>
                           fit: BoxFit.scaleDown,
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            spell.getName(Settings.locale!),
+                            spell.getName(),
                             style: headingText,
                           ),
                         ),

@@ -5,7 +5,6 @@ import 'package:dnd_beyonder/gui/Widgets/cardWidget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/spell/spellSchool.dart';
-import '../../../permanentData/settings.dart';
 
 class SpellListItemWidget extends StatelessWidget{
   final Spell spell;
@@ -40,7 +39,7 @@ class SpellListItemWidget extends StatelessWidget{
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                      Text(spell.getName(Settings.locale!), style: headingText,),
+                      Text(spell.getName(), style: headingText,),
                       Text(spell.getSchoolLevelForUI(), style: subheadingTextBold,),
                       Text(sourceBookToString(spell.source), style: subheadingText,),
                     ],

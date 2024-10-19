@@ -49,9 +49,9 @@ class SpellDetailScreen extends StatelessWidget {
     sourceWidgets.add(const Icon(Icons.book_outlined, color: subheadingColor,));
     sourceWidgets.add(Container(width: 12,));
     sourceWidgets.add(Text(sourceBookToString(spell.source), style: subheadingText,));
-    if(spell.getPage(Settings.locale!) >= 0) {
+    if(spell.getPage() >= 0) {
       sourceWidgets.add(const Text(", ", style: subheadingText,));
-      sourceWidgets.add(Text("${S.of(context).spellDetailPage} ${spell.getPage(Settings.locale!)}", style: subheadingText,));
+      sourceWidgets.add(Text("${S.of(context).spellDetailPage} ${spell.getPage()}", style: subheadingText,));
     }
     ClickableIcon iconWidget = ClickableIcon(
       onTap: (){
@@ -146,7 +146,7 @@ class SpellDetailScreen extends StatelessWidget {
                         ),
                       ),
                       const Padding(padding: EdgeInsets.symmetric(horizontal: 4)),
-                      Text(spell.getName(Settings.locale!), style: boldNormalText,),
+                      Text(spell.getName(), style: boldNormalText,),
                     ],
                   ),
                 ),
@@ -193,7 +193,7 @@ class SpellDetailScreen extends StatelessWidget {
                       color: iconColorPurple,
                     ),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
-                    SpellDescriptionWidget(spell.getEntries(Settings.locale!), spell.getEntriesHigherLevel(Settings.locale!)),
+                    SpellDescriptionWidget(spell.getEntries(), spell.getEntriesHigherLevel()),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
                     const Divider(
                       color: iconColorPurple,

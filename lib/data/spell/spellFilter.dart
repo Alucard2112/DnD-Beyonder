@@ -49,7 +49,7 @@ class SpellFilter extends Filter{
   @override
   bool objectPasses(object, String searchText) {
     Spell spell = object;
-    if(!spell.getName(Settings.locale!).toLowerCase().contains(searchText.toLowerCase())){
+    if(!spell.getName().toLowerCase().contains(searchText.toLowerCase())){
       return false;
     }
     if(_levelFilter.isNotEmpty() && !_levelFilter.contains(spell.level)){

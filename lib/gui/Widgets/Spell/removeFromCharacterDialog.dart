@@ -8,7 +8,6 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../../../data/gui/constants.dart';
 import '../../../generated/l10n.dart';
-import '../../../permanentData/settings.dart';
 
 class RemoveFromCharacterDialog extends StatelessWidget with GenericDialog{
   final Spell spell;
@@ -25,7 +24,7 @@ class RemoveFromCharacterDialog extends StatelessWidget with GenericDialog{
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MarkdownBody(
-            data: S.of(context).spellDetailRemoveFromCharMessage(spell.getName(Settings.locale!), character.name),
+            data: S.of(context).spellDetailRemoveFromCharMessage(spell.getName(), character.name),
             styleSheet: markDownStyle,),
           const SizedBox(
             height: 20,
