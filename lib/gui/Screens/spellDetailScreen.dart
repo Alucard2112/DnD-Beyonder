@@ -182,7 +182,7 @@ class SpellDetailScreen extends StatelessWidget {
                     Wrap(
                       children: [
                         Text("${S.of(context).spellDetailComponents}: ", style: boldNormalText,),
-                        Text(spell.components.toString(),style: normalText,),
+                        Text(spell.components.toString(), style: normalText,),
                         Text(spell.components.material(), style: subheadingText,)
                       ],
                     ),

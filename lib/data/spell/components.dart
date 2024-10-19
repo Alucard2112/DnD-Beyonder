@@ -43,12 +43,7 @@ class Components{
     if(s){
       ret+="${S.current.somatic}, ";
     }
-    String material = "";
-    Locale locale = Settings.locale!;
-    if(m.containsKey(locale.languageCode)){
-      return m[locale.languageCode]!;
-    }
-    material = m["en"]!;
+    String material = m["en"]!;
     if(material.isNotEmpty){
       ret+="${S.current.material}, ";
     }
@@ -59,12 +54,9 @@ class Components{
     String material = "";
     Locale locale = Settings.locale!;
     if(m.containsKey(locale.languageCode)){
-      return m[locale.languageCode]!;
+      return "(${m[locale.languageCode]!})";
     }
     material = m["en"]!;
-    if(material.isNotEmpty){
-      material="${S.current.material}, ";
-    }
-    return material;
+    return "($material)";
   }
 }
