@@ -2,7 +2,6 @@ import 'package:dnd_beyonder/data/gui/constants.dart';
 import 'package:dnd_beyonder/gui/Screens/settingsScreen.dart';
 import 'package:dnd_beyonder/gui/Screens/characterListScreen.dart';
 import 'package:dnd_beyonder/gui/Screens/spellListScreen.dart';
-import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
 
 import '../../generated/l10n.dart';
