@@ -4,7 +4,6 @@ import 'package:dnd_beyonder/gui/Widgets/SpellList/spellListItemWidget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/gui/sorting.dart';
-import '../../../data/sortable.dart';
 import '../../../generated/l10n.dart';
 import '../SearchBarWidget.dart';
 import '../clickableIcon.dart';
@@ -24,21 +23,6 @@ class SpellListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<SpellListItemWidget> children = [];
-    for (int i = 0; i < spells.length; i++) {
-      Spell spell = spells[i];
-      if (spellFilter.objectPasses(spell, searchText)) {
-        children.add(
-            SpellListItemWidget(spell,
-                  () {
-                onItemTapped(i);
-              },
-            ));
-      }
-    }
-    children.sort((SpellListItemWidget a, SpellListItemWidget b){
-      return Sortable.sortFunction(a, b, sorting, asc);
-    });
     String badgeText = spellFilter.getFilterText();
     List<Sorting> values = [];
     values.addAll(Sorting.values);
@@ -82,8 +66,16 @@ class SpellListWidget extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: ListView(
-            children: children,
+          child: ListView.builder(
+            itemCount: spells.length,
+            itemBuilder: (context, index) {
+              Spell spell = spells[index];
+              return SpellListItemWidget(spell,
+                    () {
+                  onItemTapped(spell.id);
+                },
+              );
+            },
           ),
         ),
       ],

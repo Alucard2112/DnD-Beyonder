@@ -1,6 +1,4 @@
 import 'package:dnd_beyonder/data/gui/constants.dart';
-import 'package:dnd_beyonder/data/sortable.dart';
-import 'package:dnd_beyonder/data/spell/damageType.dart';
 import 'package:dnd_beyonder/data/spell/sourceBook.dart';
 import 'package:dnd_beyonder/data/spell/spell.dart';
 import 'package:dnd_beyonder/gui/Widgets/cardWidget.dart';
@@ -9,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../../../data/spell/spellSchool.dart';
 import '../../../permanentData/settings.dart';
 
-class SpellListItemWidget extends StatelessWidget with Sortable<SpellListItemWidget>{
+class SpellListItemWidget extends StatelessWidget{
   final Spell spell;
   final Function onTap;
   const SpellListItemWidget(this.spell, this.onTap, {super.key});
@@ -48,41 +46,5 @@ class SpellListItemWidget extends StatelessWidget with Sortable<SpellListItemWid
                 ],
           ),
         );
-  }
-
-  @override
-  int sortName(SpellListItemWidget b) {
-    return spell.getName(Settings.locale!).compareTo(b.spell.getName(Settings.locale!));
-  }
-
-  @override
-  int sortLevel(SpellListItemWidget b) {
-    return spell.level.compareTo(b.spell.level);
-  }
-
-  @override
-  int sortDnDClass(SpellListItemWidget b) {
-    return spell.mainClasses.elementAt(0).name.compareTo(b.spell.mainClasses.elementAt(0).name);
-  }
-
-  @override
-  int sortAttackType(SpellListItemWidget b){
-    if(spell.damageInflict.isNotEmpty && b.spell.damageInflict.isNotEmpty) {
-      return
-          spellDamageTypeToName(spell.damageInflict[0]).compareTo(
-              spellDamageTypeToName(b.spell.damageInflict[0]));
-    }
-    return (spell.damageInflict.isNotEmpty ? 1 : -1);
-  }
-
-  @override
-  int sortSchool(SpellListItemWidget b) {
-    return spellSchoolToString(spell.school).compareTo(spellSchoolToString(b.spell.school));
-  }
-
-  @override
-  int sortSource(SpellListItemWidget b) {
-    return sourceBookToString(spell.source).compareTo(sourceBookToString(b.spell.source));
-
   }
 }

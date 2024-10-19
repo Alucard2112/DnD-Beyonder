@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:dnd_beyonder/converters/fiveEToolsConverter.dart';
+import 'package:dnd_beyonder/data/sortable.dart';
 import 'package:dnd_beyonder/data/spell/componentUsedUp.dart';
 import 'package:dnd_beyonder/data/spell/components.dart';
 import 'package:dnd_beyonder/data/spell/damageType.dart';
@@ -17,6 +18,7 @@ import 'package:dnd_beyonder/data/spell/timeUnits.dart';
 import 'package:dnd_beyonder/generated/l10n.dart';
 import 'package:hive/hive.dart';
 
+import '../../permanentData/settings.dart';
 import '../dnd/dnd_class.dart';
 import 'durationType.dart';
 
@@ -24,7 +26,7 @@ part 'spell.g.dart';
 
 
 @HiveType(typeId: 1)
-class Spell extends HiveObject{
+class Spell extends HiveObject with Sortable<Spell>{
   @HiveField(0)
   final int id;
   @HiveField(1)
@@ -128,6 +130,42 @@ class Spell extends HiveObject{
 
   @override
   int get hashCode => id;
+
+  @override
+  int sortName(Spell b) {
+    return getName(Settings.locale!).compareTo(b.getName(Settings.locale!));
+  }
+
+  @override
+  int sortLevel(Spell b) {
+    return level.compareTo(b.level);
+  }
+
+  @override
+  int sortDnDClass(Spell b) {
+    return mainClasses.elementAt(0).name.compareTo(b.mainClasses.elementAt(0).name);
+  }
+
+  @override
+  int sortAttackType(Spell b){
+    if(damageInflict.isNotEmpty && b.damageInflict.isNotEmpty) {
+      return
+        spellDamageTypeToName(damageInflict[0]).compareTo(
+            spellDamageTypeToName(b.damageInflict[0]));
+    }
+    return (b.damageInflict.isNotEmpty ? 1 : -1);
+  }
+
+  @override
+  int sortSchool(Spell b) {
+    return spellSchoolToString(school).compareTo(spellSchoolToString(b.school));
+  }
+
+  @override
+  int sortSource(Spell b) {
+    return sourceBookToString(source).compareTo(sourceBookToString(b.source));
+
+  }
 
   String getSchoolLevelForUI(){
     switch(level){

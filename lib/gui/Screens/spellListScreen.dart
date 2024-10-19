@@ -3,18 +3,19 @@ import 'package:dnd_beyonder/data/spell/spellFilter.dart';
 import 'package:dnd_beyonder/gui/Screens/filterScreen.dart';
 import 'package:dnd_beyonder/gui/Screens/spellDetailScreen.dart';
 import 'package:dnd_beyonder/gui/Widgets/SpellList/spellListWidget.dart';
+import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/character/character.dart';
+import '../../data/sortable.dart';
 import '../../data/spell/spell.dart';
 
 class SpellListScreen extends StatefulWidget {
-  final List<Spell> spells;
   final Function update;
   final Character? character;
   static final Map<int, int> selectedSpell = {};
 
-  const SpellListScreen({super.key, required this.update, required this.spells, this.character});
+  const SpellListScreen({super.key, required this.update, this.character});
   @override
   State<SpellListScreen> createState() => _SpellListScreenState();
 }
@@ -90,26 +91,35 @@ class _SpellListScreenState extends State<SpellListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(SpellListScreen.selectedSpell[key]!);
     if (SpellListScreen.selectedSpell[key]! >= 0) {
-      return SpellDetailScreen(
-        spell: widget.spells[SpellListScreen.selectedSpell[key]!],
-        function: _onItemTapped,
-        update: widget.update,
-        character: widget.character,
-      );
+      int keyBox = SpellListScreen.selectedSpell[key]!;
+      if(BoxHandler.spellBox.containsKey(keyBox)) {
+        return SpellDetailScreen(
+          spell: BoxHandler.spellBox.get(keyBox)!,
+          function: _onItemTapped,
+          update: widget.update,
+          character: widget.character,
+        );
+      }
     }
+    SpellFilter filter = _spellFilter[key]!;
     if (_filter[key]!) {
       return FilterScreen(
           _showFilterScreen,
           _resetFilter,
-          _spellFilter[key]!,
+        filter,
         stateKey: widget.character?.id ?? -1,
       );
     }
+    List<Spell> spells = BoxHandler.spellBox.values.where(
+            (Spell s) => filter.objectPasses(s, _searchText[key]!) && (widget.character?.spellIds.contains(s.id)??true)
+    ).toList();
+    spells.sort(
+            (Spell a, Spell b)=> Sortable.sortFunction(a,b,_sorting[key]!, _asc[key]!)
+    );
     return SpellListWidget(
-        spells: widget.spells,
-        spellFilter: _spellFilter[key]!,
+        spells: spells,
+        spellFilter: filter,
         searchText: _searchText[key]!,
         onItemTapped: _onItemTapped,
         updateSorting: _updateSorting,

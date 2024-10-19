@@ -110,7 +110,6 @@ class CharacterDetailScreen extends StatelessWidget {
       ),
           Expanded(
               child: SpellListScreen(
-                spells: character.spells,
                 update: (){},
                 character: character,
               ),

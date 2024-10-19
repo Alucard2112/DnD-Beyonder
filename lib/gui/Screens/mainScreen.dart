@@ -33,7 +33,6 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final List<Widget> widgetOptions = <Widget>[
       SpellListScreen(
-        spells: BoxHandler.spellBox.values.toList(),
         update: _update,
       ),
       CharacterListScreen(
