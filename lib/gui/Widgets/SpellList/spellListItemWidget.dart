@@ -34,14 +34,17 @@ class SpellListItemWidget extends StatelessWidget{
                     ),
                   ),
                   const Padding(padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10)),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                    Text(spell.getName(Settings.locale!), style: headingText,),
-                    Text(spell.getSchoolLevelForUI(), style: subheadingTextBold,),
-                    Text(sourceBookToString(spell.source), style: subheadingText,),
-                  ],
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                      Text(spell.getName(Settings.locale!), style: headingText,),
+                      Text(spell.getSchoolLevelForUI(), style: subheadingTextBold,),
+                      Text(sourceBookToString(spell.source), style: subheadingText,),
+                    ],
+                    ),
                   )
                 ],
           ),

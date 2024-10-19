@@ -66,16 +66,24 @@ class SpellListWidget extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: ListView.builder(
-            itemCount: spells.length,
-            itemBuilder: (context, index) {
-              Spell spell = spells[index];
-              return SpellListItemWidget(spell,
+          child: OrientationBuilder(
+            builder: (context, orientation) {
+              return GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: (1 / .25),
+                  crossAxisCount: orientation == Orientation.portrait ? 1 : 2, // number of items in each row
+                ),
+                itemCount: spells.length,
+                itemBuilder: (context, index) {
+                  Spell spell = spells[index];
+                  return SpellListItemWidget(spell,
                     () {
-                  onItemTapped(spell.id);
+                      onItemTapped(spell.id);
+                    },
+                  );
                 },
               );
-            },
+            }
           ),
         ),
       ],
