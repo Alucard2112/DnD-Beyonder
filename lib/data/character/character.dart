@@ -1,5 +1,4 @@
 import 'package:dnd_beyonder/data/dnd/dnd_class.dart';
-import 'package:dnd_beyonder/data/spell/spell.dart';
 import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:hive/hive.dart';
 
