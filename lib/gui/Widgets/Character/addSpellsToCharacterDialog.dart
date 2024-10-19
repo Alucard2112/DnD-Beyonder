@@ -59,12 +59,24 @@ class _AddSpellsToCharacterDialogState extends State<AddSpellsToCharacterDialog>
               child: Row(
                 children: [
                   GenericCheckBoxWidget(disabled: disabled, value: _checked[i],),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(spell.getName(Settings.locale!), style: headingText,),
-                      Text(spell.getSchoolLevelForUI(), style: subheadingText,)
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            spell.getName(Settings.locale!),
+                            style: headingText,
+                          ),
+                        ),
+                        Text(spell.getSchoolLevelForUI(),
+                          overflow: TextOverflow.ellipsis,
+                          style: subheadingText,
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),
