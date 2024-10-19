@@ -18,7 +18,7 @@ final markDownStyle = MarkdownStyleSheet(
   tableHead: boldNormalText,
   tableColumnWidth: const IntrinsicColumnWidth(),
   tableHeadAlign: TextAlign.center,
-  tableBorder: TableBorder.all(color: textColor),
+  tableBorder: TableBorder.all(color: subheadingColor),
   listBullet: boldNormalText,
 );
 //Colors
