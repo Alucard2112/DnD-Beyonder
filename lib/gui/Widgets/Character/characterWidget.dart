@@ -25,7 +25,7 @@ class CharacterWidget extends StatelessWidget with Sortable<CharacterWidget>{
 
   @override
   int sortSpellCount(CharacterWidget b) {
-        return spellBook.spells.length.compareTo(b.spellBook.spells.length);
+        return spellBook.spellIds.length.compareTo(b.spellBook.spellIds.length);
   }
 
   @override
@@ -51,7 +51,7 @@ class CharacterWidget extends StatelessWidget with Sortable<CharacterWidget>{
                     children: [
                       Text(spellBook.name, style: headingText,),
                       Text(toDnDClassName(spellBook.dnDClass), style: subheadingTextBold,),
-                      Text(S.of(context).spellBookSpellCount(spellBook.spells.length), style: subheadingText,),
+                      Text(S.of(context).spellBookSpellCount(spellBook.spellIds.length), style: subheadingText,),
                     ],
                   )
               ),

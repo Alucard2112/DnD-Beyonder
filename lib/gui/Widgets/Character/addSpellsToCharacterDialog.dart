@@ -94,7 +94,6 @@ class _AddSpellsToCharacterDialogState extends State<AddSpellsToCharacterDialog>
                   }
                   else{
                     widget.character.spellIds.add(spell.id);
-                    widget.character.spells.add(spell);
                     widget.character.save();
                   }
                 }

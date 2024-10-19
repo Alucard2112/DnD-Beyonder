@@ -18,8 +18,6 @@ class Character extends HiveObject{
 
   static int maxId = 0;
 
-  final List<Spell> spells = [];
-
   Character({required this.id, required this.dnDClass, required this.name, required this.spellIds}){
    if(id>maxId){
      maxId = id;
@@ -30,17 +28,11 @@ class Character extends HiveObject{
   void _addSpells(){
     List<int> deadIds = [];
     for(int i in spellIds){
-      Spell? spell = BoxHandler.spellBox.get(i);
-      if(spell == null){
+      if(BoxHandler.spellBox.containsKey(i)){
         deadIds.add(i);
       }
-      else {
-        spells.add(spell);
-      }
     }
-    for(int i in deadIds){
-      spellIds.remove(i);
-    }
+    spellIds.removeWhere((int i) =>deadIds.contains(i));
   }
 
   Character.fromJson(Map<String, dynamic> json)

@@ -82,7 +82,6 @@ class _AddSpellToCharactersDialogState extends State<AddSpellToCharactersDialog>
                   }
                   else{
                     character.spellIds.add(widget.spell.id);
-                    character.spells.add(widget.spell);
                     character.save();
                   }
                 }

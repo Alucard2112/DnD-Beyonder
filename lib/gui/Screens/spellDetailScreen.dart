@@ -78,7 +78,6 @@ class SpellDetailScreen extends StatelessWidget {
                   SpellListScreen.selectedSpell[character.id] = -1;
                 }
                 character.spellIds.remove(spell.id);
-                character.spells.remove(spell);
                 character.save();
               }
             }
@@ -99,7 +98,6 @@ class SpellDetailScreen extends StatelessWidget {
               spell: spell,
             ).openDialog(context);
             if(decision){
-              character!.spells.remove(spell);
               character!.spellIds.remove(spell.id);
               character!.save();
               update();
