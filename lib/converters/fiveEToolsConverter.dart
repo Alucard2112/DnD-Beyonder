@@ -78,8 +78,8 @@ class FiveEToolsConverter {
     for (final Match m in matches) {
       String match = m[0]!;
       String hit = match.replaceAll("{@spell ", "").replaceAll("}", "");
-      BoxHandler.spellBox.values.toList().where((Spell s)=>s.getName().toLowerCase().trim()==hit.toLowerCase().trim());
-      ret = ret.replaceAll(match, hit);
+      List<Spell> spells = BoxHandler.spellBox.values.where((Spell s)=>s.getName().toLowerCase().trim()==hit.toLowerCase().trim()).toList();
+      ret = ret.replaceAll(match, spells.isEmpty ? hit : spells[0].getName());
     }
     return ret;
   }
