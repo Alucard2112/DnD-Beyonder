@@ -6,7 +6,6 @@ import '../../../data/character/character.dart';
 import '../../../data/gui/constants.dart';
 import '../../../generated/l10n.dart';
 import '../../../permanentData/boxHandler.dart';
-import '../../../permanentData/settings.dart';
 import '../dialogOptions.dart';
 import '../emptyDataWidget.dart';
 import '../genericCheckBoxWidget.dart';

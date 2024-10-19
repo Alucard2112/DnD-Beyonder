@@ -6,7 +6,6 @@ import 'package:dnd_beyonder/data/spell/spellSchool.dart';
 import 'package:dnd_beyonder/data/spell/subclass.dart';
 import 'package:dnd_beyonder/data/spell/time.dart';
 import 'package:dnd_beyonder/data/spell/timeUnits.dart';
-import 'package:dnd_beyonder/permanentData/settings.dart';
 
 import '../../generated/l10n.dart';
 import '../genericFilter.dart';
