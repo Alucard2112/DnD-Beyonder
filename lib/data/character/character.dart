@@ -28,7 +28,7 @@ class Character extends HiveObject{
   void _addSpells(){
     List<int> deadIds = [];
     for(int i in spellIds){
-      if(BoxHandler.spellBox.containsKey(i)){
+      if(!BoxHandler.spellBox.containsKey(i)){
         deadIds.add(i);
       }
     }
