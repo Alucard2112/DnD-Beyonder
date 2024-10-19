@@ -49,6 +49,13 @@
     }
   },
 
+  "@_Creature Size": {},
+  "tiny" : "tiny",
+  "small": "small",
+  "medium": "medium",
+  "large": "large",
+  "huge": "huge",
+
   "@_Klassen": {},
   "artificer": "Artificer",
   "barbarian": "Barbarian",

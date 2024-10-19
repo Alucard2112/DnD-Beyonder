@@ -49,6 +49,13 @@
     }
   },
 
+  "@_Creature Size": {},
+  "tiny" : "Sehr klein",
+  "small": "Klein",
+  "medium": "Mittelgroß",
+  "large": "Groß",
+  "huge": "Riesig",
+
   "@_Klassen": {},
   "artificer": "Werkmeister",
   "barbarian": "Barbar",

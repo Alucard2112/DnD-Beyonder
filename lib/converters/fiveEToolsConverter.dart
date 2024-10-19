@@ -50,21 +50,60 @@ class FiveEToolsConverter {
 
   static String translateAnnotations(String s){
     String ret = s;
-    if(ret.contains("{@dice")){
-      ret = _translateDice(ret);
-    }
-    if(ret.contains("{@damage")){
+    if(ret.contains("{@dice")||ret.contains("{@damage")){
       ret = _translateDamage(ret);
     }
     if(ret.contains("{@condition")){
       ret = _translateCondition(ret);
+    }
+    if(ret.contains("{@creature")){
+      ret = _translateCreature(ret);
+    }
+    if(ret.contains("{@hit")){
+      ret = _translateHit(ret);
+    }
+    return ret;
+  }
+
+  static String _translateHit(String s){
+    String ret = s;
+    RegExp exp = RegExp(r'{@hit \+[0-9]+}');
+    Iterable<Match> matches = exp.allMatches(s);
+    for (final Match m in matches) {
+      String match = m[0]!;
+      String hit = match.replaceAll("{@hit ", "").replaceAll("}", "");
+      ret = ret.replaceAll(match, hit);
+    }
+    return ret;
+  }
+
+  static String _translateCreature(String s){
+    String ret = s;
+    RegExp exp = RegExp(r'{@creature [a-zA-Z |()]*}');
+    Iterable<Match> matches = exp.allMatches(s);
+    for (final Match m in matches) {
+      String match = m[0]!;
+      String size = S.current.huge;
+      if(match.contains("tiny")){
+        size = S.current.tiny;
+      }
+      if(match.contains("small")){
+        size = S.current.small;
+      }
+      if(match.contains("medium")){
+        size = S.current.medium;
+      }
+      if(match.contains("large")){
+        size = S.current.large;
+      }
+      ret = ret.replaceAll(match, size);
     }
     return ret;
   }
 
   static String _translateCondition(String s){
     String ret = s;
-    RegExp exp = RegExp(r'{@condition [a-zA-Z]*}');
+    RegExp exp = RegExp(r'{@condition [a-zA-Z ]*}');
     Iterable<Match> matches = exp.allMatches(s);
     for (final Match m in matches) {
       String match = m[0]!;
@@ -76,34 +115,43 @@ class FiveEToolsConverter {
 
   static String _translateDamage(String s){
     String ret = s;
-    RegExp exp = RegExp(r'{@damage [0-9]*d[0-9]+}');
+    RegExp exp = RegExp(r'{@dice [0-9]*d[0-9]+( [\+\-] [0-9]+)?(\|[0-9]+)?}|{@damage [0-9]*d[0-9]+( [\+\-] [0-9]+)?(\|[0-9]+)?}');
     Iterable<Match> matches = exp.allMatches(s);
     for (final Match m in matches) {
       String match = m[0]!;
-      List<String> dieString = match.replaceAll("{@damage ", "").replaceAll("}", "").split("d");
+      print(match);
+      List<String> dieString = match.replaceAll("{@dice ", "").replaceAll("{@damage ", "").replaceAll("}", "").split("d");
       int? amount;
       if(dieString[0].isNotEmpty){
         amount = int.parse(dieString[0]);
       }
-      int type = int.parse(dieString[1]);
-      ret = ret.replaceAll(match, _translateDiceHelper(amount, type));
-    }
-    return ret;
-  }
-
-  static String _translateDice(String s){
-    String ret = s;
-    RegExp exp = RegExp(r'{@dice [0-9]*d[0-9]+}');
-    Iterable<Match> matches = exp.allMatches(s);
-    for (final Match m in matches) {
-      String match = m[0]!;
-      List<String> dieString = match.replaceAll("{@dice ", "").replaceAll("}", "").split("d");
-      int? amount;
-      if(dieString[0].isNotEmpty){
-        amount = int.parse(dieString[0]);
+      int type = 0;
+      String add = "";
+      String before = "";
+      String after = "";
+      if(dieString[1].contains("|")){
+        List<String> split = dieString[1].split("|");
+        dieString[1] = split[0];
+        after = ")";
+        before = "${split[1]} (";
       }
-      int type = int.parse(dieString[1]);
-      ret = ret.replaceAll(match, _translateDiceHelper(amount, type));
+      if(dieString[1].contains("+")){
+        List<String> split = dieString[1].split("+");
+        type = int.parse(split[0].trim());
+        add = " + ${split[1].trim()}";
+      }
+      else {
+        if(dieString[1].contains("-")){
+          List<String> split = dieString[1].split("-");
+          type = int.parse(split[0].trim());
+          add = " - ${split[1].trim()}";
+        }
+        else {
+          type = int.parse(dieString[1]);
+        }
+      }
+      print(match);
+      ret = ret.replaceAll(match, "$before${_translateDiceHelper(amount, type)}$add$after");
     }
     return ret;
   }
