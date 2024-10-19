@@ -4,29 +4,13 @@ import 'package:dnd_beyonder/gui/Widgets/cardWidget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/gui/constants.dart';
-import '../../../data/sortable.dart';
 import '../../../generated/l10n.dart';
 
-class CharacterWidget extends StatelessWidget with Sortable<CharacterWidget>{
+class CharacterWidget extends StatelessWidget{
   final Character spellBook;
   final GestureTapCallback? onTap;
 
   const CharacterWidget({this.onTap, required this.spellBook,super.key});
-
-  @override
-  int sortName(CharacterWidget b){
-    return spellBook.name.compareTo(b.spellBook.name);
-  }
-
-  @override
-  int sortDnDClass(CharacterWidget b) {
-    return toDnDClassName(spellBook.dnDClass).compareTo(toDnDClassName(b.spellBook.dnDClass));
-  }
-
-  @override
-  int sortSpellCount(CharacterWidget b) {
-        return spellBook.spellIds.length.compareTo(b.spellBook.spellIds.length);
-  }
 
   @override
   Widget build(BuildContext context) {

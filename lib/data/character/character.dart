@@ -1,11 +1,12 @@
 import 'package:dnd_beyonder/data/dnd/dnd_class.dart';
+import 'package:dnd_beyonder/data/sortable.dart';
 import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:hive/hive.dart';
 
 part 'character.g.dart';
 
 @HiveType(typeId: 8)
-class Character extends HiveObject{
+class Character extends HiveObject with Sortable<Character>{
   @HiveField(0)
   DnDClass dnDClass;
   @HiveField(1)
@@ -22,6 +23,21 @@ class Character extends HiveObject{
      maxId = id;
    }
    _removeDeadSpellIDs();
+  }
+
+  @override
+  int sortName(Character b){
+    return name.compareTo(b.name);
+  }
+
+  @override
+  int sortDnDClass(Character b) {
+    return toDnDClassName(dnDClass).compareTo(toDnDClassName(b.dnDClass));
+  }
+
+  @override
+  int sortSpellCount(Character b) {
+    return spellIds.length.compareTo(b.spellIds.length);
   }
 
   void _removeDeadSpellIDs(){

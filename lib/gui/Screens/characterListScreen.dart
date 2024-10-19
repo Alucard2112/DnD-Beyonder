@@ -10,14 +10,14 @@ import 'package:flutter/material.dart';
 import '../../data/filter.dart';
 import '../../data/gui/sorting.dart';
 import '../../generated/l10n.dart';
+import '../../permanentData/boxHandler.dart';
 import '../Widgets/SearchBarWidget.dart';
 import '../Widgets/sortUiButtonWidget.dart';
 import 'filterScreen.dart';
 
 class CharacterListScreen extends StatefulWidget {
-  final List<Character> characters;
   final Function update;
-  const CharacterListScreen({required this.characters, super.key, required this.update});
+  const CharacterListScreen({super.key, required this.update});
 
   @override
   State<CharacterListScreen> createState() => _CharacterListScreenState();
@@ -28,7 +28,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
   static Sorting _sorting = Sorting.name;
   static String _searchText = "";
   static int _selectedCharacter = -1;
-  static Filter _filter = CharacterFilter();
+  static final Filter _filter = CharacterFilter();
   static bool _showFilter = false;
 
   void _onSearchText(String text) {
@@ -71,6 +71,10 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<Character> characters = BoxHandler.characterBox.values.where(
+            (Character c)=>_filter.objectPasses(c, _searchText)
+    ).toList();
+    characters.sort((Character a, Character b)=>Sortable.sortFunction(a, b, _sorting, _asc));
     Widget child;
     if(_showFilter){
       return FilterScreen(
@@ -82,26 +86,13 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
     }
     if(_selectedCharacter >= 0){
       child = CharacterDetailScreen(
-        character: widget.characters[_selectedCharacter],
+        character: characters[_selectedCharacter],
         back: _back,
         update: widget.update,
       );
     }
     else {
-      List<CharacterWidget> children = [];
-      for (int i = 0; i < widget.characters.length; i++) {
-        Character character = widget.characters[i];
-        if(_filter.objectPasses(character, _searchText)) {
-          children.add(CharacterWidget(spellBook: character, onTap: () {
-              _onSelect(i);
-            },));
-          }
-
-      }
       String badgeText = _filter.getFilterText();
-      children.sort((CharacterWidget a, CharacterWidget b) {
-        return Sortable.sortFunction(a, b, _sorting, _asc);
-      });
       child = Column(
         children: [
           Padding(
@@ -155,9 +146,26 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
             ),
           ),
           Expanded(
-              child: ListView(
-                children: children,
-              ),
+            child: OrientationBuilder(
+                builder: (context, orientation) {
+                  return GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: (1 / .25),
+                      crossAxisCount: orientation == Orientation.portrait ? 1 : 2, // number of items in each row
+                    ),
+                    itemCount: characters.length,
+                    itemBuilder: (context, index) {
+                      Character character = characters[index];
+                      return CharacterWidget(
+                        spellBook: character,
+                           onTap: () {
+                          _onSelect(index);
+                        },
+                      );
+                    },
+                  );
+                }
+            ),
           )
         ],
       );

@@ -36,7 +36,6 @@ class _MainScreenState extends State<MainScreen> {
         update: _update,
       ),
       CharacterListScreen(
-        characters: BoxHandler.characterBox.values.toList(),
         update: _update,
       ),
       SettingsScreen(update: _update),
