@@ -1,5 +1,8 @@
 import 'dart:core';
 
+import 'package:dnd_beyonder/permanentData/boxHandler.dart';
+
+import '../data/spell/spell.dart';
 import '../generated/l10n.dart';
 
 class FiveEToolsConverter {
@@ -62,6 +65,22 @@ class FiveEToolsConverter {
     if(ret.contains("{@hit")){
       ret = _translateHit(ret);
     }
+    if(ret.contains("{@spell")){
+      ret = _translateHit(ret);
+    }
+    return ret;
+  }
+
+  static String _translateSpell(String s){
+    String ret = s;
+    RegExp exp = RegExp(r'{@spell [0-9a-zA-Z ]+}');
+    Iterable<Match> matches = exp.allMatches(s);
+    for (final Match m in matches) {
+      String match = m[0]!;
+      String hit = match.replaceAll("{@spell ", "").replaceAll("}", "");
+      BoxHandler.spellBox.values.toList().where((Spell s)=>s.getName().toLowerCase().trim()==hit.toLowerCase().trim());
+      ret = ret.replaceAll(match, hit);
+    }
     return ret;
   }
 
@@ -119,7 +138,6 @@ class FiveEToolsConverter {
     Iterable<Match> matches = exp.allMatches(s);
     for (final Match m in matches) {
       String match = m[0]!;
-      print(match);
       List<String> dieString = match.replaceAll("{@dice ", "").replaceAll("{@damage ", "").replaceAll("}", "").split("d");
       int? amount;
       if(dieString[0].isNotEmpty){
@@ -150,7 +168,6 @@ class FiveEToolsConverter {
           type = int.parse(dieString[1]);
         }
       }
-      print(match);
       ret = ret.replaceAll(match, "$before${_translateDiceHelper(amount, type)}$add$after");
     }
     return ret;
