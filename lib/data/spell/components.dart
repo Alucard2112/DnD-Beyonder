@@ -59,6 +59,9 @@ class Components{
     else{
       material = m["en"]!;
     }
+    if(material.isEmpty){
+      material = m["en"]!;
+    }
     return material.isEmpty ? "" : "($material)";
   }
 }
