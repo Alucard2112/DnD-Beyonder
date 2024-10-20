@@ -54,9 +54,11 @@ class Components{
     String material = "";
     Locale locale = Settings.locale!;
     if(m.containsKey(locale.languageCode)){
-      return "(${m[locale.languageCode]!})";
+      material = m[locale.languageCode]!;
     }
-    material = m["en"]!;
-    return "($material)";
+    else{
+      material = m["en"]!;
+    }
+    return material.isEmpty ? "" : "($material)";
   }
 }
