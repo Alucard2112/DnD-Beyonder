@@ -92,7 +92,7 @@ class FiveEToolsConverter {
     if(ret.contains("{@item")){
       ret = _translateItems(ret);
     }
-    if(ret.contains("{@scaledamage")){
+    if(ret.contains("{@scale")){
       ret = _translateScaledamage(ret);
     }
     if(ret.contains("{@")){
@@ -103,11 +103,11 @@ class FiveEToolsConverter {
 
   static String _translateScaledamage(String s){
     String ret = s;
-    RegExp exp = RegExp(r'{@scaledamage [0-9a-zA-Z| ]+}');
+    RegExp exp = RegExp(r'{@scale[a-zA-Z]+ [0-9a-zA-Z| ]+}');
     Iterable<Match> matches = exp.allMatches(s);
     for (final Match m in matches) {
       String match = m[0]!;
-      String hit = match.replaceAll("{@scaledamage ", "").replaceAll("}", "");
+      String hit = match.replaceAll("}", "");
       String dieString = hit.substring(hit.lastIndexOf("|"));
       List<String> split = dieString.split("d");
       int type = int.parse(split[1].trim());
