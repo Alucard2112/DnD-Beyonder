@@ -56,7 +56,98 @@
   "large": "large",
   "huge": "huge",
 
-  "@_Klassen": {},
+  "@_Action" : {},
+  "actions" : "{action, select, attack {Attack} dash {Dash} disengage {Disengage} hide {Hide} use_an_object {Use an Object} other {Error}}",
+  "@actions": {
+    "description": "translation of possible actions",
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Skills": {},
+  "skills" : "{skill, select, athletics {Athletics} acrobatics {Acrobatics} sleight_of_hand {Sleight of Hand} stealth {Stealth} arcana {Arcana} history {History} investigation {Investigation} nature {Nature} religion {Religion} animal_handling {Animal Handling} insight {Insight} medicine {Medicine} perception {Perception} survival {Survival} deception {Deception} intimidation {Intimidation} performance {Performance} persuasion {Persuasion} other {Error}}",
+  "@skills": {
+    "description": "translation of possible skills",
+    "placeholders": {
+      "skill": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Species": {},
+  "species" : "{selectSpecies, select, dragonborn {Dragonborn} human {Human} tiefling {Tiefling} dwarf {Dwarf} elf {Elf} halfling {Halfling} aasimar {Aasimar} gnome {Gnome} goliath {Goliath} orc {Orc} aarakocra {Aarakocra} air_genasi {Air Genasi} bugbear {Bugbear} centaur {Centaur} changeling {Changeling} deep_gnome {Deep Gnome} duergar {Duergar} earth_genasi {Earth Genasi} eladrin {Eladrin} fairy {Fairy} firbolg {Firbolg} fire_genasi {Fire Genasi} githyanki {Githyanki} githzerai {Githzerai} goblin {Goblin} harengon {Harengon} hobgoblin {Hobgoblin} kenku {Kenku} kobold {Kobold} lizardfolk {Lizardfolk} minotaur {Minotaur} satyr {Satyr} sea_elf{Sea Elf} shadar_kai {Shadar-kai} shifter {Shifter} tabaxi {Tabaxi} tortle {Tortle} triton {Triton} water_genasi {Water Genasi} yuan_ti {Yuan-ti} kender {Kender} other {Fehler}}",
+  "@species": {
+    "description": "translation of possible skills",
+    "placeholders": {
+      "selectSpecies": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Status" : {},
+  "status" : "{status, select, concentration {Concentration} surprised {Surprised} other {Error}}",
+  "@status": {
+    "description": "translation of possible actions",
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Cover" : {},
+  "cover" : "{cover, select, half_cover {half cover} three_quarters_cover {three-quarters cover} total_cover {total cover} other {Error}}",
+  "@cover": {
+    "description": "translation of possible cover",
+    "placeholders": {
+      "cover": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Light" : {},
+  "light" : "{light, select, bright_light {bright light} dim_light {dim light} darkness {darkness} other {Error}}",
+  "@light": {
+    "description": "translation of possible light",
+    "placeholders": {
+      "light": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Visibility" : {},
+  "visibility" : "{visibility, select, lightly_obscured {lightly obscured} heavily_obscured {heavily obscured} other {Error}}",
+  "@visibility": {
+    "description": "translation of possible visibility",
+    "placeholders": {
+      "visibility": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Terrain": {},
+  "difficultTerrain" : "difficult terrain",
+
+  "@_Senses": {},
+  "senses" : "{sense, select, darkvision {Darkvision} truesight {Truesight} blindsight {Blindsight} other {Error}}",
+  "@senses": {
+    "description": "translation of possible actions",
+    "placeholders": {
+      "sense": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Classes": {},
   "artificer": "Artificer",
   "barbarian": "Barbarian",
   "bard": "Bard",
@@ -251,7 +342,7 @@
   "unknown": "Unknown",
 
   "@_Conditions": {},
-  "condition": "{cond, select, blinded {Blinded} charmed {Charmed} deafened {Deafened} frightened {Frightened} grappled {Grappled} incapacitated {Incapacitated} invisible {Invisible} paralyzed {Paralyzed} petrified {Petrified} poisoned {Poisoned} prone {Prone} restrained {Restrained} stunned {Stunned} unconscious {Unconscious} exhaustion {Exhaustion}}",
+  "condition": "{cond, select, blinded {Blinded} charmed {Charmed} deafened {Deafened} frightened {Frightened} grappled {Grappled} incapacitated {Incapacitated} invisible {Invisible} paralyzed {Paralyzed} petrified {Petrified} poisoned {Poisoned} prone {Prone} restrained {Restrained} stunned {Stunned} unconscious {Unconscious} exhaustion {Exhaustion} other {Error}}",
   "@condition": {
     "description": "translations of conditions",
     "placeholders": {
@@ -355,7 +446,7 @@
   "@_UiSettings": {},
   "settingsLanguage" : "Language",
   "settingsLanguageLabel" : "Select Language",
-  "settingsLanguages" : "{lang, select, en {English} de {German}}",
+  "settingsLanguages" : "{lang, select, en {English} de {German} other {Error}}",
   "@settingsLanguages": {
     "description": "translations of languages with their languagecode",
     "placeholders": {

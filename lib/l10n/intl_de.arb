@@ -56,7 +56,98 @@
   "large": "Groß",
   "huge": "Riesig",
 
-  "@_Klassen": {},
+  "@_Actions" : {},
+  "actions" : "{action, select, attack {Angriff} dash {Spurt} disengage {Rückzug} hide {Verstecken} use_an_object {Gegenstand benutzen} other {Fehler}}",
+  "@actions": {
+    "description": "translation of possible actions",
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Skills": {},
+  "skills" : "{skill, select, athletics {Athletik} acrobatics {Akrobatik} sleight_of_hand {Fingerfertigkeit} stealth {Heimlichkeit} arcana {Arkane Kunde} history {Geschichte} investigation {Nachforschung} nature {Naturkunde} religion {Religion} animal_handling {Mit Tieren umgehen} insight {Motiv Erkennen} medicine {Heilkunde} perception {Wahrnehmung} survival {Überlebenskunst} deception {Täuschung} intimidation {Einschüchtern} performance {Auftreten} persuasion {Überzeugen} other {Fehler}}",
+  "@skills": {
+    "description": "translation of possible skills",
+    "placeholders": {
+      "skill": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Species": {},
+  "species" : "{selectSpecies, select, dragonborn {Drachenblütige} human {Mensch} tiefling {Tiefling} dwarf {Zwerg} elf {Elf} halfling {Halbling} aasimar {Aasimar} gnome {Gnom} goliath {Goliath} orc {Ork} aarakocra {Aarakocra} air_genasi {Luft-Genasi} bugbear {Bugbear} centaur {Zentaure} changeling {Wechselbalg} deep_gnome {Tiefengnom} duergar {Duergar} earth_genasi {Erd-Genasi} eladrin {Eladrin} fairy {Fee} firbolg {Firbolg} fire_genasi {Feuer-Genasi} githyanki {Githyanki} githzerai {Githzerai} goblin {Goblin} harengon {Harengon} hobgoblin {Hobgoblin} kenku {Kenku} kobold {Kobold} lizardfolk {Echsenmensch} minotaur {Minotaur} satyr {Satyr} sea_elf {Meereself} shadar_kai {Shadar-kai} shifter {Wandler} tabaxi {Tabaxi} tortle {Tortel} triton {Triton} water_genasi {Wasser-Genasi} yuan_ti {Yuan-ti} kender {Kender} other {Fehler}}",
+  "@species": {
+    "description": "translation of possible species ",
+    "placeholders": {
+      "selectSpecies": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Senses": {},
+  "senses" : "{sense, select, darkvision {Dunkelsicht} truesight {Wahrer Blick} blindsight {Blindsicht} other {Fehler}}",
+  "@senses": {
+    "description": "translation of possible actions",
+    "placeholders": {
+      "sense": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Status" : {},
+  "status" : "{status, select, concentration {Konzentration} surprised {Überrascht} other {Fehler}}",
+  "@status": {
+    "description": "translation of possible actions",
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Cover" : {},
+  "cover" : "{cover, select, half_cover {Teildeckung} three_quarters_cover {Dreivierteldeckung} total_cover {Volle Deckung} other {Fehler}}",
+  "@cover": {
+    "description": "translation of possible cover",
+    "placeholders": {
+      "cover": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Light" : {},
+  "light" : "{light, select, bright_light {Helles Licht} dim_light {Dämmriges Licht} darkness {Dunkelheit} other {Fehler}}",
+  "@light": {
+    "description": "translation of possible light",
+    "placeholders": {
+      "light": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Visibility" : {},
+  "visibility" : "{visibility, select, lightly_obscured {Leicht verschleiert} heavily_obscured {Komplett verschleiert} other {Fehler}}",
+  "@visibility": {
+    "description": "translation of possible visibility",
+    "placeholders": {
+      "visibility": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Terrain": {},
+  "difficultTerrain" : "schwieriges Gelände",
+
+  "@_Classes": {},
   "artificer": "Werkmeister",
   "barbarian": "Barbar",
   "bard": "Barde",
@@ -251,7 +342,7 @@
   "unknown": "Unbekannt",
 
   "@_Conditions": {},
-  "condition": "{cond, select, blinded {Blind} charmed {Bezaubert} deafened {Taub} frightened {Verängstigt} grappled {Gepackt} incapacitated {Kampfunfähig} invisible {Unsichtbar} paralyzed {Gelähmt} petrified {Versteinert} poisoned {Vergiftet} prone {Liegend} restrained {Festgesetzt} stunned {Betäubt} unconscious {Bewusstlos} exhaustion {Erschöpft}}",
+  "condition": "{cond, select, blinded {Blind} charmed {Bezaubert} deafened {Taub} frightened {Verängstigt} grappled {Gepackt} incapacitated {Kampfunfähig} invisible {Unsichtbar} paralyzed {Gelähmt} petrified {Versteinert} poisoned {Vergiftet} prone {Liegend} restrained {Festgesetzt} stunned {Betäubt} unconscious {Bewusstlos} exhaustion {Erschöpft} other {Fehler}}",
   "@condition": {
     "description": "translations of conditions",
     "placeholders": {
@@ -357,7 +448,7 @@
   "@_UiSettings": {},
   "settingsLanguage" : "Sprache",
   "settingsLanguageLabel" : "Sprache auswählen",
-  "settingsLanguages" : "{lang, select, en {Englisch} de {Deutsch}}",
+  "settingsLanguages" : "{lang, select, en {Englisch} de {Deutsch} other {Fehler}}",
   "@settingsLanguages": {
     "description": "translations of languages with their languagecode",
     "placeholders": {
