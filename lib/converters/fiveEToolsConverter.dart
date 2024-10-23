@@ -95,8 +95,26 @@ class FiveEToolsConverter {
     if(ret.contains("{@scale")){
       ret = _translateScaledamage(ret);
     }
+    if(ret.contains("@filter")){
+      ret = _translateFilter(ret);
+    }
     if(ret.contains("{@")){
       ret = _translateGeneric(ret);
+    }
+    return ret;
+  }
+
+  static String _translateFilter(String s){
+    String ret = s;
+    RegExp exp = RegExp(r'{@filter [0-9a-zA-Z| \[\];&]+}');
+    Iterable<Match> matches = exp.allMatches(s);
+    for (final Match m in matches) {
+      String match = m[0]!;
+      String hit = match.substring(match.indexOf(" ")+1).replaceAll("}", "");
+      if(hit.contains("|")){
+        hit = hit.substring(0,hit.indexOf("|"));
+      }
+      ret = ret.replaceAll(match, hit);
     }
     return ret;
   }
