@@ -16,6 +16,8 @@ import 'package:dnd_beyonder/data/spell/timeUnits.dart';
 import 'package:dnd_beyonder/data/character/character.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import '../data/spell/durationEndType.dart';
+
 class BoxHandler{
   static late final Box<Spell> spellBox;
   static late final Box<Character> characterBox;
@@ -31,6 +33,7 @@ class BoxHandler{
     Hive.registerAdapter(ComponentUsedUpAdapter());
     Hive.registerAdapter(DistanceTypeAdapter());
     Hive.registerAdapter(DnDClassAdapter());
+    Hive.registerAdapter(DurationEndTypeAdapter());
     Hive.registerAdapter(DurationTypeAdapter());
     Hive.registerAdapter(DurationAdapter());
     Hive.registerAdapter(EntryHigherLevelAdapter());

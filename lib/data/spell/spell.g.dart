@@ -32,8 +32,8 @@ class SpellAdapter extends TypeAdapter<Spell> {
           MapEntry(k as String, (v as List).cast<EntryHigherLevel>())),
       (fields[12] as List).cast<String>(),
       (fields[13] as List).cast<String>(),
-      (fields[14] as List).cast<DnDClass>().toSet(),
-      (fields[15] as List).cast<SubClasses>().toSet(),
+      (fields[14] as Set).cast<DnDClass>(),
+      (fields[15] as Set).cast<SubClasses>(),
       fields[7] as Duration,
       (fields[16] as List).cast<SpellDamageType>(),
     );

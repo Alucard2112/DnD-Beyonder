@@ -1,39 +1,37 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'durationType.dart';
+part of 'durationEndType.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class DurationTypeAdapter extends TypeAdapter<DurationType> {
+class DurationEndTypeAdapter extends TypeAdapter<DurationEndType> {
   @override
-  final int typeId = 11;
+  final int typeId = 45;
 
   @override
-  DurationType read(BinaryReader reader) {
+  DurationEndType read(BinaryReader reader) {
     switch (reader.readByte()) {
       case 0:
-        return DurationType.instantaneous;
+        return DurationEndType.dispel;
       case 1:
-        return DurationType.timed;
-      case 2:
-        return DurationType.permanent;
+        return DurationEndType.trigger;
       default:
-        return DurationType.instantaneous;
+        return DurationEndType.unknown;
     }
   }
 
   @override
-  void write(BinaryWriter writer, DurationType obj) {
+  void write(BinaryWriter writer, DurationEndType obj) {
     switch (obj) {
-      case DurationType.instantaneous:
+      case DurationEndType.dispel:
         writer.writeByte(0);
         break;
-      case DurationType.timed:
+      case DurationEndType.trigger:
         writer.writeByte(1);
         break;
-      case DurationType.permanent:
+      case DurationEndType.unknown:
         writer.writeByte(2);
         break;
     }
@@ -45,7 +43,7 @@ class DurationTypeAdapter extends TypeAdapter<DurationType> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is DurationTypeAdapter &&
+      other is DurationEndTypeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

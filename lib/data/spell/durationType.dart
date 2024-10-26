@@ -8,7 +8,9 @@ enum DurationType{
   @HiveField(0)
   instantaneous,
   @HiveField(1)
-  timed
+  timed,
+  @HiveField(2)
+  permanent
 }
 
 DurationType durationTypeFromString(String s){
@@ -17,6 +19,8 @@ DurationType durationTypeFromString(String s){
       return DurationType.timed;
     case "instantaneous":
       return DurationType.instantaneous;
+    case "permanent":
+      return DurationType.permanent;
   }
   return DurationType.instantaneous;
 }
@@ -26,6 +30,8 @@ String durationTypeToString(DurationType t){
     case DurationType.instantaneous:
       return S.current.instantaneous;
     case DurationType.timed:
+      return "";
+    case DurationType.permanent:
       return "";
   }
 }

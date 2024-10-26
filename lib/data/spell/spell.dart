@@ -6,6 +6,7 @@ import 'package:dnd_beyonder/data/spell/componentUsedUp.dart';
 import 'package:dnd_beyonder/data/spell/components.dart';
 import 'package:dnd_beyonder/data/spell/damageType.dart';
 import 'package:dnd_beyonder/data/spell/distanceType.dart';
+import 'package:dnd_beyonder/data/spell/durationEndType.dart';
 import 'package:dnd_beyonder/data/spell/entryHigherLevel.dart';
 import 'package:dnd_beyonder/data/spell/range.dart';
 import 'package:dnd_beyonder/data/spell/sourceBook.dart';
@@ -305,9 +306,16 @@ class Spell extends HiveObject with Sortable<Spell>{
     Map<String, dynamic> durationJson = json["duration"][0];
     DurationType type = durationTypeFromString(durationJson["type"]);
     bool concentration = durationJson.containsKey("concentration");
-    Duration duration = Duration(type, TimeUnits.unknown, 0, concentration);
-    if(type != DurationType.instantaneous){
-      duration = Duration(type,timeUnitFromString(durationJson["duration"]["type"]),durationJson["duration"]["amount"], concentration);
+    Duration duration = Duration(type, TimeUnits.unknown, 0, concentration, []);
+    if(type == DurationType.permanent){
+      List<DurationEndType> t = [];
+      for(String s in json["duration"]["ends"].cast<String>()){
+
+      }
+      duration = Duration(type, TimeUnits.unknown, 0, concentration, t);
+    }
+    else if(type != DurationType.instantaneous){
+      duration = Duration(type,timeUnitFromString(durationJson["duration"]["type"]),durationJson["duration"]["amount"], concentration, []);
     }
     int range = -1;
     if(json["range"]["distance"]?.containsKey("amount") ?? false){

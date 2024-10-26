@@ -277,7 +277,11 @@
   "evocation": "Evocation",
   "necromancy": "Necromancy",
 
+  "or": "or",
+
   "@_TimeUnits" : {},
+  "trigger": "triggered",
+  "dispel": "dispelled",
   "concentration" : "Concentration",
   "action": "{count, plural,=1{1 Action} other{{count} Actions}}",
   "@action": {
@@ -392,6 +396,15 @@
   "spellDetailDistance": "Range",
   "spellDetailComponents": "Components",
   "spellDetailDuration": "Duration",
+  "spellDetailDurationPermanent": "Until the spell is {condition}",
+  "@spellDetailDurationPermanent": {
+    "description": "String for displaying permanent spells",
+    "placeholders": {
+      "condition": {
+        "type": "String"
+      }
+    }
+  },
   "spellDetailDice": "{numberDice}D{typeDie}",
   "@spellDetailDice": {
     "description": "String for displaying dice",

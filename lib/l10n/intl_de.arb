@@ -277,7 +277,11 @@
   "evocation": "Hervorrufung",
   "necromancy": "Nekromantie",
 
+  "or": "oder",
+
   "@_TimeUnits" : {},
+  "trigger": "ausgelöst",
+  "dispel": "gebannt",
   "concentration" : "Konzentration",
   "action": "{count, plural,=1{1 Aktion} other{{count} Aktionen}}",
   "@action": {
@@ -393,6 +397,15 @@
   "spellDetailDistance": "Reichweite",
   "spellDetailComponents": "Komponenten",
   "spellDetailDuration": "Wirkungsdauer",
+  "spellDetailDurationPermanent": "bis der Zauber {condition} wird ",
+  "@spellDetailDurationPermanent": {
+    "description": "String for displaying permanent spells",
+    "placeholders": {
+      "condition": {
+        "type": "String"
+      }
+    }
+  },
   "spellDetailDice": "{numberDice}W{typeDie}",
   "@spellDetailDice": {
     "description": "String for displaying dice",

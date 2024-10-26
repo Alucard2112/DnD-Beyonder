@@ -1,3 +1,4 @@
+import 'package:dnd_beyonder/data/spell/durationEndType.dart';
 import 'package:dnd_beyonder/data/spell/durationType.dart';
 import 'package:dnd_beyonder/data/spell/timeUnits.dart';
 import 'package:hive/hive.dart';
@@ -16,26 +17,37 @@ class Duration{
   final int amount;
   @HiveField(3)
   final bool concentration;
+  @HiveField(4)
+  final List<DurationEndType> ends;
 
-  Duration(this.type, this.unit, this.amount, this.concentration);
+  Duration(this.type, this.unit, this.amount, this.concentration, this.ends);
 
   Map<String, dynamic> toJson() => {
     "type" : type.index,
     "unit" : unit.index,
     "amount" : amount,
     "concentration" : concentration,
+    "ends" : ends.map((DurationEndType e) => e.index)
   };
 
   Duration.fromJson(Map<String, dynamic> json)
     : type = DurationType.values[json["type"] as int],
       unit = TimeUnits.values[json["unit"] as int],
       amount = json["amount"] as int,
-      concentration = json["concentration"] as bool;
+      concentration = json["concentration"] as bool,
+      ends = ((json["ends"] as List).cast<int>()).map((int i) => DurationEndType.values[i]).toList();
 
   @override
   String toString() {
     if(type == DurationType.instantaneous){
       return durationTypeToString(type);
+    }
+    if(type == DurationType.permanent){
+      String conditions = durationEndTypeToString(ends[0]);
+      for(int i = 1; i < ends.length; i++){
+        conditions+= "${S.current.or} ${durationEndTypeToString(ends[i])}";
+      }
+      return S.current.spellDetailDurationPermanent(conditions);
     }
     String s = _unitToString();
     if(concentration){

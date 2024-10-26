@@ -21,13 +21,14 @@ class DurationAdapter extends TypeAdapter<Duration> {
       fields[1] as TimeUnits,
       fields[2] as int,
       fields[3] as bool,
+      (fields[4] as List).cast<DurationEndType>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, Duration obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.type)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class DurationAdapter extends TypeAdapter<Duration> {
       ..writeByte(2)
       ..write(obj.amount)
       ..writeByte(3)
-      ..write(obj.concentration);
+      ..write(obj.concentration)
+      ..writeByte(4)
+      ..write(obj.ends);
   }
 
   @override
