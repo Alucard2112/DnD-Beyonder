@@ -310,7 +310,7 @@ class Spell extends HiveObject with Sortable<Spell>{
     if(type == DurationType.permanent){
       List<DurationEndType> t = [];
       for(String s in json["duration"]["ends"].cast<String>()){
-
+        t.add(durationEndTypeFromString(s));
       }
       duration = Duration(type, TimeUnits.unknown, 0, concentration, t);
     }
