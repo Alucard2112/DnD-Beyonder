@@ -114,7 +114,7 @@ class FiveEToolsConverter {
       if(hit.contains("|")){
         hit = hit.substring(0,hit.indexOf("|"));
       }
-      ret = ret.replaceAll(match, hit);
+      ret = ret.replaceAll(match, "*$hit*");
     }
     return ret;
   }
@@ -157,7 +157,7 @@ class FiveEToolsConverter {
     for (final Match m in matches) {
       String match = m[0]!;
       String hit = match.replaceAll("{@item ", "").replaceAll("}", "");
-      ret = ret.replaceAll(match, hit.substring(0, hit.indexOf("|")));
+      ret = ret.replaceAll(match, "*${hit.substring(hit.lastIndexOf("|"))}*");
     }
     return ret;
   }
@@ -194,7 +194,7 @@ class FiveEToolsConverter {
       if(hit.contains("|")){
         hit = hit.substring(0, hit.indexOf("|"));
       }
-      ret = ret.replaceAll(match, S.current.status(hit.toLowerCase().trim().replaceAll(RegExp(r"\W"), "_")));
+      ret = ret.replaceAll(match, "*${S.current.status(hit.toLowerCase().trim().replaceAll(RegExp(r"\W"), "_"))}*");
     }
     return ret;
   }
@@ -206,7 +206,7 @@ class FiveEToolsConverter {
     for (final Match m in matches) {
       String match = m[0]!;
       String hit = match.replaceAll("{@race ", "").replaceAll("}", "");
-      ret = ret.replaceAll(match, S.current.species(hit.toLowerCase().trim().replaceAll(RegExp(r"\W"), "_")));
+      ret = ret.replaceAll(match, "*${S.current.species(hit.toLowerCase().trim().replaceAll(RegExp(r"\W"), "_"))}*");
     }
     return ret;
   }
@@ -218,7 +218,7 @@ class FiveEToolsConverter {
     for (final Match m in matches) {
       String match = m[0]!;
       String hit = match.replaceAll("{@skill ", "").replaceAll("}", "");
-      ret = ret.replaceAll(match, S.current.skills(hit.toLowerCase().trim().replaceAll(" ", "_")));
+      ret = ret.replaceAll(match, "*${S.current.skills(hit.toLowerCase().trim().replaceAll(" ", "_"))}*");
     }
     return ret;
   }
@@ -230,7 +230,7 @@ class FiveEToolsConverter {
     for (final Match m in matches) {
       String match = m[0]!;
       String hit = match.replaceAll("{@sense ", "").replaceAll("}", "");
-      ret = ret.replaceAll(match, S.current.senses(hit.toLowerCase().trim().replaceAll(" ", "_")));
+      ret = ret.replaceAll(match, "*${S.current.senses(hit.toLowerCase().trim().replaceAll(" ", "_"))}*");
     }
     return ret;
   }
@@ -267,7 +267,7 @@ class FiveEToolsConverter {
       String match = m[0]!;
       String hit = match.replaceAll("{@spell ", "").replaceAll("}", "");
       List<Spell> spells = BoxHandler.spellBox.values.where((Spell s)=>s.name["en"]!.toLowerCase().trim()==hit.toLowerCase().trim()).toList();
-      ret = ret.replaceAll(match, spells.isEmpty ? hit : spells[0].getName());
+      ret = ret.replaceAll(match, "*${spells.isEmpty ? hit : spells[0].getName()}*");
     }
     return ret;
   }
@@ -307,7 +307,10 @@ class FiveEToolsConverter {
       }
       else{
         String creature = match.replaceAll("{@creature ", "").replaceAll("}", "");
-        ret = ret.replaceAll(match, creature);
+        if(creature.contains("|")){
+          creature = creature.substring(creature.lastIndexOf("|")+1);
+        }
+        ret = ret.replaceAll(match, "*$creature*");
       }
     }
     return ret;
@@ -330,7 +333,7 @@ class FiveEToolsConverter {
 
   static String _translateDamage(String s){
     String ret = s;
-    RegExp exp = RegExp(r'{@dice [0-9]*d[0-9]+( [+\-] [0-9]+)?(\|[0-9]+)?}|{@damage [0-9]*d[0-9]+( [+\-] [0-9]+)?(\|[0-9]+)?}');
+    RegExp exp = RegExp(r'{@dice [0-9]*d[0-9]+( [+\-×] [0-9]+)?(\|[0-9]+)?}|{@damage [0-9]*d[0-9]+( [+\-×] [0-9]+)?(\|[0-9]+)?}');
     Iterable<Match> matches = exp.allMatches(s);
     for (final Match m in matches) {
       String match = m[0]!;
@@ -360,11 +363,16 @@ class FiveEToolsConverter {
           type = int.parse(split[0].trim());
           add = " - ${split[1].trim()}";
         }
+        else if(dieString[1].contains("×")){
+          List<String> split = dieString[1].split("×");
+          type = int.parse(split[0].trim());
+          add = " × ${split[1].trim()}";
+        }
         else {
           type = int.parse(dieString[1]);
         }
       }
-      ret = ret.replaceAll(match, "$before${_translateDiceHelper(amount, type)}$add$after");
+      ret = ret.replaceAll(match, "*$before${_translateDiceHelper(amount, type)}$add$after*");
     }
     return ret;
   }
