@@ -113,6 +113,9 @@ class FiveEToolsConverter {
         case "item":
           replace = _translateItems(match);
           break;
+        case "chance":
+          replace = _translateChance(match);
+          break;
         case "scaledamage":
           replace = _translateScaledamage(match);
           break;
@@ -129,6 +132,11 @@ class FiveEToolsConverter {
       ret = ret.replaceAll(match, replace);
     }
     return ret;
+  }
+
+  static String _translateChance(String s){
+    String hit = s.substring(s.indexOf(" ")+1,s.indexOf("|")).replaceAll("}", "");
+    return "$hit%";
   }
 
   static String _translateNote(String s){
