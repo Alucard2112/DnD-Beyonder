@@ -69,6 +69,7 @@ class SpellListWidget extends StatelessWidget {
           child: OrientationBuilder(
             builder: (context, orientation) {
               return GridView.builder(
+                key: PageStorageKey<String>('$key'),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: (1 / .25),
                   crossAxisCount: orientation == Orientation.portrait ? 1 : 2, // number of items in each row
