@@ -56,18 +56,29 @@ class FiveEToolsConverter {
     if(ret.contains("{@")){
       ret = _translateGeneric(ret);
     }
-    if(ret.contains("{@note")){
-      ret = _translateNote(ret);
-    }
     return ret;
   }
 
   static String _translateGeneric(String s){
     String ret = s;
-    RegExp exp = RegExp(r'{@[^}]+}'); //RegExp(r'{@[0-9a-zA-Z| \(\)\[\];&]+}');
-    Iterable<Match> matches = exp.allMatches(s);
-    for (final Match m in matches) {
-      String match = m[0]!;
+    List<String> matches = [];
+    int start = 0;
+    int counter = 0;
+    for(int i = 0; i < s.length; i++){
+      if(s[i] == "{" && s[i+1] == "@"){
+        if(counter == 0){
+          start = i;
+        }
+        counter++;
+      }
+      if(s[i] == "}" && counter > 0){
+        counter--;
+        if(counter == 0){
+          matches.add(s.substring(start, i+1));
+        }
+      }
+    }
+    for (final String match in matches) {
       String start = match.substring(match.indexOf("@")+1, match.indexOf(" "));
       String replace = match;
       switch(start){
@@ -119,6 +130,9 @@ class FiveEToolsConverter {
         case "scaledamage":
           replace = _translateScaledamage(match);
           break;
+        case "note":
+          replace = _translateGeneric(_translateNote(match));
+          break;
         case "filter":
           replace = _translateFilter(match);
           break;
@@ -140,15 +154,8 @@ class FiveEToolsConverter {
   }
 
   static String _translateNote(String s){
-    String ret = s;
-    RegExp exp = RegExp(r"{@note [0-9a-zA-Z|' \[\];&]+}");
-    Iterable<Match> matches = exp.allMatches(s);
-    for (final Match m in matches) {
-      String match = m[0]!;
-      String hit = match.substring(match.indexOf(" ")+1).replaceAll("}", "");
-      ret = ret.replaceAll(match, hit);
-    }
-    return ret;
+      String hit = s.substring(s.indexOf(" ")+1, s.lastIndexOf("}"));
+      return hit;
   }
 
   static String _translateFilter(String s){
@@ -206,7 +213,6 @@ class FiveEToolsConverter {
       while(speciesString.endsWith("_")){
         speciesString = speciesString.substring(0, hit.length-1);
       }
-      print(speciesString);
       return "*${S.current.species(speciesString)}*";
   }
 
