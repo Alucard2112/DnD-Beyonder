@@ -168,7 +168,7 @@ class FiveEToolsConverter {
 
   static String _translateScaledamage(String s){
     String hit = s.replaceAll("}", "");
-    String dieString = hit.substring(hit.lastIndexOf("|"));
+    String dieString = hit.substring(hit.lastIndexOf("|")+1);
     List<String> split = dieString.split("d");
     int type = int.parse(split[1].trim());
     int amount = int.parse(split[0].trim());
