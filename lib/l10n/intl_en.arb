@@ -237,11 +237,7 @@
   "homebrew": "Homebrew",
 
   "@_SpellLevel": {},
-  "spellSchoolLevelZero": "{school} Cantrip",
-  "spellSchoolLevelOne": "1st Level {school}",
-  "spellSchoolLevelTwo": "2nd Level {school}",
-  "spellSchoolLevelThree": "3rd Level {school}",
-  "spellSchoolLevel": "{lvl}th Level {school}",
+  "spellSchoolLevel": "{lvl, plural,=0 {{school} Cantrip} one {1st Level {school}} two {2nd Level {school}} few {3rd Level {school}} other{{lvl}th Level {school}}}",
   "@spellSchoolLevel": {
     "description": "String for displaying school and level of a spell",
     "placeholders": {
@@ -254,12 +250,16 @@
       }
     }
   },
-  "spellLevelZero": "Cantrip",
-  "spellLevelOne": "1st Level",
-  "spellLevelTwo": "2nd Level",
-  "spellLevelThree": "3rd Level",
-  "spellLevel": "{lvl}th Level",
-
+  "spellLevel": "{lvl, plural,=0 {Cantrip} one {1st Level} two {2nd Level} few {3rd Level} other{{lvl}th Level}}",
+  "@spellLevel": {
+    "description": "String for displaying level of a spell",
+    "placeholders": {
+      "lvl": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
   "@_Filter": {},
   "filterClasses":"Classes",
   "filterLevel":"Level",

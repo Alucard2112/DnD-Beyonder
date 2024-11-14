@@ -237,11 +237,7 @@
   "homebrew": "Homebrew",
 
   "@_SpellLevel": {},
-  "spellSchoolLevelZero": "Zaubertrick der {school}",
-  "spellSchoolLevelOne": "{school} des 1. Grades",
-  "spellSchoolLevelTwo": "{school} des 2. Grades",
-  "spellSchoolLevelThree": "{school} des 3. Grades",
-  "spellSchoolLevel": "{school} des {lvl}. Grades",
+  "spellSchoolLevel": "{lvl, plural,=0 {Zaubertrick der {school}} other{{school} des {lvl}. Grades}}",
   "@spellSchoolLevel": {
     "description": "String for displaying school and level of a spell",
     "placeholders": {
@@ -254,11 +250,16 @@
       }
     }
   },
-  "spellLevelZero": "Cantrip",
-  "spellLevelOne": "1st level",
-  "spellLevelTwo": "2nd level",
-  "spellLevelThree": "3rd level",
-  "spellLevel": "{lvl}th level",
+  "spellLevel": "{lvl, plural,=0 {Zaubertrick} other{{lvl}. Grad}}",
+  "@spellLevel": {
+    "description": "String for displaying level of a spell",
+    "placeholders": {
+      "lvl": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
 
   "@_Filter": {},
   "filterClasses":"Klassen",
