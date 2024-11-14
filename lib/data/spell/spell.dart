@@ -115,7 +115,8 @@ class Spell extends HiveObject with Sortable<Spell>{
   
 
   static String getLevelString(int level){
-    switch(level){
+    return S.current.spellLevel(level);
+    /*switch(level){
       case 0:
         return S.current.spellLevelZero;
       case 1:
@@ -124,8 +125,8 @@ class Spell extends HiveObject with Sortable<Spell>{
         return S.current.spellLevelTwo;
       case 3:
         return S.current.spellLevelThree;
-    }
-    return S.current.spellLevel(level);
+    }*/
+
   }
 
   @override
@@ -168,7 +169,8 @@ class Spell extends HiveObject with Sortable<Spell>{
   }
 
   String getSchoolLevelForUI(){
-    switch(level){
+    return S.current.spellSchoolLevel(level, getSchoolString());
+    /*switch(level){
       case 0:
         return S.current.spellSchoolLevelZero(getSchoolString());
       case 1:
@@ -177,8 +179,7 @@ class Spell extends HiveObject with Sortable<Spell>{
         return S.current.spellSchoolLevelTwo(getSchoolString());
       case 3:
         return S.current.spellSchoolLevelThree(getSchoolString());
-    }
-    return S.current.spellSchoolLevel(level, getSchoolString());
+    }*/
   }
 
   String getSchoolString(){

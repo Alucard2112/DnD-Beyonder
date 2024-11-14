@@ -24,7 +24,11 @@ class SpellFilter extends Filter{
     Time(12, TimeUnits.hour),
     Time(24, TimeUnits.hour),],);
   final GenericFilter<SpellDamageType> _damageTypeFilter = GenericFilter(SpellDamageType.values, translate: spellDamageTypeToName);
-  final GenericFilter<int> _levelFilter = GenericFilter([0,1,2,3,4,5,6,7,8,9], translate: (int lvl){return S.current.spellLevel(lvl);});
+  final GenericFilter<int> _levelFilter = GenericFilter([0,1,2,3,4,5,6,7,8,9], translate: _translateLvl);
+
+  static String _translateLvl(lvl){
+    return S.current.spellLevel(lvl);
+  }
 
   static const String classFilter = "ClassFilter";
   static const String schoolFilter = "SchoolFilter";
@@ -41,9 +45,13 @@ class SpellFilter extends Filter{
     filters[levelFilter] = _levelFilter;
   }
 
-  SpellFilter() : super([classFilter, schoolFilter, castTimeFilter, damageTypeFilter, levelFilter]);
+  SpellFilter() : super(
+      [classFilter, schoolFilter, castTimeFilter, damageTypeFilter, levelFilter],
+      [true, true, false, true, false]);
 
-  SpellFilter.character() : super([schoolFilter, castTimeFilter, damageTypeFilter, levelFilter]);
+  SpellFilter.character() : super(
+      [schoolFilter, castTimeFilter, damageTypeFilter, levelFilter],
+      [true, false, true, false]);
 
   @override
   bool objectPasses(object, String searchText) {

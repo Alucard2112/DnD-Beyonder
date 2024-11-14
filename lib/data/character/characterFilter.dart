@@ -9,7 +9,7 @@ class CharacterFilter extends Filter{
   final GenericFilter<DnDClass> _classFilter = GenericFilter(DnDClass.values, translate: toDnDClassName);
   static const String classFilter = "ClassFilter";
 
-CharacterFilter() : super([classFilter]);
+CharacterFilter() : super([classFilter],[true]);
   @override
   void fillMap(){
     filters[classFilter] = _classFilter;
