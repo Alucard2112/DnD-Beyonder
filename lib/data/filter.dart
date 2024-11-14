@@ -2,6 +2,7 @@ import 'genericFilter.dart';
 
 abstract class Filter{
   late final List<String> filterCategories;
+  late final List<bool> sort;
   final Map<String, bool> categories = {};
   final Map<String, GenericFilter> filters = {};
 
@@ -11,7 +12,7 @@ abstract class Filter{
 
   bool objectPasses(dynamic object, String searchText);
 
-  Filter(this.filterCategories){
+  Filter(this.filterCategories, this.sort){
     for(String category in filterCategories) {
       categories[category] = false;
     }
