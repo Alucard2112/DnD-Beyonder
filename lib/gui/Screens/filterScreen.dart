@@ -89,7 +89,7 @@ class _FilterScreenState extends State<FilterScreen> {
         );
       }
     }
-    if(index != 1 && index != 2) {
+    if(filter.sort[index]) {
       subItems.sort((FilterTextCheckBoxWidget a, FilterTextCheckBoxWidget b) {
         return a.label.compareTo(b.label);
       });
