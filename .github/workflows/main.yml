@@ -45,7 +45,7 @@ jobs: # Telling what jobs we need to happen
         run: flutter build appbundle
 
       - name: Build IPA
-        run: flutter build ipa --no-codesign
+        run: flutter build ipa --release
 
       - name: Compress Archives and IPAs
         run: |
@@ -60,6 +60,7 @@ jobs: # Telling what jobs we need to happen
             build/app/outputs/flutter-apk/app-release.apk
             build/app/outputs/bundle/release/app-release.aab
             build/ios_build.tar.g
+            build/ios/ipa/*.ipa
             
       - name: Extract version from pubspec.yaml
         id: extract_version
