@@ -29,7 +29,8 @@ class SpellListWidget extends StatelessWidget {
     List<Sorting> values = [];
     values.addAll(Sorting.values);
     values.remove(Sorting.spellCount);
-    int gridCount = max((MediaQuery.of(context).size.width / 420).floor(),1);
+    print(MediaQuery.of(context).size.width);
+    int gridCount = max((MediaQuery.of(context).size.width / 400).floor(),1);
     int itemCount = (spells.length / gridCount).ceil();
     return Column(
       children: [
@@ -80,9 +81,10 @@ class SpellListWidget extends StatelessWidget {
                   if(indexGrid < spells.length){
                     Spell spell = spells[indexGrid];
                     children.add(
-                      Expanded(child:
-                        SpellListItemWidget(spell,
-                          () {
+                      Expanded(
+                        child: SpellListItemWidget(
+                            spell,
+                                () {
                             onItemTapped(spell.id);
                           }
                         ),
