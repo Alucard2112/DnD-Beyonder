@@ -1380,6 +1380,18 @@ class S {
     );
   }
 
+  /// `{count, plural,=1{1 Runde} other{{count} Runden}}`
+  String round(num count) {
+    return Intl.plural(
+      count,
+      one: '1 Runde',
+      other: '$count Runden',
+      name: 'round',
+      desc: 'String for displaying rounds',
+      args: [count],
+    );
+  }
+
   /// `Konzentration`
   String get concentration {
     return Intl.message(

@@ -92,22 +92,25 @@ class MessageLookup extends MessageLookupByLibrary {
       "${Intl.plural(count, one: '1 Reaction', other: '${count} Reactions')}";
 
   static String m14(count) =>
+      "${Intl.plural(count, one: '1 Round', other: '${count} Rounds')}";
+
+  static String m15(count) =>
       "${Intl.plural(count, one: '1 Second', other: '${count} Seconds')}";
 
-  static String m15(sense) => "${Intl.select(sense, {
+  static String m16(sense) => "${Intl.select(sense, {
             'darkvision': 'Darkvision',
             'truesight': 'Truesight',
             'blindsight': 'Blindsight',
             'other': 'Error',
           })}";
 
-  static String m16(lang) => "${Intl.select(lang, {
+  static String m17(lang) => "${Intl.select(lang, {
             'en': 'English',
             'de': 'German',
             'other': 'Error',
           })}";
 
-  static String m17(skill) => "${Intl.select(skill, {
+  static String m18(skill) => "${Intl.select(skill, {
             'athletics': 'Athletics',
             'acrobatics': 'Acrobatics',
             'sleight_of_hand': 'Sleight of Hand',
@@ -129,7 +132,7 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Error',
           })}";
 
-  static String m18(selectSpecies) => "${Intl.select(selectSpecies, {
+  static String m19(selectSpecies) => "${Intl.select(selectSpecies, {
             'half_elf': 'Halfelf',
             'half_orc': 'Halforc',
             'dragonborn': 'Dragonborn',
@@ -185,33 +188,33 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Error',
           })}";
 
-  static String m19(amount) => "${amount} Spells";
+  static String m20(amount) => "${amount} Spells";
 
-  static String m20(name) =>
+  static String m21(name) =>
       "Are you sure that you want to delete the spell ***${name}***?\nIt is not possible to revert this decision.";
 
-  static String m21(numberDice, typeDie) => "${numberDice}D${typeDie}";
+  static String m22(numberDice, typeDie) => "${numberDice}D${typeDie}";
 
-  static String m22(typeDie) => "D${typeDie}";
+  static String m23(typeDie) => "D${typeDie}";
 
-  static String m23(condition) => "Until the spell is ${condition}";
+  static String m24(condition) => "Until the spell is ${condition}";
 
-  static String m24(name, charname) =>
+  static String m25(name, charname) =>
       "Are your sure that you want to remove ***${name}*** from ***${charname}***?";
 
-  static String m25(lvl) =>
+  static String m26(lvl) =>
       "${Intl.plural(lvl, zero: 'Cantrip', one: '1st Level', two: '2nd Level', few: '3rd Level', other: '${lvl}th Level')}";
 
-  static String m26(lvl, school) =>
+  static String m27(lvl, school) =>
       "${Intl.plural(lvl, zero: '${school} Cantrip', one: '1st Level ${school}', two: '2nd Level ${school}', few: '3rd Level ${school}', other: '${lvl}th Level ${school}')}";
 
-  static String m27(status) => "${Intl.select(status, {
+  static String m28(status) => "${Intl.select(status, {
             'concentration': 'Concentration',
             'surprised': 'Surprised',
             'other': 'Error',
           })}";
 
-  static String m28(visibility) => "${Intl.select(visibility, {
+  static String m29(visibility) => "${Intl.select(visibility, {
             'lightly_obscured': 'lightly obscured',
             'heavily_obscured': 'heavily obscured',
             'other': 'Error',
@@ -351,6 +354,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ranger": MessageLookupByLibrary.simpleMessage("Ranger"),
         "reaction": m13,
         "rogue": MessageLookupByLibrary.simpleMessage("Rogue"),
+        "round": m14,
         "sasaag": MessageLookupByLibrary.simpleMessage(
             "Spelljammer Adventures in Space: Astral Adventurer\'s Guide"),
         "scag": MessageLookupByLibrary.simpleMessage(
@@ -359,9 +363,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Strixhaven: A Curriculum of Chaos"),
         "school": MessageLookupByLibrary.simpleMessage("Spellschool"),
         "searchSpells": MessageLookupByLibrary.simpleMessage("Search Spells"),
-        "second": m14,
+        "second": m15,
         "self": MessageLookupByLibrary.simpleMessage("Self"),
-        "senses": m15,
+        "senses": m16,
         "settings5eMessage": MessageLookupByLibrary.simpleMessage(
             "This import is only meant for json-Files from 5e-Tools and not for those exported from this app."),
         "settingsAppMessage": MessageLookupByLibrary.simpleMessage(
@@ -386,9 +390,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "The selected language only affects the interface"),
         "settingsLanguageLabel":
             MessageLookupByLibrary.simpleMessage("Select Language"),
-        "settingsLanguages": m16,
+        "settingsLanguages": m17,
         "shortbow": MessageLookupByLibrary.simpleMessage("Shortbow"),
-        "skills": m17,
+        "skills": m18,
         "slashing": MessageLookupByLibrary.simpleMessage("Slashing"),
         "small": MessageLookupByLibrary.simpleMessage("small"),
         "somatic": MessageLookupByLibrary.simpleMessage("Somatic"),
@@ -396,10 +400,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "sortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
         "source": MessageLookupByLibrary.simpleMessage("Source"),
         "special": MessageLookupByLibrary.simpleMessage("Special"),
-        "species": m18,
+        "species": m19,
         "spellBookSearchCharacter":
             MessageLookupByLibrary.simpleMessage("Search Character"),
-        "spellBookSpellCount": m19,
+        "spellBookSpellCount": m20,
         "spellCount": MessageLookupByLibrary.simpleMessage("Number of Spells"),
         "spellDetailAddSpellNoChars": MessageLookupByLibrary.simpleMessage(
             "No Character exists. Please create a Character in order to add something to that Character."),
@@ -410,25 +414,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "spellDetailClasses": MessageLookupByLibrary.simpleMessage("Classes"),
         "spellDetailComponents":
             MessageLookupByLibrary.simpleMessage("Components"),
-        "spellDetailDeleteMessage": m20,
+        "spellDetailDeleteMessage": m21,
         "spellDetailDeleteTitle":
             MessageLookupByLibrary.simpleMessage("Delete Spell"),
-        "spellDetailDice": m21,
-        "spellDetailDie": m22,
+        "spellDetailDice": m22,
+        "spellDetailDie": m23,
         "spellDetailDistance": MessageLookupByLibrary.simpleMessage("Range"),
         "spellDetailDuration": MessageLookupByLibrary.simpleMessage("Duration"),
-        "spellDetailDurationPermanent": m23,
+        "spellDetailDurationPermanent": m24,
         "spellDetailPage": MessageLookupByLibrary.simpleMessage("Page"),
         "spellDetailRemoveFromCharAffirmative":
             MessageLookupByLibrary.simpleMessage("Remove"),
-        "spellDetailRemoveFromCharMessage": m24,
+        "spellDetailRemoveFromCharMessage": m25,
         "spellDetailRemoveFromCharTitle":
             MessageLookupByLibrary.simpleMessage("Remove from Character"),
-        "spellLevel": m25,
-        "spellSchoolLevel": m26,
+        "spellLevel": m26,
+        "spellSchoolLevel": m27,
         "srd":
             MessageLookupByLibrary.simpleMessage("Systems Reference Document"),
-        "status": m27,
+        "status": m28,
         "tcoe": MessageLookupByLibrary.simpleMessage(
             "Tasha\'s Cauldron of Everything"),
         "thrownWeaponAttacks":
@@ -444,7 +448,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Unarmed attacks"),
         "unknown": MessageLookupByLibrary.simpleMessage("Unknown"),
         "verbal": MessageLookupByLibrary.simpleMessage("Verbal"),
-        "visibility": m28,
+        "visibility": m29,
         "warlock": MessageLookupByLibrary.simpleMessage("Warlock"),
         "wizard": MessageLookupByLibrary.simpleMessage("Wizard"),
         "xge": MessageLookupByLibrary.simpleMessage(
