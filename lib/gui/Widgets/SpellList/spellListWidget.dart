@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dnd_beyonder/data/spell/spell.dart';
 import 'package:dnd_beyonder/data/spell/spellFilter.dart';
 import 'package:dnd_beyonder/gui/Widgets/SpellList/spellListItemWidget.dart';
@@ -27,6 +29,8 @@ class SpellListWidget extends StatelessWidget {
     List<Sorting> values = [];
     values.addAll(Sorting.values);
     values.remove(Sorting.spellCount);
+    int gridCount = max((MediaQuery.of(context).size.width / 420).floor(),1);
+    int itemCount = (spells.length / gridCount).ceil();
     return Column(
       children: [
         Padding(
@@ -66,51 +70,34 @@ class SpellListWidget extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: OrientationBuilder(
-            builder: (context, orientation) {
-              bool portrait = orientation == Orientation.portrait;
-              int itemCount = (spells.length / 2).ceil();
-              if(portrait){
-                itemCount = spells.length;
-              }
-              return ListView.builder(
-                key: PageStorageKey<String>('spells_$key'),
-                itemCount: itemCount,
-                itemBuilder: (context, index) {
-                  if(portrait) {
-                    Spell spell = spells[index];
-                    return SpellListItemWidget(spell,
+          child: ListView.builder(
+            key: PageStorageKey<String>('spells_$key'),
+            itemCount: itemCount,
+            itemBuilder: (context, index) {
+                List<Widget> children = [];
+                for(int i = 0; i < gridCount; i++){
+                  int indexGrid = index*gridCount+i;
+                  if(indexGrid < spells.length){
+                    Spell spell = spells[indexGrid];
+                    children.add(
+                      Expanded(child:
+                        SpellListItemWidget(spell,
                           () {
-                        onItemTapped(spell.id);
-                      },
+                            onItemTapped(spell.id);
+                          }
+                        ),
+                      ),
                     );
                   }
                   else{
-                    Spell spell = spells[index*2];
-                    Widget spell2 = Container();
-                    int index2 = (index*2)+1;
-                    if(index2 < spells.length){
-                      spell2 = SpellListItemWidget(spells[index2],
-                              () {
-                            onItemTapped(spells[index2].id);
-                          });
-                    }
-                    return Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(child:
-                          SpellListItemWidget(spell,
-                            () {
-                          onItemTapped(spell.id);
-                        }),
-                        ),
-                        Expanded(child: spell2),
-                      ],
-                    );
+                    children.add(Expanded(child: Container()));
                   }
-                },
-              );
-            }
+                }
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: children,
+                );
+              }
           ),
         ),
       ],
