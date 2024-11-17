@@ -283,6 +283,16 @@
   "@_TimeUnits" : {},
   "trigger": "ausgelöst",
   "dispel": "gebannt",
+  "round": "{count, plural,=1{1 Runde} other{{count} Runden}}",
+  "@round": {
+    "description": "String for displaying rounds",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
   "concentration" : "Konzentration",
   "action": "{count, plural,=1{1 Aktion} other{{count} Aktionen}}",
   "@action": {

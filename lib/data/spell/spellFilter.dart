@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dnd_beyonder/data/dnd/dnd_class.dart';
 import 'package:dnd_beyonder/data/filter.dart';
 import 'package:dnd_beyonder/data/spell/damageType.dart';
@@ -6,6 +8,7 @@ import 'package:dnd_beyonder/data/spell/spellSchool.dart';
 import 'package:dnd_beyonder/data/spell/subclass.dart';
 import 'package:dnd_beyonder/data/spell/time.dart';
 import 'package:dnd_beyonder/data/spell/timeUnits.dart';
+import 'package:dnd_beyonder/permanentData/settings.dart';
 
 import '../../generated/l10n.dart';
 import '../genericFilter.dart';
@@ -56,7 +59,17 @@ class SpellFilter extends Filter{
   @override
   bool objectPasses(object, String searchText) {
     Spell spell = object;
-    if(!spell.getName().toLowerCase().contains(searchText.toLowerCase())){
+    if(Settings.locale == Locale("en")){
+      if(!spell.getName().toLowerCase().contains(searchText.toLowerCase())){
+        return false;
+      }
+    }
+    else{
+      if(!spell.getName().toLowerCase().contains(searchText.toLowerCase()) && !spell.name["en"]!.toLowerCase().contains(searchText.toLowerCase())){
+        return false;
+      }
+    }
+    if(_schoolFilter.isNotEmpty() && !_schoolFilter.contains(spell.school)){
       return false;
     }
     if(_levelFilter.isNotEmpty() && !_levelFilter.contains(spell.level)){

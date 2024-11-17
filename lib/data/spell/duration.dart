@@ -72,6 +72,8 @@ class Duration{
         return S.current.hour(amount);
       case TimeUnits.unknown:
         return S.current.unknown;
+      case TimeUnits.round:
+        return S.current.round(amount);
     }
   }
 }
