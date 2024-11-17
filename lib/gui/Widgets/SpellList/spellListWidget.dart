@@ -68,20 +68,46 @@ class SpellListWidget extends StatelessWidget {
         Expanded(
           child: OrientationBuilder(
             builder: (context, orientation) {
-              return GridView.builder(
-                key: PageStorageKey<String>('$key'),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: (1 / .25),
-                  crossAxisCount: orientation == Orientation.portrait ? 1 : 2, // number of items in each row
-                ),
-                itemCount: spells.length,
+              bool portrait = orientation == Orientation.portrait;
+              int itemCount = (spells.length / 2).ceil();
+              if(portrait){
+                itemCount = spells.length;
+              }
+              return ListView.builder(
+                key: PageStorageKey<String>('spells_$key'),
+                itemCount: itemCount,
                 itemBuilder: (context, index) {
-                  Spell spell = spells[index];
-                  return SpellListItemWidget(spell,
-                    () {
-                      onItemTapped(spell.id);
-                    },
-                  );
+                  if(portrait) {
+                    Spell spell = spells[index];
+                    return SpellListItemWidget(spell,
+                          () {
+                        onItemTapped(spell.id);
+                      },
+                    );
+                  }
+                  else{
+                    Spell spell = spells[index*2];
+                    Widget spell2 = Container();
+                    int index2 = (index*2)+1;
+                    if(index2 < spells.length){
+                      spell2 = SpellListItemWidget(spells[index2],
+                              () {
+                            onItemTapped(spells[index2].id);
+                          });
+                    }
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(child:
+                          SpellListItemWidget(spell,
+                            () {
+                          onItemTapped(spell.id);
+                        }),
+                        ),
+                        Expanded(child: spell2),
+                      ],
+                    );
+                  }
                 },
               );
             }
