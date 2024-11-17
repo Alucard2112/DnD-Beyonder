@@ -27,6 +27,8 @@ class TimeUnitsAdapter extends TypeAdapter<TimeUnits> {
         return TimeUnits.hour;
       case 6:
         return TimeUnits.unknown;
+      case 7:
+        return TimeUnits.round;
       default:
         return TimeUnits.action;
     }
@@ -55,6 +57,9 @@ class TimeUnitsAdapter extends TypeAdapter<TimeUnits> {
         break;
       case TimeUnits.unknown:
         writer.writeByte(6);
+        break;
+      case TimeUnits.round:
+        writer.writeByte(7);
         break;
     }
   }

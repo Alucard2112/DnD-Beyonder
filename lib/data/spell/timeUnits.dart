@@ -19,7 +19,9 @@ enum TimeUnits{
   @HiveField(5)
   hour,
   @HiveField(6)
-  unknown
+  unknown,
+  @HiveField(7)
+  round
 }
 
 TimeUnits timeUnitFromString(String s){
@@ -42,6 +44,8 @@ TimeUnits timeUnitFromString(String s){
       return TimeUnits.minute;
     case "hours":
       return TimeUnits.hour;
+    case "round":
+      return TimeUnits.round;
   }
   return TimeUnits.unknown;
 }
@@ -62,5 +66,7 @@ String timeUnitToString(TimeUnits t){
       return S.current.hour(-1);
     case TimeUnits.unknown:
       return S.current.unknown;
+    case TimeUnits.round:
+      return S.current.round(-1);
   }
 }

@@ -47,6 +47,8 @@ class Time{
         return S.current.hour(number);
       case TimeUnits.unknown:
         return S.current.unknown;
+      case TimeUnits.round:
+        return S.current.round(number);
     }
   }
 
