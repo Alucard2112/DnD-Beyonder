@@ -59,6 +59,9 @@ class SpellFilter extends Filter{
     if(!spell.getName().toLowerCase().contains(searchText.toLowerCase())){
       return false;
     }
+    if(_schoolFilter.isNotEmpty() && !_schoolFilter.contains(spell.school)){
+      return false;
+    }
     if(_levelFilter.isNotEmpty() && !_levelFilter.contains(spell.level)){
       return false;
     }
