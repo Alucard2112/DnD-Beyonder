@@ -13,6 +13,7 @@ import '../../generated/l10n.dart';
 import '../../permanentData/boxHandler.dart';
 import '../Widgets/SearchBarWidget.dart';
 import '../Widgets/sortUiButtonWidget.dart';
+import '../multiItemListView.dart';
 import 'filterScreen.dart';
 
 class CharacterListScreen extends StatefulWidget {
@@ -86,7 +87,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
     }
     if(_selectedCharacter >= 0){
       child = CharacterDetailScreen(
-        character: characters[_selectedCharacter],
+        character: BoxHandler.characterBox.get(_selectedCharacter)!,
         back: _back,
         update: widget.update,
       );
@@ -146,25 +147,17 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
             ),
           ),
           Expanded(
-            child: OrientationBuilder(
-                builder: (context, orientation) {
-                  return GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: (1 / .25),
-                      crossAxisCount: orientation == Orientation.portrait ? 1 : 2, // number of items in each row
-                    ),
-                    itemCount: characters.length,
-                    itemBuilder: (context, index) {
-                      Character character = characters[index];
-                      return CharacterWidget(
-                        spellBook: character,
-                           onTap: () {
-                          _onSelect(index);
-                        },
-                      );
-                    },
-                  );
-                }
+            child: MultiItemListView<Character>(
+              screenName: "Character",
+              data: characters,
+              createWidget: (Character character){
+                return CharacterWidget(
+                  spellBook: character,
+                  onTap: () {
+                    _onSelect(character.id);
+                  },
+                );
+              }, id: -1,
             ),
           )
         ],
