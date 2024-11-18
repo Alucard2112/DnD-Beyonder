@@ -126,6 +126,8 @@ class _SpellListScreenState extends State<SpellListScreen> {
         showFilterScreen: _showFilterScreen,
         onSearchText: _onSearchText,
         sorting: _sorting[key]!,
-        asc: _asc[key]!);
+        asc: _asc[key]!,
+        id: key,
+    );
   }
 }

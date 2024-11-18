@@ -21,8 +21,9 @@ class SpellListWidget extends StatelessWidget {
   final Function showFilterScreen;
   final ValueChanged<String> onSearchText;
   final Sorting sorting;
+  final int id;
   final bool asc;
-  const SpellListWidget({super.key, required this.spells, required this.spellFilter, required this.searchText, required this.onItemTapped, required this.updateSorting, required this.showFilterScreen, required this.onSearchText, required this.sorting, required this.asc});
+  const SpellListWidget({super.key, required this.spells, required this.spellFilter, required this.searchText, required this.onItemTapped, required this.updateSorting, required this.showFilterScreen, required this.onSearchText, required this.sorting, required this.asc, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +81,8 @@ class SpellListWidget extends StatelessWidget {
                     }
                 );
               },
+            screenName: 'Spells',
+            id: id,
           ),
         ),
       ],

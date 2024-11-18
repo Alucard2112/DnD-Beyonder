@@ -5,14 +5,16 @@ import 'package:flutter/material.dart';
 class MultiItemListView<T> extends StatelessWidget {
   final List<T> data;
   final Widget Function(T) createWidget;
-  const MultiItemListView({super.key, required this.data, required this.createWidget});
+  final String screenName;
+  final int id;
+  const MultiItemListView({super.key, required this.data, required this.createWidget, required this.screenName, required this.id});
 
   @override
   Widget build(BuildContext context) {
     int gridCount = max((MediaQuery.of(context).size.width / 400).floor(),1);
     int itemCount = (data.length / gridCount).ceil();
     return ListView.builder(
-        key: PageStorageKey<String>('$key'),
+        key: PageStorageKey<String>('$screenName$id$key'),
         itemCount: itemCount,
         itemBuilder: (context, index) {
           List<Widget> children = [];
