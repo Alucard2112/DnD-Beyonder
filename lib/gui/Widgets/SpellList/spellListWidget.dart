@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:dnd_beyonder/data/spell/spell.dart';
 import 'package:dnd_beyonder/data/spell/spellFilter.dart';
 import 'package:dnd_beyonder/gui/Widgets/SpellList/spellListItemWidget.dart';
+import 'package:dnd_beyonder/gui/multiItemListView.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/gui/sorting.dart';
@@ -20,8 +21,9 @@ class SpellListWidget extends StatelessWidget {
   final Function showFilterScreen;
   final ValueChanged<String> onSearchText;
   final Sorting sorting;
+  final int id;
   final bool asc;
-  const SpellListWidget({super.key, required this.spells, required this.spellFilter, required this.searchText, required this.onItemTapped, required this.updateSorting, required this.showFilterScreen, required this.onSearchText, required this.sorting, required this.asc});
+  const SpellListWidget({super.key, required this.spells, required this.spellFilter, required this.searchText, required this.onItemTapped, required this.updateSorting, required this.showFilterScreen, required this.onSearchText, required this.sorting, required this.asc, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +31,7 @@ class SpellListWidget extends StatelessWidget {
     List<Sorting> values = [];
     values.addAll(Sorting.values);
     values.remove(Sorting.spellCount);
-    print(MediaQuery.of(context).size.width);
-    int gridCount = max((MediaQuery.of(context).size.width / 400).floor(),1);
-    int itemCount = (spells.length / gridCount).ceil();
+
     return Column(
       children: [
         Padding(
@@ -71,35 +71,18 @@ class SpellListWidget extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: ListView.builder(
-            key: PageStorageKey<String>('spells_$key'),
-            itemCount: itemCount,
-            itemBuilder: (context, index) {
-                List<Widget> children = [];
-                for(int i = 0; i < gridCount; i++){
-                  int indexGrid = index*gridCount+i;
-                  if(indexGrid < spells.length){
-                    Spell spell = spells[indexGrid];
-                    children.add(
-                      Expanded(
-                        child: SpellListItemWidget(
-                            spell,
-                                () {
-                            onItemTapped(spell.id);
-                          }
-                        ),
-                      ),
-                    );
-                  }
-                  else{
-                    children.add(Expanded(child: Container()));
-                  }
-                }
-                return Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: children,
+          child: MultiItemListView<Spell>(
+              data: spells,
+              createWidget: (Spell spell){
+                return SpellListItemWidget(
+                    spell,
+                        () {
+                      onItemTapped(spell.id);
+                    }
                 );
-              }
+              },
+            screenName: 'Spells',
+            id: id,
           ),
         ),
       ],
