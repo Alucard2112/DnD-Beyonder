@@ -12,7 +12,7 @@ class MultiItemListView<T> extends StatelessWidget {
     int gridCount = max((MediaQuery.of(context).size.width / 400).floor(),1);
     int itemCount = (data.length / gridCount).ceil();
     return ListView.builder(
-        key: PageStorageKey<String>('spells_$key'),
+        key: PageStorageKey<String>('$key'),
         itemCount: itemCount,
         itemBuilder: (context, index) {
           List<Widget> children = [];
