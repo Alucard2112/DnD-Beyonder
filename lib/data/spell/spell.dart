@@ -77,7 +77,7 @@ class Spell extends HiveObject with Sortable<Spell>{
     'range' : range.toJson(),
     'components' : components.toJson(),
     'time' : time.toJson(),
-    'entriesHigherLevel' : entriesHigherLevel.map((k, v) => MapEntry(k, v.map((EntryHigherLevel e) => e.toJson()).toList())),
+    'entriesHigherLevel' : entriesHigherLevel,
     'conditionInflict' : conditionInflict,
     'savingThrow' : savingThrow,
     'mainClasses' : mainClasses.map((DnDClass c) => c.index).toList(),
@@ -106,7 +106,7 @@ class Spell extends HiveObject with Sortable<Spell>{
       damageInflict = List<SpellDamageType>.from(List<int>.from(json["damageInflict"]).map((int i) => SpellDamageType.values[i]).toList()){
       for(MapEntry entry in json["entriesHigherLevel"]){
         List<EntryHigherLevel> values = [];
-        for(Map<String, dynamic> m in entry.value){
+        for(Map<String, String> m in entry.value){
           values.add(EntryHigherLevel.fromJson(m));
         }
         entriesHigherLevel[entry.key] = values;
@@ -219,7 +219,7 @@ class Spell extends HiveObject with Sortable<Spell>{
         for (String s in map["entries"]) {
           entries.add(FiveEToolsConverter.jsonToMD(s));
         }
-        entriesAtHigherLevel.add(
+        entriesAtHigherLevelDE.add(
             EntryHigherLevel(map["type"], map["name"], entries));
       }
     }
