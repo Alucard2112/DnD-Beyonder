@@ -383,7 +383,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "settingsExportData":
             MessageLookupByLibrary.simpleMessage("App-Daten exportieren"),
         "settingsExportMessage": MessageLookupByLibrary.simpleMessage(
-            "Daten erfolgreich exportiert"),
+            "Daten erfolgreich in den Downloads-Ordner exportiert"),
         "settingsExportMessageFail": MessageLookupByLibrary.simpleMessage(
             "Fehler: Export nicht möglich"),
         "settingsImport5e":

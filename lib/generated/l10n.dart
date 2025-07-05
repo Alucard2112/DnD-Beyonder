@@ -2057,10 +2057,10 @@ class S {
     );
   }
 
-  /// `Daten erfolgreich exportiert`
+  /// `Daten erfolgreich in den Downloads-Ordner exportiert`
   String get settingsExportMessage {
     return Intl.message(
-      'Daten erfolgreich exportiert',
+      'Daten erfolgreich in den Downloads-Ordner exportiert',
       name: 'settingsExportMessage',
       desc: '',
       args: [],

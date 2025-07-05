@@ -379,8 +379,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do not show this message again"),
         "settingsExportData":
             MessageLookupByLibrary.simpleMessage("Export App-Data"),
-        "settingsExportMessage":
-            MessageLookupByLibrary.simpleMessage("Data exported successfully"),
+        "settingsExportMessage": MessageLookupByLibrary.simpleMessage(
+            "Data exported successfully to downloads"),
         "settingsExportMessageFail": MessageLookupByLibrary.simpleMessage(
             "Error: Export was not possible"),
         "settingsImport5e":
