@@ -2066,6 +2066,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Fehler: Export nicht möglich`
+  String get settingsExportMessageFail {
+    return Intl.message(
+      'Fehler: Export nicht möglich',
+      name: 'settingsExportMessageFail',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
