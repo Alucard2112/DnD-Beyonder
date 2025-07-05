@@ -232,6 +232,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               },
             ),
           ),
+          const SizedBox(height: 5,),
+          Center(
+            child: Text(
+              s.settingsExportMessage,
+              style: normalText,
+            ),
+          ),
           const SizedBox(height: 20,),
           Center(
             child: SettingsButton(
