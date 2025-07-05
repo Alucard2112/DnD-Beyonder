@@ -199,11 +199,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 if (!status.isGranted) {
                   await Permission.storage.request();
                 }
-                final directory = await getApplicationDocumentsDirectory();
-                final File outputFile = File('${directory.path}/export${DateTime.now()}.json');
+                var directory = await getApplicationDocumentsDirectory();
+                if (Platform.isAndroid) {
+                  directory = Directory("/storage/emulated/0/Download");
+                }
+                DateTime now = DateTime.now();
+                String fileName = "export_${now.year}_${now.month}_${now.day}_${now.hour}_${now.minute}_${now.second}.json";
+                final File outputFile = File('${directory.path}/$fileName');
                 //outputFile.create();
                 log("BLUB");
-                log(directory!.path);
+                log(directory.path);
                 Map<String, dynamic> export = {};
                 export["spells"] = BoxHandler.spellBox.values.toList();
                 export["characters"] = BoxHandler.characterBox.values.toList();
