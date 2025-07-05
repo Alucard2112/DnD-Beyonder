@@ -383,9 +383,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "settingsExportData":
             MessageLookupByLibrary.simpleMessage("App-Daten exportieren"),
         "settingsExportMessage": MessageLookupByLibrary.simpleMessage(
-            "Daten erfolgreich in den Downloads-Ordner exportiert"),
+            "Daten werden im Downloads-Ordner abgelegt"),
         "settingsExportMessageFail": MessageLookupByLibrary.simpleMessage(
-            "Fehler: Export nicht möglich"),
+            "Fehler: Export nicht möglich, überprüfen Sie die Berechtigungen"),
+        "settingsExportMessageSuccess": MessageLookupByLibrary.simpleMessage(
+            "Daten erfolgreich in den Downloads-Ordner exportiert"),
         "settingsImport5e":
             MessageLookupByLibrary.simpleMessage("5eTools Zauber importieren"),
         "settingsImportData":
