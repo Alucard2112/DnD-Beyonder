@@ -77,7 +77,7 @@ class Spell extends HiveObject with Sortable<Spell>{
     'range' : range.toJson(),
     'components' : components.toJson(),
     'time' : time.toJson(),
-    'entriesHigherLevel' : entriesHigherLevel,
+    'entriesHigherLevel' : entriesHigherLevel.map((k, v) => MapEntry(k, v.map((EntryHigherLevel e) => e.toJson()).toList())),
     'conditionInflict' : conditionInflict,
     'savingThrow' : savingThrow,
     'mainClasses' : mainClasses.map((DnDClass c) => c.index).toList(),
