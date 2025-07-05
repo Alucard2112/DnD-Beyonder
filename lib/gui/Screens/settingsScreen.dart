@@ -206,9 +206,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 DateTime now = DateTime.now();
                 String fileName = "export_${now.year}_${now.month}_${now.day}_${now.hour}_${now.minute}_${now.second}.json";
                 final File outputFile = File('${directory.path}/$fileName');
-                //outputFile.create();
-                log("BLUB");
-                log(directory.path);
                 Map<String, dynamic> export = {};
                 export["spells"] = BoxHandler.spellBox.values.toList();
                 export["characters"] = BoxHandler.characterBox.values.toList();
@@ -217,7 +214,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 if(await outputFile.exists()) {
                   scaffold.showSnackBar(
                     SnackBar(
-                      content: Text(s.settingsExportMessage),
+                      content: Text(s.settingsExportMessageSuccess),
                       action: SnackBarAction(label: s.uiOK,
                           onPressed: scaffold.hideCurrentSnackBar),
                     ),
