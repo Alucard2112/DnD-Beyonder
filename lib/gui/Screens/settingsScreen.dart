@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:dnd_beyonder/data/gui/constants.dart';
 import 'package:dnd_beyonder/data/spell/distanceType.dart';
@@ -10,6 +9,8 @@ import 'package:dnd_beyonder/gui/Widgets/flipSwitchWidget.dart';
 import 'package:dnd_beyonder/permanentData/boxHandler.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../data/character/character.dart';
 import '../../data/spell/spell.dart';
@@ -192,25 +193,48 @@ class _SettingsScreenState extends State<SettingsScreen> {
             child: SettingsButton(
               buttonText: S.of(context).settingsExportData,
               onTap: () async{
+                var status = await Permission.storage.status;
+                if (!status.isGranted) {
+                  await Permission.storage.request();
+                }
+                var directory = await getApplicationDocumentsDirectory();
+                if (Platform.isAndroid) {
+                  directory = Directory("/storage/emulated/0/Download");
+                }
+                DateTime now = DateTime.now();
+                String fileName = "export_${now.year}_${now.month}_${now.day}_${now.hour}_${now.minute}_${now.second}.json";
+                final File outputFile = File('${directory.path}/$fileName');
                 Map<String, dynamic> export = {};
                 export["spells"] = BoxHandler.spellBox.values.toList();
                 export["characters"] = BoxHandler.characterBox.values.toList();
-                String? outputFile = await FilePicker.platform.saveFile(
-                  type: FileType.custom,
-                  bytes: Uint8List.fromList(jsonEncode(export).codeUnits),
-                  dialogTitle: 'Please select an output file:',
-                  fileName: 'export${DateTime.now()}.json',
-                );
-                if(outputFile != null) {
+                await outputFile.writeAsString(jsonEncode(export));
+
+                if(await outputFile.exists()) {
                   scaffold.showSnackBar(
                     SnackBar(
-                      content: Text(s.settingsExportMessage),
+                      content: Text(s.settingsExportMessageSuccess),
+                      action: SnackBarAction(label: s.uiOK,
+                          onPressed: scaffold.hideCurrentSnackBar),
+                    ),
+                  );
+                }
+                else{
+                  scaffold.showSnackBar(
+                    SnackBar(
+                      content: Text(s.settingsExportMessageFail),
                       action: SnackBarAction(label: s.uiOK,
                           onPressed: scaffold.hideCurrentSnackBar),
                     ),
                   );
                 }
               },
+            ),
+          ),
+          const SizedBox(height: 5,),
+          Center(
+            child: Text(
+              s.settingsExportMessage,
+              style: normalText,
             ),
           ),
           const SizedBox(height: 20,),

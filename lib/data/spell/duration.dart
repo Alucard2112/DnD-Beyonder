@@ -27,7 +27,7 @@ class Duration{
     "unit" : unit.index,
     "amount" : amount,
     "concentration" : concentration,
-    "ends" : ends.map((DurationEndType e) => e.index)
+    "ends" : ends.map((DurationEndType e) => e.index).toList()
   };
 
   Duration.fromJson(Map<String, dynamic> json)

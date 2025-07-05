@@ -2057,11 +2057,31 @@ class S {
     );
   }
 
-  /// `Daten erfolgreich exportiert`
+  /// `Daten werden im Downloads-Ordner abgelegt`
   String get settingsExportMessage {
     return Intl.message(
-      'Daten erfolgreich exportiert',
+      'Daten werden im Downloads-Ordner abgelegt',
       name: 'settingsExportMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daten erfolgreich in den Downloads-Ordner exportiert`
+  String get settingsExportMessageSuccess {
+    return Intl.message(
+      'Daten erfolgreich in den Downloads-Ordner exportiert',
+      name: 'settingsExportMessageSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fehler: Export nicht möglich, überprüfen Sie die Berechtigungen`
+  String get settingsExportMessageFail {
+    return Intl.message(
+      'Fehler: Export nicht möglich, überprüfen Sie die Berechtigungen',
+      name: 'settingsExportMessageFail',
       desc: '',
       args: [],
     );

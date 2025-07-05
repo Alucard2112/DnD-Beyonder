@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 0.5.6+10
+version: 0.5.7+11
 
 environment:
   sdk: ^3.5.4
@@ -36,12 +36,12 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  json: ^0.20.2
+  permission_handler: ^12.0.1
   path: ^1.9.0
-  shared_preferences: ^2.3.2
+  shared_preferences: ^2.3.4
   intl: any
   package_info_plus: ^8.0.2
-  file_picker: ^8.1.2
+  file_picker: ^10.2.0
   path_provider: ^2.1.4
   hive: ^2.2.3
   hive_flutter: ^1.1.0
@@ -51,14 +51,14 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   hive_generator: ^2.0.1
-  build_runner: ^2.1.8
+  build_runner: ^2.4.13
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

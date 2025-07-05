@@ -493,5 +493,7 @@
   "settings5eMessage" : "Dieser Import ist nur für json-Dateien von 5e-Tools gedacht und nicht für einen Import von Daten dieser App.",
   "settingsAppMessage" : "Dieser Import ist nur für die Daten dieser App gedacht und nicht für Daten von 5e-Tools.\nDer Import wird eventuell Daten überschreiben.",
   "settingsDeleteMessage" : "Achtung: Das Löschen kann nicht rückgängig gemacht werden.",
-  "settingsExportMessage" : "Daten erfolgreich exportiert"
+  "settingsExportMessage" : "Daten werden im Downloads-Ordner abgelegt",
+  "settingsExportMessageSuccess" : "Daten erfolgreich in den Downloads-Ordner exportiert",
+  "settingsExportMessageFail" : "Fehler: Export nicht möglich, überprüfen Sie die Berechtigungen"
 }
