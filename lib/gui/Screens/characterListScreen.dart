@@ -85,6 +85,9 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
         stateKey: -2,
       );
     }
+    if(BoxHandler.characterBox.get(_selectedCharacter) == null){
+      _selectedCharacter = -1;
+    }
     if(_selectedCharacter >= 0){
       child = CharacterDetailScreen(
         character: BoxHandler.characterBox.get(_selectedCharacter)!,
