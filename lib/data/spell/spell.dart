@@ -17,13 +17,13 @@ import 'package:dnd_beyonder/data/spell/duration.dart';
 import 'package:dnd_beyonder/data/spell/timeUnits.dart';
 import 'package:dnd_beyonder/generated/l10n.dart';
 import 'package:hive/hive.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import '../../permanentData/settings.dart';
 import '../dnd/dnd_class.dart';
 import 'durationType.dart';
 
 part 'spell.g.dart';
-
 
 @HiveType(typeId: 1)
 class Spell extends HiveObject with Sortable<Spell>{
@@ -88,12 +88,12 @@ class Spell extends HiveObject with Sortable<Spell>{
 
   Spell.fromJson(Map<String, dynamic> json)
     : id = json["id"] as int,
-      name = json["name"],
+      name = Map<String,String>.from(json["name"]),
       source = SourceBook.values[json["source"] as int],
-      page = json["page"],
+      page = Map<String,int>.from(json["page"]),
       level = json["level"] as int,
       school = SpellSchool.values[json["school"] as int],
-      entries = json["entries"],
+      entries = {},
       range = Range.fromJson(json["range"]),
       components = Components.fromJson(json["components"]),
       time = Time.fromJson(json["time"]),
@@ -104,12 +104,19 @@ class Spell extends HiveObject with Sortable<Spell>{
       subClasses = Set<SubClasses>.from(List<Map<String,dynamic>>.from(json["subclasses"]).map((Map<String,dynamic> m)=>SubClasses.fromJson(m)).toList()),
       duration = Duration.fromJson(json["duration"]),
       damageInflict = List<SpellDamageType>.from(List<int>.from(json["damageInflict"]).map((int i) => SpellDamageType.values[i]).toList()){
-      for(MapEntry entry in json["entriesHigherLevel"]){
+      for(MapEntry entry in json["entriesHigherLevel"].entries){
         List<EntryHigherLevel> values = [];
-        for(Map<String, String> m in entry.value){
+        for(Map<String, dynamic> m in entry.value){
           values.add(EntryHigherLevel.fromJson(m));
         }
         entriesHigherLevel[entry.key] = values;
+      }
+      for(MapEntry entry in json["entries"].entries){
+        List<String> values = [];
+        for(String s in entry.value){
+          values.add(s);
+        }
+        entries[entry.key] = values;
       }
   }
   

@@ -18,8 +18,10 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
@@ -41,8 +43,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -52,72 +56,37 @@ class S {
 
   /// `Selbst`
   String get self {
-    return Intl.message(
-      'Selbst',
-      name: 'self',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Selbst', name: 'self', desc: '', args: []);
   }
 
   /// `Fuß`
   String get feet {
-    return Intl.message(
-      'Fuß',
-      name: 'feet',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Fuß', name: 'feet', desc: '', args: []);
   }
 
   /// `Meter`
   String get meter {
-    return Intl.message(
-      'Meter',
-      name: 'meter',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Meter', name: 'meter', desc: '', args: []);
   }
 
   /// `Kilometer`
   String get km {
-    return Intl.message(
-      'Kilometer',
-      name: 'km',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Kilometer', name: 'km', desc: '', args: []);
   }
 
   /// `Meile`
   String get mile {
-    return Intl.message(
-      'Meile',
-      name: 'mile',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Meile', name: 'mile', desc: '', args: []);
   }
 
   /// `Berührung`
   String get touch {
-    return Intl.message(
-      'Berührung',
-      name: 'touch',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Berührung', name: 'touch', desc: '', args: []);
   }
 
   /// `Speziell`
   String get special {
-    return Intl.message(
-      'Speziell',
-      name: 'special',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Speziell', name: 'special', desc: '', args: []);
   }
 
   /// `{count, plural,=1{1 Meter} other{{count} Meter}}`
@@ -176,52 +145,27 @@ class S {
 
   /// `Sehr klein`
   String get tiny {
-    return Intl.message(
-      'Sehr klein',
-      name: 'tiny',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sehr klein', name: 'tiny', desc: '', args: []);
   }
 
   /// `Klein`
   String get small {
-    return Intl.message(
-      'Klein',
-      name: 'small',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Klein', name: 'small', desc: '', args: []);
   }
 
   /// `Mittelgroß`
   String get medium {
-    return Intl.message(
-      'Mittelgroß',
-      name: 'medium',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Mittelgroß', name: 'medium', desc: '', args: []);
   }
 
   /// `Groß`
   String get large {
-    return Intl.message(
-      'Groß',
-      name: 'large',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Groß', name: 'large', desc: '', args: []);
   }
 
   /// `Riesig`
   String get huge {
-    return Intl.message(
-      'Riesig',
-      name: 'huge',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Riesig', name: 'huge', desc: '', args: []);
   }
 
   /// `{action, select, attack {Angriff} dash {Spurt} disengage {Rückzug} hide {Verstecken} use_an_object {Gegenstand benutzen} other {Fehler}}`
@@ -428,192 +372,97 @@ class S {
 
   /// `Werkmeister`
   String get artificer {
-    return Intl.message(
-      'Werkmeister',
-      name: 'artificer',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Werkmeister', name: 'artificer', desc: '', args: []);
   }
 
   /// `Barbar`
   String get barbarian {
-    return Intl.message(
-      'Barbar',
-      name: 'barbarian',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Barbar', name: 'barbarian', desc: '', args: []);
   }
 
   /// `Barde`
   String get bard {
-    return Intl.message(
-      'Barde',
-      name: 'bard',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Barde', name: 'bard', desc: '', args: []);
   }
 
   /// `Kleriker`
   String get cleric {
-    return Intl.message(
-      'Kleriker',
-      name: 'cleric',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Kleriker', name: 'cleric', desc: '', args: []);
   }
 
   /// `Druide`
   String get druid {
-    return Intl.message(
-      'Druide',
-      name: 'druid',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Druide', name: 'druid', desc: '', args: []);
   }
 
   /// `Kämpfer`
   String get fighter {
-    return Intl.message(
-      'Kämpfer',
-      name: 'fighter',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Kämpfer', name: 'fighter', desc: '', args: []);
   }
 
   /// `Mönch`
   String get monk {
-    return Intl.message(
-      'Mönch',
-      name: 'monk',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Mönch', name: 'monk', desc: '', args: []);
   }
 
   /// `Paladin`
   String get paladin {
-    return Intl.message(
-      'Paladin',
-      name: 'paladin',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Paladin', name: 'paladin', desc: '', args: []);
   }
 
   /// `Waldläufer`
   String get ranger {
-    return Intl.message(
-      'Waldläufer',
-      name: 'ranger',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Waldläufer', name: 'ranger', desc: '', args: []);
   }
 
   /// `Schurke`
   String get rogue {
-    return Intl.message(
-      'Schurke',
-      name: 'rogue',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Schurke', name: 'rogue', desc: '', args: []);
   }
 
   /// `Magier`
   String get sorcerer {
-    return Intl.message(
-      'Magier',
-      name: 'sorcerer',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Magier', name: 'sorcerer', desc: '', args: []);
   }
 
   /// `Hexenmeister`
   String get warlock {
-    return Intl.message(
-      'Hexenmeister',
-      name: 'warlock',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Hexenmeister', name: 'warlock', desc: '', args: []);
   }
 
   /// `Zauberer`
   String get wizard {
-    return Intl.message(
-      'Zauberer',
-      name: 'wizard',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Zauberer', name: 'wizard', desc: '', args: []);
   }
 
   /// `Name`
   String get name {
-    return Intl.message(
-      'Name',
-      name: 'name',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Name', name: 'name', desc: '', args: []);
   }
 
   /// `Zaubergrad`
   String get level {
-    return Intl.message(
-      'Zaubergrad',
-      name: 'level',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Zaubergrad', name: 'level', desc: '', args: []);
   }
 
   /// `Zauberschule`
   String get school {
-    return Intl.message(
-      'Zauberschule',
-      name: 'school',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Zauberschule', name: 'school', desc: '', args: []);
   }
 
   /// `Schadenstyp`
   String get attackType {
-    return Intl.message(
-      'Schadenstyp',
-      name: 'attackType',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Schadenstyp', name: 'attackType', desc: '', args: []);
   }
 
   /// `Quelle`
   String get source {
-    return Intl.message(
-      'Quelle',
-      name: 'source',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Quelle', name: 'source', desc: '', args: []);
   }
 
   /// `Klasse`
   String get dndClass {
-    return Intl.message(
-      'Klasse',
-      name: 'dndClass',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Klasse', name: 'dndClass', desc: '', args: []);
   }
 
   /// `Anzahl Zauber`
@@ -628,72 +477,37 @@ class S {
 
   /// `Sortieren nach`
   String get sortBy {
-    return Intl.message(
-      'Sortieren nach',
-      name: 'sortBy',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sortieren nach', name: 'sortBy', desc: '', args: []);
   }
 
   /// `Aufsteigend`
   String get ascending {
-    return Intl.message(
-      'Aufsteigend',
-      name: 'ascending',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Aufsteigend', name: 'ascending', desc: '', args: []);
   }
 
   /// `Absteigend`
   String get descending {
-    return Intl.message(
-      'Absteigend',
-      name: 'descending',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Absteigend', name: 'descending', desc: '', args: []);
   }
 
   /// `Verbal`
   String get verbal {
-    return Intl.message(
-      'Verbal',
-      name: 'verbal',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Verbal', name: 'verbal', desc: '', args: []);
   }
 
   /// `Geste`
   String get somatic {
-    return Intl.message(
-      'Geste',
-      name: 'somatic',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Geste', name: 'somatic', desc: '', args: []);
   }
 
   /// `Material`
   String get material {
-    return Intl.message(
-      'Material',
-      name: 'material',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Material', name: 'material', desc: '', args: []);
   }
 
   /// `Säure`
   String get acid {
-    return Intl.message(
-      'Säure',
-      name: 'acid',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Säure', name: 'acid', desc: '', args: []);
   }
 
   /// `Wuchtschaden`
@@ -708,132 +522,67 @@ class S {
 
   /// `Frost`
   String get cold {
-    return Intl.message(
-      'Frost',
-      name: 'cold',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Frost', name: 'cold', desc: '', args: []);
   }
 
   /// `Feuer`
   String get fire {
-    return Intl.message(
-      'Feuer',
-      name: 'fire',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Feuer', name: 'fire', desc: '', args: []);
   }
 
   /// `Energie`
   String get force {
-    return Intl.message(
-      'Energie',
-      name: 'force',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Energie', name: 'force', desc: '', args: []);
   }
 
   /// `Blitz`
   String get lightning {
-    return Intl.message(
-      'Blitz',
-      name: 'lightning',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Blitz', name: 'lightning', desc: '', args: []);
   }
 
   /// `Nekrotisch`
   String get necrotic {
-    return Intl.message(
-      'Nekrotisch',
-      name: 'necrotic',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Nekrotisch', name: 'necrotic', desc: '', args: []);
   }
 
   /// `Stich`
   String get piercing {
-    return Intl.message(
-      'Stich',
-      name: 'piercing',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Stich', name: 'piercing', desc: '', args: []);
   }
 
   /// `Gift`
   String get poison {
-    return Intl.message(
-      'Gift',
-      name: 'poison',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Gift', name: 'poison', desc: '', args: []);
   }
 
   /// `Psychisch`
   String get psychic {
-    return Intl.message(
-      'Psychisch',
-      name: 'psychic',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Psychisch', name: 'psychic', desc: '', args: []);
   }
 
   /// `Gleißend`
   String get radiant {
-    return Intl.message(
-      'Gleißend',
-      name: 'radiant',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Gleißend', name: 'radiant', desc: '', args: []);
   }
 
   /// `Klinge`
   String get slashing {
-    return Intl.message(
-      'Klinge',
-      name: 'slashing',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Klinge', name: 'slashing', desc: '', args: []);
   }
 
   /// `Donner`
   String get thunder {
-    return Intl.message(
-      'Donner',
-      name: 'thunder',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Donner', name: 'thunder', desc: '', args: []);
   }
 
   /// `Kurzbogen`
   String get shortbow {
-    return Intl.message(
-      'Kurzbogen',
-      name: 'shortbow',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Kurzbogen', name: 'shortbow', desc: '', args: []);
   }
 
   /// `Langbogen`
   String get longbow {
-    return Intl.message(
-      'Langbogen',
-      name: 'longbow',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Langbogen', name: 'longbow', desc: '', args: []);
   }
 
   /// `Einhändige Nahkampfangriffe`
@@ -888,12 +637,7 @@ class S {
 
   /// `Sofort`
   String get instantaneous {
-    return Intl.message(
-      'Sofort',
-      name: 'instantaneous',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sofort', name: 'instantaneous', desc: '', args: []);
   }
 
   /// `Acquisitions Incorporated`
@@ -1008,12 +752,7 @@ class S {
 
   /// `Humblewood`
   String get humblewood {
-    return Intl.message(
-      'Humblewood',
-      name: 'humblewood',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Humblewood', name: 'humblewood', desc: '', args: []);
   }
 
   /// `Eiswindtal: Ode der Frostmaid`
@@ -1058,12 +797,7 @@ class S {
 
   /// `Mythgart Sagas`
   String get mythsaga {
-    return Intl.message(
-      'Mythgart Sagas',
-      name: 'mythsaga',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Mythgart Sagas', name: 'mythsaga', desc: '', args: []);
   }
 
   /// `Mythgart Weltenbuch`
@@ -1188,12 +922,7 @@ class S {
 
   /// `Homebrew`
   String get homebrew {
-    return Intl.message(
-      'Homebrew',
-      name: 'homebrew',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Homebrew', name: 'homebrew', desc: '', args: []);
   }
 
   /// `{lvl, plural,=0 {Zaubertrick der {school}} other{{school} des {lvl}. Grades}}`
@@ -1222,22 +951,12 @@ class S {
 
   /// `Klassen`
   String get filterClasses {
-    return Intl.message(
-      'Klassen',
-      name: 'filterClasses',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Klassen', name: 'filterClasses', desc: '', args: []);
   }
 
   /// `Grad`
   String get filterLevel {
-    return Intl.message(
-      'Grad',
-      name: 'filterLevel',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Grad', name: 'filterLevel', desc: '', args: []);
   }
 
   /// `Zauberzeit`
@@ -1252,12 +971,7 @@ class S {
 
   /// `Schule`
   String get filterSchool {
-    return Intl.message(
-      'Schule',
-      name: 'filterSchool',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Schule', name: 'filterSchool', desc: '', args: []);
   }
 
   /// `Schadenstyp`
@@ -1272,12 +986,7 @@ class S {
 
   /// `Bannmagie`
   String get abjuration {
-    return Intl.message(
-      'Bannmagie',
-      name: 'abjuration',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Bannmagie', name: 'abjuration', desc: '', args: []);
   }
 
   /// `Verwandlung`
@@ -1292,12 +1001,7 @@ class S {
 
   /// `Beschwörung`
   String get conjuration {
-    return Intl.message(
-      'Beschwörung',
-      name: 'conjuration',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Beschwörung', name: 'conjuration', desc: '', args: []);
   }
 
   /// `Erkenntnismagie`
@@ -1322,62 +1026,32 @@ class S {
 
   /// `Illusion`
   String get illusion {
-    return Intl.message(
-      'Illusion',
-      name: 'illusion',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Illusion', name: 'illusion', desc: '', args: []);
   }
 
   /// `Hervorrufung`
   String get evocation {
-    return Intl.message(
-      'Hervorrufung',
-      name: 'evocation',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Hervorrufung', name: 'evocation', desc: '', args: []);
   }
 
   /// `Nekromantie`
   String get necromancy {
-    return Intl.message(
-      'Nekromantie',
-      name: 'necromancy',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Nekromantie', name: 'necromancy', desc: '', args: []);
   }
 
   /// `oder`
   String get or {
-    return Intl.message(
-      'oder',
-      name: 'or',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('oder', name: 'or', desc: '', args: []);
   }
 
   /// `ausgelöst`
   String get trigger {
-    return Intl.message(
-      'ausgelöst',
-      name: 'trigger',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('ausgelöst', name: 'trigger', desc: '', args: []);
   }
 
   /// `gebannt`
   String get dispel {
-    return Intl.message(
-      'gebannt',
-      name: 'dispel',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('gebannt', name: 'dispel', desc: '', args: []);
   }
 
   /// `{count, plural,=1{1 Runde} other{{count} Runden}}`
@@ -1476,12 +1150,7 @@ class S {
 
   /// `Unbekannt`
   String get unknown {
-    return Intl.message(
-      'Unbekannt',
-      name: 'unknown',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Unbekannt', name: 'unknown', desc: '', args: []);
   }
 
   /// `{cond, select, blinded {Blind} charmed {Bezaubert} deafened {Taub} frightened {Verängstigt} grappled {Gepackt} incapacitated {Kampfunfähig} invisible {Unsichtbar} paralyzed {Gelähmt} petrified {Versteinert} poisoned {Vergiftet} prone {Liegend} restrained {Festgesetzt} stunned {Betäubt} unconscious {Bewusstlos} exhaustion {Erschöpft} other {Fehler}}`
@@ -1514,32 +1183,17 @@ class S {
 
   /// `Abbrechen`
   String get uiCancel {
-    return Intl.message(
-      'Abbrechen',
-      name: 'uiCancel',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Abbrechen', name: 'uiCancel', desc: '', args: []);
   }
 
   /// `Fertig`
   String get uiDone {
-    return Intl.message(
-      'Fertig',
-      name: 'uiDone',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Fertig', name: 'uiDone', desc: '', args: []);
   }
 
   /// `Ok`
   String get uiOK {
-    return Intl.message(
-      'Ok',
-      name: 'uiOK',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Ok', name: 'uiOK', desc: '', args: []);
   }
 
   /// `Zauberliste`
@@ -1699,12 +1353,7 @@ class S {
 
   /// `Seite`
   String get spellDetailPage {
-    return Intl.message(
-      'Seite',
-      name: 'spellDetailPage',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Seite', name: 'spellDetailPage', desc: '', args: []);
   }
 
   /// `Zeitaufwand`
@@ -1926,11 +1575,7 @@ class S {
   String settingsLanguages(String lang) {
     return Intl.select(
       lang,
-      {
-        'en': 'Englisch',
-        'de': 'Deutsch',
-        'other': 'Fehler',
-      },
+      {'en': 'Englisch', 'de': 'Deutsch', 'other': 'Fehler'},
       name: 'settingsLanguages',
       desc: 'translations of languages with their languagecode',
       args: [lang],

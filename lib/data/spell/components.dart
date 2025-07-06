@@ -31,7 +31,7 @@ class Components{
   Components.fromJson(Map<String, dynamic> json)
     : v = json["v"] as bool,
       s = json["s"] as bool,
-      m = json["m"] as Map<String, String>,
+      m = Map<String, String>.from(json["m"]),
       usedUp = ComponentUsedUp.values[json["usedUp"] as int];
 
   @override

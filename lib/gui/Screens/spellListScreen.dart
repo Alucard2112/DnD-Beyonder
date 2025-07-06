@@ -91,6 +91,9 @@ class _SpellListScreenState extends State<SpellListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if(!BoxHandler.spellBox.containsKey(SpellListScreen.selectedSpell[key])){
+      SpellListScreen.selectedSpell[key] = -1;
+    }
     if (SpellListScreen.selectedSpell[key]! >= 0) {
       int keyBox = SpellListScreen.selectedSpell[key]!;
       if(BoxHandler.spellBox.containsKey(keyBox)) {

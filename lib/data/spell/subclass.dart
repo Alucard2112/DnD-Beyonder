@@ -31,7 +31,7 @@ class SubClasses{
 
   SubClasses.fromJson(Map<String, dynamic> json)
     : c = DnDClass.values[json["c"] as int],
-      name = json["name"];
+      name = Map<String, String>.from(json["name"]);
 
   Map<String, dynamic> toJson() => {
     'c' : c.index,
