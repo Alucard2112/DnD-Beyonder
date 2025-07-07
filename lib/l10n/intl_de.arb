@@ -1,0 +1,499 @@
+{
+  "@@locale": "de",
+  "@_Distanz": {},
+  "self": "Selbst",
+  "feet": "Fuß",
+  "meter": "Meter",
+  "km": "Kilometer",
+  "mile": "Meile",
+  "touch": "Berührung",
+  "special": "Speziell",
+  "meterForUi": "{count, plural,=1{1 Meter} other{{count} Meter}}",
+  "@meterForUi": {
+    "description": "Counting Meter",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "feetForUi": "{count} Fuß",
+  "@feetForUi": {
+    "description": "Counting Feet",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "kmForUi": "{count} Kilometer",
+  "@kmForUi": {
+    "description": "Counting Kilometers",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "mileForUi": "{count, plural,=1{1 Meile} other{{count} Meilen}}",
+  "@mileForUi": {
+    "description": "Counting Miles",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+
+  "@_Creature Size": {},
+  "tiny" : "Sehr klein",
+  "small": "Klein",
+  "medium": "Mittelgroß",
+  "large": "Groß",
+  "huge": "Riesig",
+
+  "@_Actions" : {},
+  "actions" : "{action, select, attack {Angriff} dash {Spurt} disengage {Rückzug} hide {Verstecken} use_an_object {Gegenstand benutzen} other {Fehler}}",
+  "@actions": {
+    "description": "translation of possible actions",
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Skills": {},
+  "skills" : "{skill, select, athletics {Athletik} acrobatics {Akrobatik} sleight_of_hand {Fingerfertigkeit} stealth {Heimlichkeit} arcana {Arkane Kunde} history {Geschichte} investigation {Nachforschung} nature {Naturkunde} religion {Religion} animal_handling {Mit Tieren umgehen} insight {Motiv Erkennen} medicine {Heilkunde} perception {Wahrnehmung} survival {Überlebenskunst} deception {Täuschung} intimidation {Einschüchtern} performance {Auftreten} persuasion {Überzeugen} other {Fehler}}",
+  "@skills": {
+    "description": "translation of possible skills",
+    "placeholders": {
+      "skill": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Species": {},
+  "species" : "{selectSpecies, select, half_elf {Halbelf} half_orc {Halbork} dragonborn {Drachenblütige} human {Mensch} tiefling {Tiefling} dwarf {Zwerg} dwarf_hill {Hügelzwertg} dwarf_mountain {Gebirgszwerg} elf {Elf} elf_drow{Drow} elf_high {Hochelf} elf_wood {Waldelf} halfling {Halbling} halfling_stout {Stämmiger Halbling} halfling_lightfoot {Leichtfuss Halbling} aasimar {Aasimar} gnome {Gnom} gnome_forest {Wald-Gnom} gnome_rock {Felsen-Gnom} goliath {Goliath} orc {Ork} aarakocra {Aarakocra} air_genasi {Luft-Genasi} bugbear {Bugbear} centaur {Zentaure} changeling {Wechselbalg} deep_gnome {Tiefengnom} duergar {Duergar} earth_genasi {Erd-Genasi} eladrin {Eladrin} fairy {Fee} firbolg {Firbolg} fire_genasi {Feuer-Genasi} githyanki {Githyanki} githzerai {Githzerai} goblin {Goblin} harengon {Harengon} hobgoblin {Hobgoblin} kenku {Kenku} kobold {Kobold} lizardfolk {Echsenmensch} minotaur {Minotaur} satyr {Satyr} sea_elf {Meereself} shadar_kai {Shadar-kai} shifter {Wandler} tabaxi {Tabaxi} tortle {Tortel} triton {Triton} water_genasi {Wasser-Genasi} yuan_ti {Yuan-ti} kender {Kender} other {Fehler}}",
+  "@species": {
+    "description": "translation of possible species ",
+    "placeholders": {
+      "selectSpecies": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Senses": {},
+  "senses" : "{sense, select, darkvision {Dunkelsicht} truesight {Wahrer Blick} blindsight {Blindsicht} other {Fehler}}",
+  "@senses": {
+    "description": "translation of possible actions",
+    "placeholders": {
+      "sense": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Status" : {},
+  "status" : "{status, select, concentration {Konzentration} surprised {Überrascht} other {Fehler}}",
+  "@status": {
+    "description": "translation of possible actions",
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Cover" : {},
+  "cover" : "{cover, select, half_cover {Teildeckung} three_quarters_cover {Dreivierteldeckung} total_cover {Volle Deckung} other {Fehler}}",
+  "@cover": {
+    "description": "translation of possible cover",
+    "placeholders": {
+      "cover": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Light" : {},
+  "light" : "{light, select, bright_light {Helles Licht} dim_light {Dämmriges Licht} darkness {Dunkelheit} other {Fehler}}",
+  "@light": {
+    "description": "translation of possible light",
+    "placeholders": {
+      "light": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Visibility" : {},
+  "visibility" : "{visibility, select, lightly_obscured {Leicht verschleiert} heavily_obscured {Komplett verschleiert} other {Fehler}}",
+  "@visibility": {
+    "description": "translation of possible visibility",
+    "placeholders": {
+      "visibility": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Terrain": {},
+  "difficultTerrain" : "schwieriges Gelände",
+
+  "@_Classes": {},
+  "artificer": "Werkmeister",
+  "barbarian": "Barbar",
+  "bard": "Barde",
+  "cleric": "Kleriker",
+  "druid": "Druide",
+  "fighter": "Kämpfer",
+  "monk": "Mönch",
+  "paladin": "Paladin",
+  "ranger": "Waldläufer",
+  "rogue": "Schurke",
+  "sorcerer": "Magier",
+  "warlock": "Hexenmeister",
+  "wizard": "Zauberer",
+
+  "@_Sorting": {},
+  "name": "Name",
+  "level": "Zaubergrad",
+  "school": "Zauberschule",
+  "attackType": "Schadenstyp",
+  "source": "Quelle",
+  "dndClass": "Klasse",
+  "spellCount": "Anzahl Zauber",
+  "sortBy": "Sortieren nach",
+  "ascending": "Aufsteigend",
+  "descending": "Absteigend",
+
+  "@_Komponenten": {},
+  "verbal": "Verbal",
+  "somatic": "Geste",
+  "material": "Material",
+
+  "@_Schadenstypen": {},
+  "acid": "Säure",
+  "bludgeoning": "Wuchtschaden",
+  "cold": "Frost",
+  "fire": "Feuer",
+  "force": "Energie",
+  "lightning": "Blitz",
+  "necrotic": "Nekrotisch",
+  "piercing": "Stich",
+  "poison": "Gift",
+  "psychic": "Psychisch",
+  "radiant": "Gleißend",
+  "slashing": "Klinge",
+  "thunder": "Donner",
+  "shortbow": "Kurzbogen",
+  "longbow": "Langbogen",
+  "oneHandedMeleeAttacks": "Einhändige Nahkampfangriffe",
+  "unarmedAttacks": "Unbewaffnete Nahkampfangriffe",
+  "naturalAttacks": "Natürliche Angriffe",
+  "meleeWeaponAttacks": "Nahkampfangriffe",
+  "thrownWeaponAttacks": "Wurfwaffenangriffe",
+
+  "@_DurationType": {},
+  "instantaneous": "Sofort",
+
+  "@_Sourcebooks": {},
+  "ai": "Acquisitions Incorporated",
+  "aventh": "Aventurische Helden",
+  "aventm": "Aventurische Monster",
+  "bomt": "The Book of Many Things",
+  "cthulhu": "Sandy Petersens Cthulhu Mythos",
+  "dosi": "Die Drachen der Sturmwrack-Insel",
+  "eepc": "Elemental Evil Player’s Companion",
+  "egtw": "Explorer's Guide to Wildemount",
+  "ff2g": "Fateforge: 2. Die Erwachten",
+  "ff3c": "Fateforge: 3. Creatures",
+  "ftod": "Fizbans Schatzkammer der Drachen",
+  "humblewood": "Humblewood",
+  "idrotf": "Eiswindtal: Ode der Frostmaid",
+  "mtgafr": "Abenteuer in den Forgotten Realms",
+  "mythaddm": "Mythgart Abenteuer des Dunklen Meisters",
+  "mythheld": "Mythgart Handbuch der Helden",
+  "mythsaga": "Mythgart Sagas",
+  "mythwelt": "Mythgart Weltenbuch",
+  "pamsato": "Planescape Adventures in the Multiverse: Sigil and the Outlands",
+  "phb": "Spielerhandbuch (2014)",
+  "pota": "Prinzen der Apokalypse",
+  "ragnarok": "Journey to Ragnarok",
+  "sasaag": "Spelljammer Adventures in Space: Astral Adventurer's Guide",
+  "scag": "Abenteurerhandbuch der Schwertküste",
+  "scc": "Strixhaven: A Curriculum of Chaos",
+  "srd": "Systemreferenzdokument",
+  "tcoe": "Tashas Kessel mit Allem",
+  "xge": "Xanathars Ratgeber für Alles",
+  "xphb": "Spielerhandbuch (2024)",
+  "homebrew": "Homebrew",
+
+  "@_SpellLevel": {},
+  "spellSchoolLevel": "{lvl, plural,=0 {Zaubertrick der {school}} other{{school} des {lvl}. Grades}}",
+  "@spellSchoolLevel": {
+    "description": "String for displaying school and level of a spell",
+    "placeholders": {
+      "lvl": {
+        "type": "int",
+        "format": "compact"
+      },
+      "school": {
+        "type": "String"
+      }
+    }
+  },
+  "spellLevel": "{lvl, plural,=0 {Zaubertrick} other{{lvl}. Grad}}",
+  "@spellLevel": {
+    "description": "String for displaying level of a spell",
+    "placeholders": {
+      "lvl": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+
+  "@_Filter": {},
+  "filterClasses":"Klassen",
+  "filterLevel":"Grad",
+  "filterCastTime":"Zauberzeit",
+  "filterSchool":"Schule",
+  "filterDamage":"Schadenstyp",
+
+  "@_SpellSchools": {},
+  "abjuration": "Bannmagie",
+  "transmutation": "Verwandlung",
+  "conjuration": "Beschwörung",
+  "divination": "Erkenntnismagie",
+  "enchantment": "Verzauberung",
+  "illusion": "Illusion",
+  "evocation": "Hervorrufung",
+  "necromancy": "Nekromantie",
+
+  "or": "oder",
+
+  "@_TimeUnits" : {},
+  "trigger": "ausgelöst",
+  "dispel": "gebannt",
+  "round": "{count, plural,=1{1 Runde} other{{count} Runden}}",
+  "@round": {
+    "description": "String for displaying rounds",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "concentration" : "Konzentration",
+  "action": "{count, plural,=1{1 Aktion} other{{count} Aktionen}}",
+  "@action": {
+    "description": "String for displaying actions",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "bonusAction": "{count, plural,=1{1 Bonusaktion} other{{count} Bonusaktionen}}",
+  "@bonusAction": {
+    "description": "String for displaying bonusactions",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "reaction": "{count, plural,=1{1 Reaktion} other{{count} Reaktionen}}",
+  "@reaction": {
+    "description": "String for displaying reactions",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "second": "{count, plural,=1{1 Sekunde} other{{count} Sekunden}}",
+  "@second": {
+    "description": "String for displaying seconds",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "minute": "{count, plural,=1{1 Minute} other{{count} Minuten}}",
+  "@minute": {
+    "description": "String for displaying minutes",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "hour": "{count, plural,=1{1 Stunde} other{{count} Stunden}}",
+  "@hour": {
+    "description": "String for displaying hours",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "unknown": "Unbekannt",
+
+  "@_Conditions": {},
+  "condition": "{cond, select, blinded {Blind} charmed {Bezaubert} deafened {Taub} frightened {Verängstigt} grappled {Gepackt} incapacitated {Kampfunfähig} invisible {Unsichtbar} paralyzed {Gelähmt} petrified {Versteinert} poisoned {Vergiftet} prone {Liegend} restrained {Festgesetzt} stunned {Betäubt} unconscious {Bewusstlos} exhaustion {Erschöpft} other {Fehler}}",
+  "@condition": {
+    "description": "translations of conditions",
+    "placeholders": {
+      "cond": {
+        "type": "String"
+      }
+    }
+  },
+
+  "@_Ui" : {},
+  "uiCancel" : "Abbrechen",
+  "uiDone" : "Fertig",
+  "uiOK" : "Ok",
+
+  "@_UiMainScreen": {},
+  "mainScreenSpellList" : "Zauberliste",
+  "mainScreenSettings" : "Einstellungen",
+  "mainScreenSpellBooks" : "Charaktere",
+
+  "@_UiSpellListScreen": {},
+  "searchSpells" : "Zauber suchen",
+
+  "@_UiCharacterScreen" : {},
+  "spellBookSearchCharacter": "Charakter suchen",
+  "spellBookSpellCount" : "{amount} Zauber",
+  "@spellBookSpellCount": {
+    "description": "String for displaying number of spells",
+    "placeholders": {
+      "amount": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "characterAddTitle" : "Charakter hinzufügen",
+  "characterEditTitle" : "Charakter editieren",
+  "characterName" : "Charakter Name",
+  "characterClass" : "Klasse des Charakters",
+  "characterDeleteTitle" : "Charakter löschen",
+  "characterDeleteMessage" : "Sind Sie sich sicher, dass Sie den Charakter {name} löschen wollen?\nDies kann nicht rückgängig gemacht werden.",
+  "characterDeleteOk" : "Löschen",
+  "characterNoSpells" : "Es sind noch keine Zauber vorhanden. Verwenden Sie den Knopf in den Einstellungen, um Zauber zu importieren.",
+
+  "@_UiSpellDetailScreen" : {},
+  "spellDetailClasses" : "Klassen",
+  "spellDetailPage" : "Seite",
+  "spellDetailCastTime": "Zeitaufwand",
+  "spellDetailDistance": "Reichweite",
+  "spellDetailComponents": "Komponenten",
+  "spellDetailDuration": "Wirkungsdauer",
+  "spellDetailDurationPermanent": "bis der Zauber {condition} wird ",
+  "@spellDetailDurationPermanent": {
+    "description": "String for displaying permanent spells",
+    "placeholders": {
+      "condition": {
+        "type": "String"
+      }
+    }
+  },
+  "spellDetailDice": "{numberDice}W{typeDie}",
+  "@spellDetailDice": {
+    "description": "String for displaying dice",
+    "placeholders": {
+      "numberDice": {
+        "type": "int",
+        "format": "compact"
+      },
+      "typeDie": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "spellDetailDie": "W{typeDie}",
+  "@spellDetailDie": {
+    "description": "String for displaying single die",
+    "placeholders": {
+      "typeDie": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "spellDetailAddSpellTitle": "Zum Charakter hinzufügen",
+  "spellDetailAddSpellNoChars": "Keine Charaktere vorhanden. Erstelle einen Charakter, dem du etwas hinzufügen willst.",
+  "spellDetailRemoveFromCharTitle": "Von Charakter entfernen",
+  "spellDetailRemoveFromCharMessage": "Sind sie sicher, dass ***{name}*** von Charakter ***{charname}*** entfernt werden soll?",
+  "@spellDetailRemoveFromCharMessage": {
+    "description": "String for displaying single die",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "charname": {
+        "type": "String"
+      }
+    }
+  },
+  "spellDetailRemoveFromCharAffirmative" : "Entfernen",
+  "spellDetailDeleteTitle" : "Zauber löschen",
+  "spellDetailDeleteMessage" : "Sind Sie sich sicher, dass Sie den Zauber ***{name}*** löschen wollen?\nDies kann nicht rückgängig gemacht werden.",
+
+
+  "@_UiFilterScreen": {},
+  "filterUnselect" : "Alle abwählen",
+  "filterSpells" : "Zauber filtern",
+  "filterReset" : "Filter zurücksetzen",
+
+  "@_UiSpellDescription": {},
+  "onHigherLevels" : "Auf höheren Graden",
+
+  "@_UiSettings": {},
+  "settingsLanguage" : "Sprache",
+  "settingsLanguageLabel" : "Sprache auswählen",
+  "settingsLanguages" : "{lang, select, en {Englisch} de {Deutsch} other {Fehler}}",
+  "@settingsLanguages": {
+    "description": "translations of languages with their languagecode",
+    "placeholders": {
+      "lang": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsLanguageDescription": "Die Sprache wirkt sich nur auf das Interface aus",
+  "settingsDistanceType" : "Einheit auswählen",
+  "settingsData" : "Daten Optionen",
+  "settingsImport5e" : "5eTools Zauber importieren",
+  "settingsImportData" : "App-Daten importieren",
+  "settingsExportData": "App-Daten exportieren",
+  "settingsDeleteData": "App-Daten löschen",
+  "settingsAppVersionLabel" :"App-Version",
+  "settingsDoNotShowMessageAgain" : "Diese Nachricht nicht erneut anzeigen",
+  "settings5eMessage" : "Dieser Import ist nur für json-Dateien von 5e-Tools gedacht und nicht für einen Import von Daten dieser App.",
+  "settingsAppMessage" : "Dieser Import ist nur für die Daten dieser App gedacht und nicht für Daten von 5e-Tools.\nDer Import wird eventuell Daten überschreiben.",
+  "settingsDeleteMessage" : "Achtung: Das Löschen kann nicht rückgängig gemacht werden.",
+  "settingsExportMessage" : "Daten werden im Downloads-Ordner abgelegt",
+  "settingsExportMessageSuccess" : "Daten erfolgreich in den Downloads-Ordner exportiert",
+  "settingsExportMessageFail" : "Fehler: Export nicht möglich, überprüfen Sie die Berechtigungen"
+}
