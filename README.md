@@ -1,5 +1,5 @@
 # Tavern Tome
-
+![an open tome with mysterious energies floating up from it](assets/app_icon.png "App Icon")
 A new app for all things DnD!
 This app is meant for players and dungeonmaster alike as a quick reference guide.
 
